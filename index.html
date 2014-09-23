@@ -70,21 +70,30 @@
 				<p class="content">
 					The values that may change for different environments:
 					<ul>
-						<li>AuthStrategy
+						<li>Consumer Key
 							<ul><li><code>&lt;add key="Salesforce:ConsumerKey" value="{Consumer Key}" /&gt;</code></li></ul>
 						</li>
-						<li>ConsumerKey
+						<li>Consumer Secret
 							<ul><li><code>&lt;add key="Salesforce:ConsumerSecret" value="{Consumer Secret}"/&gt;</code></li></ul>
 						</li>
-						<li>ConsumerSecret
+						<li>Redirect Uri
 							<ul><li><code>&lt;add key="Salesforce:RedirectUri" value="/MvcApplication5-SalesforceRedirectHandler.axd" /&gt;</code></li></ul>
 						</li>
-						<li>SecruityToken
+						<li>Login Domain
 							<ul><li><code>&lt;add key="Salesforce:Domain" value="https://login.salesforce.com" /&gt;</code></li></ul>
 						</li>
 					</ul>
 				</p>
-
+				<p>
+<pre class="csharpcode"><span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+        <span class="rem">&lt;!-- The Salesforce connected app is named: YourProjectName --&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/ProjectName-SalesforceRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+</pre>
+				</p>
 				<h2 class="subContentTitleColored">Salesforce Connect App was added</h2>
 				<p class="content">
 					Salesforce requires the configuration of a Connected App allowing your app to make requests of the Salesforce Service. Based on the authentication strategy you've chosen, the Connected App was configured, and the configuration values have been saved to web.config. You may change the Connected App in the <a href="#" class="contentLink">Salesforce Portal</a>.
