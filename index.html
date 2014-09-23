@@ -70,18 +70,11 @@
 				<p class="content">
 					The values that may change for different environments:
 					<ul>
-						<li>AuthStrategy</li>
-						<li>ConsumerKey</li>
-						<li>ConsumerSecret</li>
-						<li>SecruityToken</li>
+						<li>AuthStrategy <code>&lt;add key="Salesforce:ConsumerKey" value="{Consumer Key}" /&gt;</code></li>
+						<li>ConsumerKey <code>&lt;add key="Salesforce:ConsumerSecret" value="{Consumer Secret}"/&gt;</code></li>
+						<li>ConsumerSecret <code>&lt;add key="Salesforce:RedirectUri" value="/MvcApplication5-SalesforceRedirectHandler.axd" /&gt;</code></li>
+						<li>SecruityToken <code>&lt;add key="Salesforce:Domain" value="https://login.salesforce.com" /&gt;</code></li>
 					</ul>
-						<code>
-					    <!-- The Salesforce connected app is named: MvcApplication5 -->
-    					&lt;add key="Salesforce:ConsumerKey" value="{Consumer Key}" /&gt;<br/>
-    					&lt;add key="Salesforce:ConsumerSecret" value="{Consumer Secret}" /&gt;<br/>
-    					&lt;add key="Salesforce:RedirectUri" value="/MvcApplication5-SalesforceRedirectHandler.axd" /&gt;<br/>
-    					&lt;add key="Salesforce:Domain" value="https://login.salesforce.com" /&gt;<br/>
-						</code>
 				</p>
 
 				<h2 class="subContentTitleColored">Salesforce Connect App was added</h2>
