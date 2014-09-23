@@ -42,26 +42,39 @@
 				<p class="content">
 					NuGet package references
 					<ul class="content">
-						<li>Developer Force.Common</li>
-						<li>Developer Force.Force</li>
-						<li>Developer Force.Common</li>
+						<li>DeveloperForce.Force</li>
 					</ul>
 
 					<p class="content">.NET references
 					<ul class="content">
-						<li>Microsoft.Net.Http</li>
-						<li>Newtonsoft.Json</li>
+		                <li>Microsoft.Bcl</li>
+		                <li>Microsoft.Bcl.Async</li>
+		                <li>Microsoft.Bcl.Build</li>
+		                <li>Microsoft.Net.Http</li>
+		                <li>Newtonsoft.Json</li>
+		                <li>System.Configuration</li>
+		                <li>System.IdentityModel</li>
+		                <li>System.Runtime</li>
+		                <li>System.Threading.Tasks</li>
+		                <li>System.Web</li>
+		                <li>System.ComponentModel.DataAnnotations</li>
 					</ul>
 
 				</p></p>
 				<h2 class="subContentTitleColored">A configured connection class was added to the Service folder</h2>
 				<p class="content">
-					The connection object SalesforceConnection will read the configuration values from web.config, enabling your team to change the endpoint and auth configuration through different environments.
+					The connection object SalesforceConnection will read the configuration values from web.config, enabling your team to change the endpoint and auth configuration for different scenarios.
 				</p>
 
 				<h2 class="subContentTitleColored">Your web.config has new configuration values</h2>
 				<p class="content">
-					The values that may change through environments, such as the AuthStrategy, ConsumerKey, Secret, SecruityToken have been placed in web.config.
+					The values that may change for different environments:
+					<ul>
+						<li>AuthStrategy</li>
+						<li>ConsumerKey</li>
+						<li>ConsumerSecret</li>
+						<li>SecruityToken</li>
+					</ul>
 				</p>
 
 				<h2 class="subContentTitleColored">Salesforce Connect App was added</h2>
