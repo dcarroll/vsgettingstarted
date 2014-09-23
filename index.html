@@ -8,6 +8,294 @@
 
 </head>
 <body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
+<header>
+    <!--<dfc-header>-->
+<!--<script type="text/javascript" src="/custom.js"></script>-->		<div class="navbar navbar-static-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<div class="mobileHeaderContainer">
+						<a class="brand clearfix" href="/">
+<img src="//developer.salesforce.com/resource/images/salesforce-developer-network-logo_1.png" class="sewg314"> 						</a>
+						<div class="headerButtonsContainer">
+							<div class="spanButton clearfix pull-right">
+								<a class="btn btn-success" type="button" href="/en/signup?d=70130000000td6N">
+Sign Up ›								</a>
+							</div>
+							<div style="position: relative;" class="spanButton clearfix pull-right">
+								<button id="login-button" class="btn btn-primary" type="button">
+Login ›								</button>
+								<div id="user-info-container" style="display: none;">
+									<div id="user-info-content">
+										<div id="user-info-header" class="clearfix">
+											<div id="user-info-picture">
+&nbsp;											</div>
+											<div id="user-info-text-container">
+												<div id="user-info-name">
+&nbsp;												</div>
+												<div id="user-info-username">
+&nbsp;												</div>
+												<div class="clearfix">
+&nbsp;												</div>
+											</div>
+										</div>
+										<div id="user-info-profile">
+											<ul class="unstyled">
+												<li id="MyDeveloperAcc">
+													<a>
+My Developer Account &gt;													</a>
+												</li>
+												<li id="CreateNewAcc">
+													<a>
+Create Account &gt;													</a>
+												</li>
+												<li id="MySettings">
+													<a>
+My Settings &gt;													</a>
+												</li>
+											</ul>
+										</div>
+										<button id="user-info-logout" onclick="javascript:void(0);">
+Log out										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="social-search clearfix pull-right">
+							<div id="search-social-container" class="search-social-inner clearfix" data-placeholder="Search">
+								<div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><input autocomplete="off" type="text" size="10" class=" gsc-input" name="search" title="search" id="gsc-i-id1" dir="ltr" spellcheck="false" style="outline: none;" placeholder="Search"><input type="hidden" name="bgresponse" id="bgresponse"></td><td class="gsc-search-button"><input type="button" value="Search" class="gsc-search-button" title="search"></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr style="display: none;"><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img"><img src="https://www.google.com/uds/css/small-logo.png" class="gsc-branding-img"></td></tr></tbody></table></form></div></div>
+								<div id="login-logout2" class="login-logout hidden">
+									<a id="sdn-login-link2" class="login-link" href="//org.developer.salesforce.com/forums/CommunitiesLogin?startURL=">
+Login									</a>
+									<ul class="nav nav-pills">
+										<li class="dropdown">
+											<a class="dropdown-toggle" data-toggle="dropdown" href="#link">
+<img src="//developer.salesforce.com/resource/images/user-picture.jpg">											</a>
+											<ul class="dropdown-menu">
+												<li class="name">
+													<a href="#">
+														<span data-user-field="firstname">
+&nbsp;														</span>
+														<span data-user-field="lastname">
+&nbsp;														</span>
+													</a>
+												</li>
+												<li class="email" data-user-field="username">
+&nbsp;												</li>
+												<li class="divider">
+&nbsp;												</li>
+												<li class="logout">
+													<a href="#link">
+Logout													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div style="height: auto;" class="nav-collapse in collapse">
+							<ul id="nav-to-highlight-based-on-url2" class="nav primary-nav">
+								<li class="dropdown">
+									<a data-toggle="dropdown" href="/platform/overview">
+Platform									</a>
+									<ul class="dropdown-menu">
+										<li class="spaced-item">
+											<a class="medium-link" href="/gettingstarted">
+Getting Started<br>
+  											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/platform/overview">
+Platform Overview											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/platform/overview#force-com">
+Force.com											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/platform/overview#exact-target-fuel">
+ExactTarget Fuel											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/platform/overview#heroku">
+Heroku											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/platform/use-cases">
+Use Cases											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/releases/release/Summer14">
+Summer '14 Release Info											</a>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a data-toggle="dropdown" href="/resources">
+Library									</a>
+									<ul class="dropdown-menu library" style="width: 348px;">
+										<li style="overflow:hidden;">
+											<div class="pull-left span">
+												<p>
+By Category												</p>
+												<ul style="width:50.0%;float:left;" class="unstyled">
+													<li class="spaced-item">
+														<a class="medium-link" href="/docs">
+Documentation														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Wiki">
+Developer Resources														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Architect_Core_Resources">
+Architect Resources														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Force.com_Books">
+Books														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/content/type/Article">
+Articles														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Force.com_workbook">
+Workbook Tutorials														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Cheat_Sheets">
+Cheat Sheets														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/content/type/Webinar">
+Webinars														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/codetalk">
+CodeTalk														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/blogs">
+Blogs														</a>
+													</li>
+												</ul>
+											</div>
+											<div class="pull-left span">
+												<p>
+By Topic												</p>
+												<ul style="width:50.0%;float:left;" class="unstyled">
+													<li class="spaced-item medium-link">
+														<a href="/page/App_Distribution">
+App Distribution														</a>
+													</li>
+													<li class="spaced-item medium-link">
+														<a href="/page/App_Logic">
+App Logic														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Database">
+Database														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/en/mobile">
+Mobile														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Integration">
+Integration														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Security">
+Security														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/User_Interface">
+User Interface														</a>
+													</li>
+													<li class="spaced-item">
+														<a class="medium-link" href="/page/Websites">
+Websites														</a>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a data-toggle="dropdown" href="forums">
+Tools
+									</a>
+									<ul class="dropdown-menu">
+										<li class="spaced-item">
+											<a class="medium-link" href="/page/Force.com_IDE">
+Force.com IDE											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/page/Tools">
+Tools and Toolkits											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="http://developer.force.com/codeshare">
+Code Share											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="http://developer.force.com/cookbook">
+Cookbooks											</a>
+										</li>
+										<li class="spaced-item">
+											<a href="/mobile/services/mobile-templates" target="_blank">
+Mobile Templates												<i class="icon-external-link">
+												</i>
+											</a>
+										</li>
+										<li class="spaced-item">
+											<a href="http://sfdc-styleguide.herokuapp.com/" target="_blank">
+Salesforce1 Style Guide												<i class="icon-external-link">
+												</i>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li class="dropdown">
+									<a data-toggle="dropdown" href="//events.developerforce.com/signup?d=70130000000tgM8">
+Community									</a>
+									<ul class="dropdown-menu">
+										<li class="spaced-item">
+											<a class="medium-link" href="/forums">
+Developer Forums											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/calendar">
+Events Calendar											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/mvp">
+Force.com MVPs											</a>
+										</li>
+										<li class="spaced-item">
+											<a class="medium-link" href="/dugs?title=page/Force.com_User_Groups">
+Developer Groups											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="mobile mobileHeader">
+						<a id="mobileMenu">
+<img src="//developer.salesforce.com/resource/images/MenuMobile.png"> 						</a>
+						<a class="mobileLogo" href="/">
+<img src="//developer.salesforce.com/resource/images/salesforce-developer-network-logo_1.png" class="sewg314" style="width:118px;"> 						</a>
+						<a id="mobileSearch">
+<img src="//developer.salesforce.com/resource/images/SearchMobile.png"> 						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+<script src="//developer.salesforce.com/resource/javascripts/afterheader.min.js"></script>
+<!--</dfc-header>-->
+</header>
 <table width="100%" height="100%" cellspacing="0" cellpadding="15">
 	<tr>
 		<td colspan="2" height="100px">
