@@ -1,60 +1,70 @@
 <!doctype html public "-//w3c//dtd html 3.2 final//en">
 <html>
 <head>
-<title></title>
-<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
-
-<script src="//developer.salesforce.com/resource/javascripts/holygrail.min.js" type="text/javascript"></script>
-
+<title>Salesforce - Next Steps</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css">
+    <link rel="stylesheet" href="../styles/csharp.css" type="text/css" />
 </head>
-<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
-	<table width="100%" height="100%" cellspacing="0" cellpadding="15">
-		<tr>
-			<td colspan="2" height="100px">
-				<table width="100%" cellspacing="0" cellpadding="0">
-					<tr>
-						<td>
-							<h1 class="title">Developing with Salesforce</h1>
-						</td>
-						<td align="right">
-							<img height="100px" src="images/sfdc_platform_rgb.png">
-						</td>
-					</tr>
-				</table>
-			</td>
-		<tr>
-			<td valign="top" width="200px;">
-				<table width="200">
-					<tr>
-						<td class="nav"><a href="index.html" class="navLink">What happened?</a></td>
-					</tr>
-					<tr>
-						<td class="navON"><a href="nextSteps.html" class="navLink">Next steps</a></td>
-					</tr>
-					<tr>
-						<td class="nav"><a href="gettingStarted.html" class="navLink">Getting started</a></td>
-					</tr>
-				</table>
-			</td>
-			<td valign="top" style="padding-right:200px;">
-				<h1 class="contentTitle">Depending on the options you've chosen, there may be some mandatory next steps to query Salesforce</h1>
-				<h2 class="subContentTitleColored">Service Account with a JWT Bearer Token Authentication</h2>
-
-				<p class="content">
-					If you've selected Service Account with a JWT Bearer Token for your runtime authentication strategy, you'll need to manually configure a few extra steps in the Salesforce Portal.
-					<ol class="content">
-						<li>Log into the <a href="https://login.salesforce.com" target="_blank" class="contentLink">Salesforce.com</a></li>
-						<li>Navigate to Settings > Admininister > Manage Apps >Connected Apps</li>
-						<li>Edit the appropriate connected app.</li></li>
-						<li>In the "Permitted Users" drop down select "Admin approved users are pre-authorized"</li>
-					</ol>
-					<img src="images/sfScreenShot.png" style="padding-left:40px">
-				</p>
-
-
-			</td>
-		</tr>
-	</table>
+<body>
+<table cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<div  class="leftColumn">
+				<div class="logoShell">
+					<img src="../images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+				</div>
+				
+				<div class="primaryNav">
+					<a href="whatHappened.html">
+						<div class="primaryNavItem">
+							What happened?
+						</div>
+					</a>
+					<a href="nextSteps.html">
+						<div class="primaryNavItemSelected">
+							Next steps
+						</div>
+					</a>
+					<a href="gettingStarted.html">
+						<div class="primaryNavItem">
+							Getting started
+						</div>
+					</a>
+                    <a href="customizing.html">
+                        <div class="primaryNavItem">
+                            Customizing
+                        </div>
+                    </a>
+				</div>
+			</div>
+		</td>
+	
+		<td class="rightColumn">
+        	<h1>Developing with Salesforce</h1>
+			<h2>Depending on the options you've chosen, there may be some mandatory next steps to query Salesforce</h2>
+            <h3>Web Server Flow</h3>
+            <p>If you've selected <b>Web Server Flow</b> for your runtime authentication strategy, you'll need to update web.config with the Consumer Secret from the Salesforce Portal.</p>
+            <ul>
+                <li>Log into the <a href="https://login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank" class="contentLink">Salesforce Portal</a>.</li>
+                <li>Scroll down to view the <b>Connected Apps</b></li>
+                <li>Select the Connected App as named in the config file.</li>
+                <pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+    <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+    <span class="disabled">&lt;add key="Salesforce:ConsumerKey" value="yourKey"/&gt;</span>
+    <span class="disabled">...</span>
+</pre>
+                <li>
+                    <div>In the <b>API (enable OAuth Settings)</b> section, find the <b>Consumer Secret</b> and click the link to show the key.</div>
+                    <br />
+                    <img width="1024" src="../images/ConsumerSecret.png">
+                </li>
+                <br />
+                <li>Copy the consumer key value from the Salesforce Portal and paste it in your application's <font class="inlineCode">web.config</font> file as the value of the <font class="inlineCode">Salesforce:ConsumerSecret</font> app setting.</li>
+            </ul>
+		</td>
+	</tr>
+</table>
 </body>
 </html>
 

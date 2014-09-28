@@ -1,63 +1,297 @@
 <!doctype html public "-//w3c//dtd html 3.2 final//en">
 <html>
 <head>
-<title></title>
-<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
-
-<script src="//developer.salesforce.com/resource/javascripts/holygrail.min.js" type="text/javascript"></script>
-
+<title>Salesforce Getting Started</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css"/>
+    <link rel="stylesheet" href="../styles//csharp.css" type="text/css" />
+    <script type="text/javascript" src="../scripts/starterpages.js"></script>
 </head>
-<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
-	<table width="100%" height="100%" cellspacing="0" cellpadding="15">
-		<tr>
-			<td colspan="2" height="100px">
-				<table width="100%" cellspacing="0" cellpadding="0">
-					<tr>
-						<td>
-							<h1 class="title">Developing with Salesforce</h1>
-						</td>
-						<td align="right">
-							<img height="100px" src="images/sfdc_platform_rgb.png">
-						</td>
-					</tr>
-				</table>
-			</td>
-		<tr>
-			<td valign="top" width="200px;">
-				<table width="200">
-					<tr>
-						<td class="nav"><a href="index.html" class="navLink">What happened?</a></td>
-					</tr>
-					<tr>
-						<td class="nav"><a href="nextSteps.html" class="navLink">Next steps</a></td>
-					</tr>
-					<tr>
-						<td class="navON"><a href="gettingStarted.html" class="navLink">Getting started</a></td>
-					</tr>
-				</table>
-			</td>
-			<td valign="top" style="padding-right:200px;">
-				<h1 class="contentTitle">Here are some of the common tasks developers do next</h1>
-				<h2 class="subContentTitleColored">Querying and deleting a Salesforce Contact</h2>
+<body>
+<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td class="leftColumn">
+			<div>
+				<div class="logoShell">
+                    <img src="../images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+				</div>
+				
+				<div class="primaryNav">
+					<a href="whatHappened.html">
+						<div class="primaryNavItem">
+							What happened?
+						</div>
+					</a>
+                    <a href="nextSteps.html">
+                        <div class="primaryNavItem">
+                            Next steps
+                        </div>
+                    </a>
+					<a href="gettingStarted.html">
+						<div class="primaryNavItemSelected">
+							Getting started
+						</div>
+					</a>
+                    <a href="customizing.html">
+                        <div class="primaryNavItem">
+                            Customizing
+                        </div>
+                    </a>
+				</div>
+			</div>
+		</td>
+	
+		<td class="rightColumn">
+		
+            <h1>Get started with Salesforce</h1>
+            <h2>Access Salesforce Data using the REST APIs with .NET Code</h2>
+            <h3>developerforce/Force.com-Toolkit-for-NET</h3>
+            <p>The Salesforce Connected Service configures your project to work with the <a href="https://github.com/developerforce/Force.com-Toolkit-for-NET/wiki/Getting-Started">developerforce/Force.com-Toolkit-for-NET</a></p>
+            <p>Within the Force.com-Toolkit-for-NET you'll find additional samples for how to use the SDK and program against the Salesforce REST APIs</p>
+            <h2>Code Samples</h2>
+            <p>Using the following walkthroughs and code snippets, you should be able to quickly get started working with the Salesforce RESTful services. For more informaiton see <a href="https://developer.salesforce.com/docs" target="_blank" class="contentLink">Salesforce .NET REST Documentation</a>.</p>
+            <div class="linkTable">
+                <div class="linkTableNav">
+                    <div id="LinkTableNavMVC" class="linkTableNavItemSelected" onclick="resetLinkTableNav('LinkTableNavMVC', 'MVCLinks');"><a href="#">MVC Walkthrough</a></div>
+                    <div id="LinkTableNavSnippets" class="linkTableNavItem" onclick="resetLinkTableNav('LinkTableNavSnippets', 'Links2');"><a href="#">Code Snippets</a></div>
+                    <div id="LinkTableNav3" class="linkTableNavItem" onclick="resetLinkTableNav('LinkTableNav3', 'Links3');"><a href="#">Tables</a></div>
+                </div>
+                <!--				  <div id="LinkTableNavMVC" class="linkTableNavItemSelected" onClick="resetLinkTableNav('LinkTableNavMVC', 'MVC');"><a href="#">MVC Walkthrough</a></div>
+                          <div id="LinkTableNavSnippets" class="linkTableNavItem" onClick="resetLinkTableNav('LinkTableNavSnippets', 'Snippets');"><a href="#">Code Snippets</a></div>
+        -			  <div id="LinkTableNavDeploymentTips" class="linkTableNavItem" onClick="resetLinkTableNav('LinkTableNav3', 'Links3');"><a href="#">Deployment Tips</a></div>-->
+            </div>
+					
+					
+				<div id="MVCLinks" style="display:inline;">
+					<div class="LinkTableLinks">
+						<div class="linkTableSubNav">
+							<a onClick="resetMVCLinks('MVCLinksSubNav1', 'MVCLinksCode1');" href="#"><div id="MVCLinksSubNav1" class="linkTableSubNavItemSelected">Add an MVC Controller</div></a>
+							<a onClick="resetMVCLinks('MVCLinksSubNav2', 'MVCLinksCode2' );" href="#"><div id="MVCLinksSubNav2" class="linkTableSubNavItem">Insert a blob</div></a>
+							<a onClick="resetMVCLinks('MVCLinksSubNav3', 'MVCLinksCode3' );" href="#"><div id="MVCLinksSubNav3" class="linkTableSubNavItem">List blobs in a container</div></a>
+						</div>
+			    
+						<div class="linkTableCodeBox">
+							<div id="MVCLinksCode1" style="display:inline;">
+                                <h2>Creating an MVC app to view, edit and delete Salesforce Contacts</h2>
+                                <p>ASP.net MVC apps follow the Model-View-Controller pattern. This includes the a Model that represents the Salesforce Contact object. View(s) which represent the List (Index), Details, Delete and Create pages. And lastly the Controller to retrieve the Salesforce Contact object and provide for Create, Update and Delete functionality.</p>
+                                <h3>Add MVC Controller</h3>
+                                <ul>
+                                    <li>Right click on the Controllers folder and select <b>Add-->Controller...</b></li>
+                                    <li>Select <b>MVC 5 Controller - Empty</b></li>
+                                    <li>Name it: <b>Contacts</b>Controller</li>
+                                    <li>Replace the contents of the Controller with the following code:</li>
+                                    <li>Replace the namespace YourProject with the namespace of your project</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeController')">Copy</button> 
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre id="codeController" class="csharpcode">
+<span class="kwrd">using</span> System;
+<span class="kwrd">using</span> System.Collections.Generic;
+<span class="kwrd">using</span> System.Linq;
+<span class="kwrd">using</span> System.Net;
+<span class="kwrd">using</span> System.Threading.Tasks;
+<span class="kwrd">using</span> System.Web;
+<span class="kwrd">using</span> System.Web.Mvc;
+<span class="kwrd">using</span> <span class="replace">YourProject</span>.Models.Salesforce;
+<span class="kwrd">using</span> <span class="replace">YourProject</span>.Services.Salesforce;
+<span class="kwrd">using</span> Salesforce.Common.Models;
+<span class="kwrd">using</span> Salesforce.Force;
+<span class="kwrd">namespace</span> <span class="replace">YourProject</span>.Controllers {
+    <span class="kwrd">public</span> <span class="kwrd">class</span> ContactsController : Controller {
 
-				<p class="content">
-					If you've selected Service Account with a JWT Bearer Token for your runtime authentication strategy, you'll need to manually configure a few extra steps in the Salesforce Portal.
-					<ol class="content">
-						<li>Create a new class file named SalesforceContactSample.cs</li>
-						<li>Paste the following code into the class</li>
-					</ol>
-					<p class="content" style="color:red;">Developers need to implent the code view</p>
-				</p>
-			</td>
-		</tr>
-	</table>
+        <span class="rem">// GET: Contacts</span>
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Index() {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsUserLoggedIn()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.AuthorizationUri.ToString());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+
+            <span class="rem">// Query just the properties we need to display the selection with SOQL </span>
+            <span class="rem">// Querying all properties would waste bandwidth and performance</span>
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, FirstName, LastName,  MailingCity, MailingState, MailingCountry From Contact"</span>);
+
+            <span class="kwrd">return</span> View(contacts.records);
+        }
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Details(<span class="kwrd">string</span> id) {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsUserLoggedIn()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.AuthorizationUri.ToString());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+            ForceClient client = service.GetForceClient();
+            client = service.GetForceClient();
+
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id='"</span> + id + <span class="str">"'"</span>);
+
+            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+        }
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit(<span class="kwrd">string</span> id) {
+            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>) {
+                <span class="kwrd">return</span> <span class="kwrd">new</span> HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+            ForceClient client = service.GetForceClient();
+
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, FirstName, LastName, Salutation, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id='"</span> + id + <span class="str">"'"</span>);
+
+            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+        }
+
+        <span class="rem">// POST: /Contacts/Edit/003i000000tm2KSAAY</span>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit([Bind(Include = <span class="str">"Id,FirstName,LastName,Salutation,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email"</span>)] Contact contact) {
+            <span class="rem">// TODO: Resolve Edit failures with ID</span>
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsUserLoggedIn()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.AuthorizationUri.ToString());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+            ForceClient client = service.GetForceClient();
+
+            <span class="rem">// Copy the updated properties to a type that only contains the updatable properties</span>
+            <span class="kwrd">var</span> updatedContact = <span class="kwrd">new</span> {
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                Salutation = contact.Salutation,
+                MailingStreet = contact.MailingStreet,
+                MailingCity = contact.MailingCity,
+                MailingState = contact.MailingState,
+                MailingPostalCode = contact.MailingPostalCode,
+                MailingCountry = contact.MailingCountry,
+                Phone = contact.Phone,
+                Email = contact.Email
+            };
+
+            <span class="kwrd">var</span> success = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, updatedContact);
+            <span class="kwrd">if</span> (success.success == <span class="str">"true"</span>) {
+                <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+            } <span class="kwrd">else</span> {
+                <span class="kwrd">return</span> View(contact);
+            }
+        }
+
+        <span class="rem">// GET: /Contacts/Delete/003i000000tm2KSAAY</span>
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Delete(<span class="kwrd">string</span> id) {
+            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>) {
+                <span class="kwrd">return</span> <span class="kwrd">new</span> HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+            ForceClient client = service.GetForceClient();
+
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id='"</span> + id + <span class="str">"'"</span>);
+
+            <span class="kwrd">if</span> (contacts.records.Count == 0) {
+                <span class="kwrd">return</span> HttpNotFound();
+            }
+            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+        }
+
+        <span class="rem">// POST: /Contacts/Delete/003i000000tm2KSAAY</span>
+        [HttpPost, ActionName(<span class="str">"Delete"</span>)]
+        [ValidateAntiForgeryToken]
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; DeleteConfirmed(<span class="kwrd">string</span> id) {
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+            ForceClient client = service.GetForceClient();
+
+            <span class="kwrd">var</span> success = await client.DeleteAsync(<span class="str">"Contact"</span>, id);
+
+            <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+        }
+
+        <span class="kwrd">public</span> ActionResult Create() {
+            <span class="kwrd">return</span> View();
+        }
+
+        <span class="rem">// POST: /Contacts/Create</span>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Create([Bind(Include = <span class="str">"FirstName,LastName,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email"</span>)] Contact contact) {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsUserLoggedIn()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.AuthorizationUri.ToString());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            SalesforceService service = <span class="kwrd">new</span> SalesforceService();
+            ForceClient client = service.GetForceClient();
+
+            <span class="rem">// Copy the updated properties to a type that only contains the updatable properties</span>
+            <span class="kwrd">var</span> newContact = <span class="kwrd">new</span> {
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                MailingStreet = contact.MailingStreet,
+                MailingCity = contact.MailingCity,
+                MailingState = contact.MailingState,
+                MailingPostalCode = contact.MailingPostalCode,
+                MailingCountry = contact.MailingCountry,
+                Phone = contact.Phone,
+                Email = contact.Email
+            };
+
+            <span class="kwrd">var</span> id = await client.CreateAsync(<span class="str">"Contact"</span>, newContact);
+            <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+        }
+    }
+}</pre>
+
+                            </div>
+							<div id="MVCLinksCode2" style="display:none;"><img src="../images/blobSample2.png" width="583" height="419" alt=""/></div>
+							<div id="MVCLinksCode3" style="display:none;"><img src="../images/blobSample3.png" width="583" height="759" alt=""/></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div id="Links2" style="display:none;">
+					<div class="LinkTableLinks">
+						<div class="linkTableSubNav">
+							<a onClick="resetLinks2('Links2SubNav1', 'Links2Code1');" href="#"><div id="Links2SubNav1" class="linkTableSubNavItemSelected">Create a queue</div></a>
+							<a onClick="resetLinks2('Links2SubNav2', 'Links2Code2');" href="#"><div id="Links2SubNav2" class="linkTableSubNavItem">Insert a message</div></a>
+							<a onClick="resetLinks2('Links2SubNav3', 'Links2Code3');" href="#"><div id="Links2SubNav3" class="linkTableSubNavItem">Change queued message contents</div></a>
+							<a onClick="resetLinks2('Links2SubNav4', 'Links2Code4');" href="#"><div id="Links2SubNav4" class="linkTableSubNavItem">Delete a queue</div></a>
+						</div>
+			    
+						<div class="linkTableCodeBox">
+							<div id="Links2Code1" style="display:inline;"><img src="../images/queueSample1.png" width="583" height="356" alt=""/></div>
+							<div id="Links2Code2" style="display:none;"><img src="../images/queueSample2.png" width="583" height="350" alt=""/></div>
+							<div id="Links2Code3" style="display:none;"><img src="../images/queueSample3.png" width="583" height="352" alt=""/></div>
+							<div id="Links2Code4" style="display:none;"><img src="../images/queueSample4.png" width="583" height="270" alt=""/></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div id="Links3" style="display:none;">
+					<div class="LinkTableLinks">
+						<div class="linkTableSubNav">
+							<a onClick="resetLinks3('Links3SubNav1', 'Links3Code1');" href="#"><div id="Links3SubNav1" class="linkTableSubNavItemSelected">Create a table</div></a>
+							<a onClick="resetLinks3('Links3SubNav2', 'Links3Code2');" href="#"><div id="Links3SubNav2" class="linkTableSubNavItem">Add entity to a table</div></a>
+							<a onClick="resetLinks3('Links3SubNav3', 'Links3Code3');" href="#"><div id="Links3SubNav3" class="linkTableSubNavItem">Table code sampler</div></a>
+						</div>
+			    
+						<div class="linkTableCodeBox">
+							<div id="Links3Code1" style="display:inline;"><img src="../images/tableSample1.png" width="583" height="233" alt=""/></div>
+							<div id="Links3Code2" style="display:none;"><img src="../images/tableSample2.png" width="583" height="307" alt=""/></div>
+							<div id="Links3Code3" style="display:none;"><img src="../images/tableSample3.png" width="583" height="483" alt=""/></div>
+						</div>
+					</div>
+				</div>
+							
+				
+			</div>
+		</td>
+	</tr>
+</table>
 </body>
 </html>
-
-
-
-
-
-
-
-
