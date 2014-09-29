@@ -6,9 +6,10 @@
 	background-color: #ffffff;
     border: 2px solid #cccccc;
     border-radius: 4px;
-    
+    /*word-wrap: break-word;*/
   	/*white-space: pre;*/
 }
+
 
 .csharpcode pre { margin: 0em; }
 

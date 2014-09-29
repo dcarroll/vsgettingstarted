@@ -8,7 +8,7 @@ body {
 }
 
 .leftColumn {
-	display:relative;
+    display:relative;
 	width:176px;
 }
 .rightColumn {
@@ -250,21 +250,17 @@ img.inlineList {
 	cursor:hand;
 }
 
-
-
 .linkTableCodeBox {
 	float:left;
-	width:70%;
+    width:70%;
+	/*
+*/
 	height:auto;
 	min-height:150px;
-	overflow: auto;
+	overflow:auto;
 	padding:12px 0px 12px 12px;
 	border-left:1px solid #e9ebee;
 }
-
-
-
-
 
 .alignMiddle {
 	vertical-align:central;

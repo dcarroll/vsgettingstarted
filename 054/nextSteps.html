@@ -1,0 +1,78 @@
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+    <title>Salesforce - Required Next Steps</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css">
+    <link rel="stylesheet" href="../styles/csharp.css" type="text/css" />
+    <script type="text/javascript" src="../scripts/copyCode.js"></script>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<div  class="leftColumn">
+				<div class="logoShell">
+                    <img src="../images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+				</div>
+				
+				<div class="primaryNav">
+					<a href="whatHappened.html">
+						<div class="primaryNavItem">
+							What happened?
+						</div>
+					</a>
+					<a href="nextSteps.html">
+						<div class="primaryNavItemSelected">
+							Next steps
+						</div>
+					</a>
+					<a href="gettingStarted.html">
+						<div class="primaryNavItem">
+							Getting started
+						</div>
+					</a>
+                    <a href="customizing.html">
+                        <div class="primaryNavItem">
+                            Customizing
+                        </div>
+                    </a>
+				</div>
+			</div>
+		</td>
+	
+		<td class="rightColumn">
+        	<h1>Developing with Salesforce</h1>
+			<h2>Depending on the options you've chosen, there may be some mandatory next steps to query Salesforce</h2>
+            <h3>Web Server Flow</h3>
+            <p>If you've selected <b>Web Server Flow</b> for your runtime authentication strategy, you'll need to update <font class="inlineCode">web.config</font> with the Consumer Secret from the <a href="https://login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank" class="contentLink">Salesforce Portal</a>.</p>
+            <ul>
+                <li>Open <font class="inlineCode">web.config</font> and note the Connected App name</</li>
+                <pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+    <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+    <span class="disabled">&lt;add key="Salesforce:ConsumerKey" value="yourKey"/&gt;</span>
+    <span class="disabled">...</span>
+</pre>
+                <li>Log into the <a href="https://login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank" class="contentLink">Salesforce Portal</a>.</li>
+                <li>Scroll down to view the <b>Connected Apps</b></li>
+                <li>
+                    <div>In the <b>API (enable OAuth Settings)</b> section, find the <b>Consumer Secret</b> and click the link to show the key.</div>
+                    <br />
+                    <img width="1024" src="../images/ConsumerSecret.png">
+                </li>
+                <li>Copy the consumer key value from the Salesforce Portal and paste it in your application's <font class="inlineCode">web.config</font> file as the value of the <font class="inlineCode">Salesforce:ConsumerSecret</font> app setting.</li>
+                <li>For C# projects, remove the build #error reminder in <font class=" inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></li>
+            </ul>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
