@@ -1,96 +1,33 @@
-<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<!doctype HTML PUBLIC "-//w3c//dtd html 3.2 final//en">
 <html>
 <head>
-<title></title>
-<link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
-
-<script src="//developer.salesforce.com/resource/javascripts/holygrail.min.js" type="text/javascript"></script>
-
+    <title>Salesforce - Connected Service Documentation</title>
+    <link rel="stylesheet" href="styles/style.css" type="text/css">
+    <link rel="stylesheet" href="styles/csharp.css" type="text/css" />
 </head>
-<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
-<table width="100%" height="100%" cellspacing="0" cellpadding="15">
-	<tr>
-		<td colspan="2" height="100px">
-			<table width="100%" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>
-						<h1 class="title">Developing with Salesforce</h1>
-					</td>
-					<td align="right">
-						<img height="100px" src="images/sfdc_platform_rgb.png">
-					</td>
-				</tr>
-			</table>
-		</td>
-	<tr>
-		<td valign="top" width="200px;">
-			<table width="200">
-				<tr>
-					<td class="navOn"><a href="index.html" class="navLink">What happened?</a></td>
-				</tr>
-				<tr>
-					<td class="nav"><a href="nextSteps.html" class="navLink">Next steps</a></td>
-				</tr>
-				<tr>
-					<td class="nav"><a href="gettingStarted.html" class="navLink">Getting started</a></td>
-				</tr>
-			</table>
-		</td>
-		<td valign="top" style="padding-right:200px;">
-			<h1 class="contentTitle">Here is how your project has been been updated to use Salesforce</h1>
-			<h2 class="subContentTitle">References have been added to your project</h2>
-			<p class="content">
-				NuGet package references
-				<ul class="content">
-					<li>DeveloperForce.Force</li>
-				</ul>
+<body>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <div class="leftColumn">
+                    <div class="logoShell">
+                        <img src="images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+                    </div>
+                </div>
+            </td>
 
-				<p class="content">.NET references
-				<ul class="content">
-	                <li>Microsoft.Bcl</li>
-	                <li>Microsoft.Bcl.Async</li>
-	                <li>Microsoft.Bcl.Build</li>
-	                <li>Microsoft.Net.Http</li>
-	                <li>Newtonsoft.Json</li>
-	                <li>System.Configuration</li>
-	                <li>System.IdentityModel</li>
-	                <li>System.Runtime</li>
-	                <li>System.Threading.Tasks</li>
-	                <li>System.Web</li>
-	                <li>System.ComponentModel.DataAnnotations</li>
-				</ul>
-
-			</p></p>
-			<h2 class="subContentTitle">A configured connection class was added to the Service folder</h2>
-			<p class="content">
-				The connection object SalesforceConnection will read the configuration values from web.config, enabling your team to change the endpoint and auth configuration for different scenarios.
-			</p>
-
-			<h2 class="subContentTitle">Your web.config has new configuration values</h2>
-			<p class="content">
-<pre class="csharpcode">
-<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
-    <span class="kwrd">&lt;</span><span class="html">...</span><span class="kwrd">&gt;</span>
-    <span class="rem">&lt;!-- The Salesforce connected app is named: YourProjectName --&gt;</span>
-    <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
-    <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
-    <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/ProjectName-SalesforceRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
-    <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
-<span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
-</pre>
-			</p>
-			<h2 class="subContentTitle">Salesforce Connect App was added</h2>
-			<p class="content">
-				Salesforce requires the configuration of a Connected App allowing your app to make requests of the Salesforce Service. Based on the authentication strategy you've chosen, the Connected App was configured, and the configuration values have been saved to web.config. You may change the Connected App in <a href="https://login.salesforce.com" target="_blank" class="contentLink">Salesforce.com</a>.
-			</p>
-			<p class="content">
-				More information on <a href="https://developer.salesforce.com/page/Connected_Apps"  target="_blank" class="contentLink">Salesforce Connected Apps</a>.
-			</p>
-
-
-		</td>
-	</tr>
-</table>
+            <td class="rightColumn">
+                <h1>Developing with Salesforce</h1>
+                <h2>Determining the version of the documentation</h2>
+                <p>Depending on the version of the Salesforce Connected Service you are running, the relevant documentation is provided below.</p>
+                <p>Note: when you complete adding a Salesforce Connected Service, the appropriate documentation will be launched. The links below are used when your looking for documentation directly via the web.</p>
+                <ul>
+                    <li><a href="054/whatHappened.html">Version 0.5.4</a></li>
+                </ul>
+                
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 
