@@ -57,9 +57,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="054\customizing.html" />
     <Content Include="054\gettingStarted.html" />
     <Content Include="054\Index.html" />
@@ -74,6 +71,9 @@
     <Content Include="scripts\starterpages.js" />
     <Content Include="styles\csharp.css" />
     <Content Include="styles\style.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
