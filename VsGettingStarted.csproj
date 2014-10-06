@@ -61,6 +61,7 @@
     <Content Include="054\gettingStarted.html" />
     <Content Include="054\Index.html" />
     <Content Include="054\nextSteps.html" />
+    <Content Include="054\ReadMe.html" />
     <Content Include="054\whatHappened.html" />
     <Content Include="images\ConsumerSecret.png" />
     <Content Include="images\sfdc_platform_rgb.png" />

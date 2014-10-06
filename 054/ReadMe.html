@@ -1,0 +1,131 @@
+﻿<!doctype HTML PUBLIC "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+    <title>Salesforce - Cutomizing the scafolding</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css">
+    <link rel="stylesheet" href="../styles/csharp.css" type="text/css" />
+    <script type="text/javascript" src="../scripts/copyCode.js"></script>
+</head>
+<body>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <div class="leftColumn">
+                    <div class="logoShell">
+                        <img src="../images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+                    </div>
+
+                    <div class="primaryNav">
+                        <a href="ReadMe.html">
+                            <div class="primaryNavItemSelected">
+                                CTP ReadMe
+                            </div>
+                        </a>
+                        <a href="whatHappened.html">
+                            <div class="primaryNavItem">
+                                What happened?
+                            </div>
+                        </a>
+                        <a href="nextSteps.html">
+                            <div class="primaryNavItem">
+                                Next steps
+                            </div>
+                        </a>
+                        <a href="gettingStarted.html">
+                            <div class="primaryNavItem">
+                                Getting started
+                            </div>
+                        </a>
+                        <a href="customizing.html">
+                            <div class="primaryNavItem">
+                                Customizing
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </td>
+
+            <td class="rightColumn">
+                <h2>CTP2 Updates</h2>
+                <p>Welcome to CTP 2, our "road to Dreamforce"</p>
+                <p>In this update, we've made several improvements based on the early feedback and fixed some known issues:</p>
+                <ul>
+                    <li><strong>Create/Update no longer using workaround for Anonymous Types</strong>. All properties of Model classes now include Createable/Updateable attributes and the 0.5.4 SDK now looks for those attributes to filter them from the REST Create/Update calls </li>
+                    <li><strong>DisplayName (Label) </strong>- The T4 templates now expose the SOObject to leverage properties like the Label property in Salesforce metadata. Visual Studio features like MVC Scaffolding will generate HTML labels that utilize the labels that were pulled from Salesforce. This begins to round out the Metadata features we've been targeting for the Connected Services experience </li>
+                    <li><strong>Click Twice, now Once - </strong>The OAuthHander scaffolding has been updated to fix the Click Twice on the Salesforce Contacts link in the walkthrough. We now capture the session state properly, with a corresponding fix in the 0.5.4 Force .NET SDK </li>
+                    <li><strong>Connected Services moved </strong>to the Service References folder. We received feedback the Services folder was where you placed the code you emitted your services, not for where you consumed your services. This work is partially complete. We simply place the service in a folder named <strong>Service References</strong>, consistent with the current Add Service Reference experience. If you have one, we use it. If you didn't have a Service References folder in your project, while we currently create the directory, we didn't yet do the work to treat it as a "speshal folder". <br /><em>Work Around: </em>You can right click on your project, choose Add Service Reference, than hit cancel. This will promote the Services References folder to a Special Folder. </li>
+                    <li>
+                        <strong>Guidance Documentation </strong>(Getting Started)
+                        <ul>
+                            <li>Docs have been updated to the new HTML format</li>
+                            <li>
+                                Getting Started docs available for re-entrancy
+                                <ul>
+                                    <li>Under Service References\Salesforce we have placed an HTML file that contains a redirect to the public hosted content. </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Launched in your default browser, instead of within Visual Studio as the VS browser didn't support JavaScript to support Copy Code to your Clipboard, nor links to external pages.
+                                <ul>
+                                    <li><em><strong>Note: </strong>known issue below</em></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span style="background-color:#ffff99">We're ready for some feedback here on Getting Started</span>
+                                <ul>
+                                    <li><span style="background-color: #ffffff;">How easily can you read the content? </span></li>
+                                    <li><span style="background-color: #ffffff;">What additional content would you find helpful?</span></li>
+                                    <li><span style="background-color: #ffffff;">Copy the code to the clipboard, paste into VS&nbsp;- is this working for you?</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <h2>Known Issues in this release:</h2>
+                <ul>
+                    <li><strong>IE Security Warning: </strong>The guidance docs now open in your default browser. However, the code to do the redirect is currently using JavaScript, rather than the META REFRESH tag. You can either choose to accept the warning for each project, or change the default IE settings to allow javascript for local content. Not recomended, but if you're giving demos, like a PM on the team, you may want to disable it to avoid the conversation about protected content. </li>
+                    <li><strong>SalesforceService.Default </strong>- We have been playing with some ideas about simplifying the code for instancing a ForceClient. We tried the Default pattern, but realized it could cause some problems with state being shared across threads. The GettingStarted docs use the recommended pattern for this build.</li>
+                </ul>
+                <h2>Other Updates</h2>
+                <ul>
+                    <li><strong>Submit A Bug </strong>now working<br />Using Connect, you can now submit a bug that flows directly into our TFS database for the team to review and triage. We appreciate the emails, but please log bugs into Connect and refer to them in email so you can track it's progress and we can capture it in your voice </li>
+                    <li><strong>Submit an Idea </strong>now enabled <br />This links out to User Voice, it's currently locked down to just the CTP members, so please put ideas, discussions on ideas here. This is the place for you to grow your community, and be the leaders as we open it to the public this coming November. </li>
+                </ul>
+                <h1>Installing the Salesforce Connected Service Provider</h1>
+                <ul>
+                    <li>Install <strong>Microsoft.VisualStudio.ConnectedServices.vsix<br /></strong>This installs the base Connected Services Experience </li>
+                    <li>Install <strong>Salesforce.VisualStudio.Services.vsix<br /></strong>This installs the Salesforce Provider </li>
+                    <li>Launch Visual Studio 2013 </li>
+                    <li>Create a new Web Project using the ASP.net Web Application Template </li>
+                    <li>Choose the MVC Template </li>
+                    <li>Once the project opens, right-click on the Project and choose Add <strong>Connected Service</strong> </li>
+                </ul>
+                <h1>Looking for Feedback in...</h1>
+                <p>We are looking for initial impression feedback. Particularly in: Configuration of the Salesforce Connected App</p>
+                <ul>
+                    <li>Code scaffolded into your project </li>
+                    <li>Service References\Salesforce\<strong>SalesforceService.cs</strong> </li>
+                    <li>Service References\Salesforce\<strong>SalesforceOAuthRedirectHandler.cs</strong> </li>
+                    <li>Models\Salesforce\<strong>*</strong> </li>
+                </ul>
+                <p>Thanks you,</p>
+                <p>Steve Lasker<br /><a href="mailto:SteveLas@Microsoft.com">SteveLas@Microsoft.com</a></p>
+                <p>Dave Carroll<br /><a href="mailto:DCarroll@salesforce.com">DCarroll@salesforce.com</a></p>
+
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
