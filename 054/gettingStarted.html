@@ -115,7 +115,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="rem">// Query just the properties we need to display the selection with SOQL </span>
             <span class="rem">// Querying all properties would waste bandwidth and performance</span>
@@ -131,7 +131,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="rem">// Query the larger property list you wish to show. Still not the complete object, just what the View will display to reduce network traffic</span>
             QueryResult&lt;Contact&gt; contacts =
@@ -149,7 +149,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="rem">// Query just the properties the Edit View will display to reduce network traffic</span>
             QueryResult&lt;Contact&gt; contacts =
@@ -167,7 +167,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="rem">// Update Salesforce, passing in the serialized contact object</span>
             SuccessResponse success = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, contact);
@@ -189,7 +189,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="rem">// Query the properties you'll display for the user to confirm they wish to delete this Contact</span>
             QueryResult&lt;Contact&gt; contacts =
@@ -210,7 +210,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="rem">// With the user confirming deletion, delete the Contact</span>
             <span class="kwrd">var</span> success = await client.DeleteAsync(<span class="str">"Contact"</span>, id);
@@ -231,7 +231,7 @@
                 <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
             }
             <span class="rem">// Initialize the Force client</span>
-            ForceClient client = SalesforceService.Default.GetForceClient();
+            ForceClient client = new SalesforceService().GetForceClient();
 
             <span class="kwrd">var</span> id = await client.CreateAsync(<span class="str">"Contact"</span>, contact);
             <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
