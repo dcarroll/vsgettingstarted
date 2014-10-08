@@ -779,7 +779,7 @@
 &lt;add key=<span class="str">"Salesforce:SecurityToken"</span> value=<span class="str">"requiredValue"</span> /&gt;
 </pre>
                                 <ul>
-                                    <li>Open <font class="inlineCode">Service References\Salesforce\SalesforceService.cs/vb</font> file and add the following code:</li>
+                                    <li>Open <font class="inlineCode">Service References\Salesforce\SalesforceService.cs/vb</font> file and replace the GetForceClient code:</li>
                                 </ul>
                                 <button class="copyBtn copyBtn-success" onclick="copyCode('codeUpdateService')">Copy</button>
                                 <!-- code formatted by http://manoli.net/csharpformat/ -->
@@ -990,9 +990,9 @@
                                 <ul>
                                     <li>In <font class="inlineCode">Program.cs</font>, below the CreateUpdateDeleteContact() method, add the following code:</li>
                                 </ul>
-                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeCreateUpdateDeleteContact')">Copy</button>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeQueryWithDynamic')">Copy</button>
 <!-- code formatted by http://manoli.net/csharpformat/ -->
-<pre class="csharpcode" id="codeCreateUpdateDeleteContact">
+<pre class="csharpcode" id="codeQueryWithDynamic">
 <span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryWithDynamic() {
     Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
     ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetForceClient();
