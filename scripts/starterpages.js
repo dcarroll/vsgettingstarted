@@ -2,11 +2,11 @@
 
 function resetHorizontalNav(tab, items) {
     LinkTableNavMVC.className = "linkTableNavItem";
-    LinkTableNavSnippets.className = "linkTableNavItem";
+    LinkTableNavConsole.className = "linkTableNavItem";
     document.getElementById(tab).setAttribute('class', 'linkTableNavItemSelected');
 
     MVCLinks.style.display = "none";
-    SnippetLinks.style.display = "none";
+    ConsoleLinks.style.display = "none";
     document.getElementById(items).style.display = "inline";
 }
 
@@ -36,21 +36,23 @@ function resetMVCLinks(tab, items) {
     document.getElementById(items).style.display = "inline";
 }
 
-function resetSnippetLinks(tab, items) {
-    SnippetLinksSubNav1.className = "linkTableSubNavItem";
-    SnippetLinksSubNav2.className = "linkTableSubNavItem";
-    SnippetLinksSubNav3.className = "linkTableSubNavItem";
-    SnippetLinksSubNav4.className = "linkTableSubNavItem";
-    SnippetLinksSubNav5.className = "linkTableSubNavItem";
-    SnippetLinksSubNav6.className = "linkTableSubNavItem";
+function resetConsoleLinks(tab, items) {
+    ConsoleLinksSubNavOverview.className = "linkTableSubNavItem";
+    ConsoleLinksSubNavUpdateService.className = "linkTableSubNavItem";
+    ConsoleLinksSubNavUsing.className = "linkTableSubNavItem";
+    ConsoleLinksSubNav1.className = "linkTableSubNavItem";
+    ConsoleLinksSubNav2.className = "linkTableSubNavItem";
+    ConsoleLinksSubNav3.className = "linkTableSubNavItem";
+    ConsoleLinksSubNavCallSampleMethods.className = "linkTableSubNavItem";
     document.getElementById(tab).setAttribute('class', 'linkTableSubNavItemSelected');
 
-    SnippetLinksCode1.style.display = "none";
-    SnippetLinksCode2.style.display = "none";
-    SnippetLinksCode3.style.display = "none";
-    SnippetLinksCode4.style.display = "none";
-    SnippetLinksCode5.style.display = "none";
-    SnippetLinksCode6.style.display = "none";
+    ConsoleLinksOverview.style.display = "none";
+    ConsoleLinksCodeUpdateService.style.display = "none";
+    ConsoleLinksCodeUsing.style.display = "none";
+    ConsoleLinksCode1.style.display = "none";
+    ConsoleLinksCode2.style.display = "none";
+    ConsoleLinksCode3.style.display = "none";
+    ConsoleLinksCallSampleMethods.style.display = "none";
     document.getElementById(items).style.display = "inline";
 }
 

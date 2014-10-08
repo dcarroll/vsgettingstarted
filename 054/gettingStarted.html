@@ -58,7 +58,7 @@
             <div class="linkTable">
                 <div class="linkTableNav">
                     <div id="LinkTableNavMVC" class="linkTableNavItemSelected" onclick="resetHorizontalNav('LinkTableNavMVC', 'MVCLinks');"><a href="#">MVC Walkthrough</a></div>
-                    <div id="LinkTableNavSnippets" class="linkTableNavItem" onclick="resetHorizontalNav('LinkTableNavSnippets', 'SnippetLinks');" hidden="hidden"><a href="#">Code Snippets</a></div>
+                    <div id="LinkTableNavConsole" class="linkTableNavItem" onclick="resetHorizontalNav('LinkTableNavConsole', 'ConsoleLinks');"><a href="#">Console App</a></div>
                 </div>
 					
 				<div id="MVCLinks" style="display:inline;">
@@ -742,29 +742,322 @@
 				</div>
 				
 				
-				<div id="SnippetLinks" style="display:none;">
+				<div id="ConsoleLinks" style="display:none;">
 					<div class="LinkTableLinks">
 						<div class="linkTableSubNav">
-							<a onclick="resetSnippetLinks('SnippetLinksSubNav1', 'SnippetLinksCode1');" href="#"><div id="SnippetLinksSubNav1" class="linkTableSubNavItemSelected">Instance a ForceClient</div></a>
-							<a onclick="resetSnippetLinks('SnippetLinksSubNav2', 'SnippetLinksCode2');" href="#"><div id="SnippetLinksSubNav2" class="linkTableSubNavItem">Query</div></a>
-							<a onclick="resetSnippetLinks('SnippetLinksSubNav3', 'SnippetLinksCode3');" href="#"><div id="SnippetLinksSubNav3" class="linkTableSubNavItem">Query w/Parameters</div></a>
-							<a onclick="resetSnippetLinks('SnippetLinksSubNav4', 'SnippetLinksCode4');" href="#"><div id="SnippetLinksSubNav4" class="linkTableSubNavItem">Create </div></a>
-                            <a onclick="resetSnippetLinks('SnippetLinksSubNav5', 'SnippetLinksCode5');" href="#"><div id="SnippetLinksSubNav5" class="linkTableSubNavItem">Update</div></a>
-                            <a onclick="resetSnippetLinks('SnippetLinksSubNav6', 'SnippetLinksCode6');" href="#"><div id="SnippetLinksSubNav6" class="linkTableSubNavItem">Delete </div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNavOverview', 'ConsoleLinksOverview');" href="#"><div id="ConsoleLinksSubNavOverview" class="linkTableSubNavItemSelected">Console App Overview</div></a>
+                            <a onclick="resetConsoleLinks('ConsoleLinksSubNavUpdateService', 'ConsoleLinksCodeUpdateService');" href="#"><div id="ConsoleLinksSubNavUpdateService" class="linkTableSubNavItem">Updating Authentication</div></a>
+                            <a onclick="resetConsoleLinks('ConsoleLinksSubNavUsing', 'ConsoleLinksCodeUsing');" href="#"><div id="ConsoleLinksSubNavUsing" class="linkTableSubNavItem">Using Statements</div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNav1', 'ConsoleLinksCode1');" href="#"><div id="ConsoleLinksSubNav1" class="linkTableSubNavItem">Query</div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNav2', 'ConsoleLinksCode2');" href="#"><div id="ConsoleLinksSubNav2" class="linkTableSubNavItem">Create, Update, Delete</div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNav3', 'ConsoleLinksCode3');" href="#"><div id="ConsoleLinksSubNav3" class="linkTableSubNavItem">Using Dynamics</div></a>
+                            <a onclick="resetConsoleLinks('ConsoleLinksSubNavCallSampleMethods', 'ConsoleLinksCallSampleMethods');" href="#"><div id="ConsoleLinksSubNavCallSampleMethods" class="linkTableSubNavItem">Updating Main()</div></a>
 						</div>
 			    
 						<div class="linkTableCodeBox">
-							<div id="SnippetLinksCode1" style="display:inline;">
+                            <div id="ConsoleLinksOverview" style="display:inline;">
+                                <p>A basic Console App that utilized the System Account - Username/Password authentication strategy and performs some basic CRUD operations.</p>
+                                <p>When creating a Console App, be sure to choose the Service Account-Username/Password runtime authentication strategy.</p>
                             </div>
-                            <div id="SnippetLinksCode2" style="display:none;">
+                            <div id="ConsoleLinksCodeUpdateService" style="display:none;">
+                                <h3>Use a Service Account with Username/Password authentication</h3>
+                                <p>In a console application, there's no web page, httpContext, or UI to speak of. In this sample scenario, we'll use the Username/Password authentication strategy.</p>
+                                <ul>
+                                    <li>Open <font class="inlineCode">app.config</font> and set the following values.</li>
+                                    <ul>
+                                        <li><b>ConsumerSecret</b> is found using the information in Next Steps above.</li>
+                                        <li><b>Username</b> is the user the console will use at runtime. Typically a service account with limited permissions, but for demos, your account can be used.</li>
+                                        <li><b>SecurityToken</b> is retrieved in the Salesforce Portal. See more info <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm&language=en"> for retrieving the securitytoken</a></li>
+                                    </ul>
+                                </ul>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode">
+&lt;add key=<span class="str">"Salesforce:ConsumerKey"</span> value=<span class="str">"populated by the Connected Service Configuration"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:ConsumerSecret"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:Username"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:Password"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:SecurityToken"</span> value=<span class="str">"requiredValue"</span> /&gt;
+</pre>
+                                <ul>
+                                    <li>Open <font class="inlineCode">Service References\Salesforce\SalesforceService.cs/vb</font> file and add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeUpdateService')">Copy</button>
+                                <!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeUpdateService">
+<span class="kwrd">public</span> async Task&lt;ForceClient&gt; GetForceClient() {
+
+    await <span class="kwrd">this</span>.AuthenticationClient.UsernamePasswordAsync(
+        SalesforceService.GetAppSetting(<span class="str">"Salesforce:ConsumerKey"</span>),
+        SalesforceService.GetAppSetting(<span class="str">"Salesforce:ConsumerSecret"</span>),
+        SalesforceService.GetAppSetting(<span class="str">"Salesforce:Username"</span>),
+        SalesforceService.GetAppSetting(<span class="str">"Salesforce:Password"</span>) + SalesforceService.GetAppSetting(<span class="str">"Salesforce:SecurityToken"</span>));
+
+    <span class="kwrd">return</span> <span class="kwrd">new</span> ForceClient(
+                    <span class="kwrd">this</span>.AuthenticationClient.InstanceUrl,
+                    <span class="kwrd">this</span>.AuthenticationClient.AccessToken,
+                    <span class="kwrd">this</span>.AuthenticationClient.ApiVersion);
+}
+</pre>
                             </div>
-                            <div id="SnippetLinksCode3" style="display:none;">
+                            <div id="ConsoleLinksCodeUsing" style="display:none;">
+                                <h3>Add using statements</h3>
+                                <ul>
+                                    <li>Open <font class="inlineCode"> Program.cs</font></li>
+                                    <li>Include the following using statements:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeUsing')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeUsing">
+<span class="kwrd">using</span> Salesforce.Common; 
+<span class="kwrd">using</span> Salesforce.Common.Models; 
+<span class="kwrd">using</span> Salesforce.Force;
+</pre>
                             </div>
-                            <div id="SnippetLinksCode4" style="display:none;">
+                            <div id="ConsoleLinksCode1" style="display:none;">
+                                <h3>Add a Query Contacts Method</h3>
+                                <ul>
+                                    <li>In <font class="inlineCode"> Program.cs</font>, below the Main(string[] args) method, add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeQueryContacts')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeQueryContacts">
+<span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryContacts() {
+
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
+    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetForceClient();
+    Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
+
+    Console.WriteLine(<span class="str">"Get a list of Contacts"</span>);
+    <span class="rem">// a collection to hold the results as we get multile resultsets</span>
+    <span class="kwrd">var</span> contacts = <span class="kwrd">new</span> List&lt;Models.Salesforce.Contact&gt;();
+
+    <span class="kwrd">var</span> results = await client.QueryAsync&lt;Models.Salesforce.Contact&gt;(
+        <span class="str">"SELECT Id, FirstName, LastName, Email FROM Contact ORDER BY LastName, FirstName"</span>);
+            
+    <span class="kwrd">var</span> totalSize = 0;
+    totalSize = results.totalSize;
+    Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"Queried {0} records."</span>, totalSize));
+
+    contacts.AddRange(results.records);
+    <span class="kwrd">var</span> nextRecordsUrl = results.nextRecordsUrl;
+
+    while (!<span class="kwrd">string</span>.IsNullOrEmpty(nextRecordsUrl)) {
+
+        Console.WriteLine(<span class="str">"Found nextRecordsUrl."</span>);
+        <span class="rem">// Query the next ResultSet</span>
+        QueryResult&lt;Models.Salesforce.Contact&gt; continuationResults = await client.QueryContinuationAsync&lt;Models.Salesforce.Contact&gt;(nextRecordsUrl);
+
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"Queried an additional {0} records."</span>, continuationResults.totalSize));
+
+        <span class="rem">// Add the resultSet to our parent collection</span>
+        contacts.AddRange(continuationResults.records);
+
+        <span class="rem">//pass nextRecordsUrl back to client.QueryAsync to request next set of records</span>
+        nextRecordsUrl = continuationResults.nextRecordsUrl;
+    }
+    Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"Retrieved accounts {0}, expected size = {1}"</span>, totalSize, contacts.Count()));
+    Console.WriteLine();
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.WriteLine(<span class="str">"Print out the list of {0} contacts? (y/n)"</span>, contacts.Count());
+
+
+    <span class="kwrd">if</span> (Console.ReadKey(<span class="kwrd">true</span>).Key == ConsoleKey.Y) {
+        <span class="rem">// Format a console "table" with headings </span>
+        Console.ResetColor();
+        Console.BackgroundColor = ConsoleColor.Blue;
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine(<span class="str">"{0}{1}{2}"</span>, <span class="str">"Last Name"</span>.PadRight(20), <span class="str">"First Name"</span>.PadRight(15), <span class="str">"Email"</span>.PadRight(30));
+        Console.BackgroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.Blue;
+        <span class="kwrd">foreach</span> (<span class="kwrd">var</span> contact <span class="kwrd">in</span> contacts) {
+
+            Console.WriteLine(<span class="str">"{0}{1}{2}"</span>, contact.LastName.PadRight(20), contact.FirstName.PadRight(15), (contact.Email + <span class="str">""</span>).PadRight(30).Substring(0, 30));
+        }
+    }
+    Console.ResetColor();
+
+}</pre>
                             </div>
-                            <div id="SnippetLinksCode5" style="display:none;">
+                            <div id="ConsoleLinksCode2" style="display:none;">
+                                <h3>Add Create, Update and Delete functionality</h3>
+                                <ul>
+                                    <li>In <font class="inlineCode"> Program.cs</font>, below the QueryContacts() method, add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeCreateUpdateDeleteContact')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeCreateUpdateDeleteContact">
+<span class="kwrd">private</span> <span class="kwrd">static</span> async Task CreateUpdateDeleteContact() {
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
+    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetForceClient();
+    Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
+
+    <span class="rem">// Create a sample record</span>
+    Console.WriteLine(<span class="str">"Creating test Contact."</span>);
+    <span class="kwrd">var</span> contact = <span class="kwrd">new</span> Models.Salesforce.Contact{ 
+        FirstName = <span class="str">"Freddy"</span>, 
+        LastName=<span class="str">"Krueger"</span>, 
+        MailingStreet=<span class="str">"Elm Street"</span> };
+
+    contact.Id = await client.CreateAsync(<span class="str">"Contact"</span>, contact);
+    <span class="kwrd">if</span> (contact.Id == <span class="kwrd">null</span>) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to create test Contact."</span>);
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="str">"--&gt; Successfully created test record."</span>);
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+
+    <span class="rem">// Update the sample record</span>
+    <span class="rem">// Shows that annonymous types can be used as well</span>
+    Console.WriteLine(<span class="str">"Updating test record."</span>);
+    <span class="kwrd">var</span> updateSuccess = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, <span class="kwrd">new</span> { MailingCity = <span class="str">"Some City"</span> });
+    <span class="kwrd">if</span> (updateSuccess.success != <span class="str">"true"</span>) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to update test record!"</span>);
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="str">"--&gt; Successfully created test record."</span>);
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+    <span class="rem">// Retrieve the sample record</span>
+    <span class="rem">// How to query with a WHERE clause</span>
+    Console.WriteLine(<span class="str">"Retrieving the record by ID."</span>);
+    <span class="kwrd">var</span> result= await client.QueryAsync&lt;Models.Salesforce.Contact&gt;(
+        <span class="kwrd">string</span>.Format(<span class="str">"SELECT FirstName, LastName, Email, MailingStreet, MailingCity FROM Contact WHERE Id = '{0}'"</span>, contact.Id));
+    <span class="kwrd">if</span> (result.records.Count() == 0) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to retrieve the record by ID!"</span>);
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        <span class="rem">// Use FirstOrDefault extension method to get a single item from QueryAsync</span>
+        <span class="rem">// note QueryResult returns a result objects, with records following the common REST programming model</span>
+        contact = result.records.FirstOrDefault();
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"--&gt; Successfully found {0}, {1}"</span>, contact.LastName, contact.FirstName));
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+    <span class="rem">// Query for record by name</span>
+    Console.WriteLine(<span class="str">"Querying the Contacts by FirstName."</span>);
+    <span class="kwrd">var</span> searchParam = <span class="str">"Fred"</span>;
+    <span class="kwrd">var</span> parameterizedResults = await client.QueryAsync&lt;Models.Salesforce.Contact&gt;(
+        <span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, FirstName, LastName FROM Contact WHERE FirstName Like '%{0}%'"</span>, searchParam));
+
+    <span class="rem">// Get the </span>
+    contact= parameterizedResults.records.FirstOrDefault();
+    <span class="kwrd">if</span> (contact == <span class="kwrd">null</span>) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"--&gt; Failed to find any Contacts named {0}"</span>, searchParam));
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"--&gt; Found {0} records named {1}"</span>, parameterizedResults.records.Count(), searchParam));
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+    <span class="rem">// Delete account</span>
+    Console.WriteLine(<span class="str">"Deleting the record by ID."</span>);
+    <span class="kwrd">var</span> deleteSuccess = await client.DeleteAsync(<span class="str">"Contact"</span>, contact.Id);
+    <span class="kwrd">if</span> (!deleteSuccess) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to delete the record by ID!"</span>);
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="str">"--&gt; Deleted the record by ID."</span>);
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+}</pre>
                             </div>
-                            <div id="SnippetLinksCode6" style="display:none;">
+                            <div id="ConsoleLinksCode3" style="display:none;">
+                                <h3>Add a Query with dynamic types</h3>
+                                <ul>
+                                    <li>In <font class="inlineCode">Program.cs</font>, below the CreateUpdateDeleteContact() method, add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeCreateUpdateDeleteContact')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeCreateUpdateDeleteContact">
+<span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryWithDynamic() {
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
+    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetForceClient();
+    Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
+
+    <span class="rem">// Selecting multiple accounts into a dynamic</span>
+    Console.WriteLine(<span class="str">"Querying multiple records."</span>);
+    <span class="kwrd">var</span> dynamicAccounts = await client.QueryAsync&lt;dynamic&gt;(<span class="str">"SELECT ID, Name FROM Account LIMIT 10"</span>);
+
+    <span class="rem">// Format a console "table" with headings </span>
+    Console.ResetColor();
+    Console.BackgroundColor = ConsoleColor.Blue;
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine(<span class="str">"{0}{1}"</span>, <span class="str">"Id"</span>.PadRight(20), <span class="str">"Name"</span>.PadRight(30));
+    Console.BackgroundColor = ConsoleColor.White;
+    Console.ForegroundColor = ConsoleColor.Blue;
+    <span class="kwrd">foreach</span> (dynamic acct <span class="kwrd">in</span> dynamicAccounts.records) {
+        Console.WriteLine(<span class="str">"{0}{1}"</span>, ((<span class="kwrd">string</span>)(acct.Id)).PadRight(20), ((<span class="kwrd">string</span>)(acct.Name)).PadRight(30).Substring(0, 30));
+    }
+    Console.ResetColor();
+
+}</pre>
+
+                            </div>
+                            <div id="ConsoleLinksCallSampleMethods" style="display:inline;">
+                                <h3>Call the Sample Methods in Sequence</h3>
+                                <ul>
+                                    <li>Replace <font class="inlineCode">Main()</font> method, with the following code:</li>
+                                    <li>Hit F5 to test your console app.</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeMainMethod')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeMainMethod">
+<span class="kwrd">static</span> <span class="kwrd">void</span> Main(<span class="kwrd">string</span>[] args) {
+
+    <span class="kwrd">try</span> {
+        <span class="kwrd">var</span> queryContacts= QueryContacts();
+        queryContacts.Wait();
+        <span class="kwrd">var</span> createUpdateDeleteContact = CreateUpdateDeleteContact();
+        createUpdateDeleteContact.Wait();
+        <span class="kwrd">var</span> queryWithDynamic = QueryWithDynamic();
+        queryWithDynamic.Wait();
+
+    } <span class="kwrd">catch</span> (Exception e) {
+        <span class="rem">// Drill into the inner exception as the parent exception is related to the Task</span>
+
+        Console.ResetColor(); <span class="rem">// Show errors as red</span>
+        Console.ForegroundColor = ConsoleColor.Red;
+
+        Console.WriteLine(e.Message);
+        <span class="kwrd">var</span> innerException = e.InnerException;
+        while (innerException != <span class="kwrd">null</span>) {
+            Console.WriteLine(innerException.Message);
+
+            innerException = innerException.InnerException;
+        }
+    }
+
+    Console.WriteLine();
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.WriteLine(<span class="str">"Press ENTER to Exit"</span>);
+    Console.ReadLine();
+}
+</pre>
                             </div>
 						</div>
 					</div>
