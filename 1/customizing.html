@@ -1,0 +1,70 @@
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+    <title>Salesforce - Cutomizing the scafolding</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css">
+    <link rel="stylesheet" href="../styles/csharp.css" type="text/css" />
+    <script type="text/javascript" src="../scripts/copyCode.js"></script>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0">
+	<tr>
+		<td>
+			<div  class="leftColumn">
+				<div class="logoShell">
+					<img src="../images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+				</div>
+				
+				<div class="primaryNav">
+					<a href="whatHappened.html">
+                        <div class="primaryNavItem">
+                                What happened?
+                            </div>
+                    </a>
+					<a href="nextSteps.html">
+						<div class="primaryNavItem">
+							Next steps
+						</div>
+					</a>
+					<a href="gettingStarted.html">
+						<div class="primaryNavItem">
+							Getting started
+						</div>
+					</a>
+                    <a href="customizing.html">
+                        <div class="primaryNavItemSelected">
+                            Customizing
+                        </div>
+                    </a>
+                    <a href="ReadMe.html">
+                        <div class="primaryNavItem">
+                            ReadMe
+                        </div>
+                    </a>
+				</div>
+			</div>
+		</td>
+	
+		<td class="rightColumn">
+            <h1>Developing with Salesforce</h1>
+			<h3>Customizing the Scaffolding with T4 Templates</h3>
+            <p>The code scaffolded into your project is based on T4 templates that you can customize. The templates are located in your user's directory.</p>
+            <p>To find the directory:</p>
+            <ul>
+                <li>In Explorer, enter the following path: <font class="inlineCode" id="userPath">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPath')">Copy</button></li>
+                <li>Search for: <b>ConnectedService</b></li>
+                <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
+            </ul>
+            <p>There are three T4 templates:</p>
+            <ul>
+                <li><b>Model.tt</b> - The Model template for each Salesforce Object: <font class="inlineCode">Models\Salesforce\*</font></li>
+                <li><b>SalesforceOAuthRedirectHandler.tt</b>- The template for the Web Server Flow redirect handler: <font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></li>
+                <li><b>SalesforceService.tt</b> - The tempalte that represents the configured service object: <font class="inlineCode">Service References\Salesforce\SalesforceService</font></li>
+            </ul>
+            <h3>T4 Template Syntax Coloring</h3>
+            <p>The <a href="http://www.devart.com/t4-editor/" target="_blank">Devart T4 Editor</a> is a Visual Studio add-in for editing T4 templates with syntax highlighting, intellisense, code outlining, and all features of a first-class text editor add-in for Visual Studio.</p>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
