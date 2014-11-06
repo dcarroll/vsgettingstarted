@@ -53,11 +53,11 @@
             <ul>
                 <li>Visual Studio 2013</li>
                 <ul>
-                    <li>In Explorer, enter the following path: <font class="inlineCode" id="userPath">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPath')">Copy</button></li>
+                    <li>In Explorer, enter the following path: <font class="inlineCode" id="userPathDev12">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev12')">Copy</button></li>
                 </ul>
                 <li>Visual Studio 2015 Preview</li>
                 <ul>
-                    <li>In Explorer, enter the following path: <font class="inlineCode" id="userPath">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPath')">Copy</button></li>
+                    <li>In Explorer, enter the following path: <font class="inlineCode" id="userPathDev14">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button></li>
                 </ul>
                 <li>Search for: <b>ConnectedService</b></li>
                 <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
@@ -68,9 +68,25 @@
                 <li><b>SalesforceOAuthRedirectHandler.tt</b>- The template for the Web Server Flow redirect handler: <font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></li>
                 <li><b>SalesforceService.tt</b> - The tempalte that represents the configured service object: <font class="inlineCode">Service References\Salesforce\SalesforceService</font></li>
             </ul>
+            <h3>Editing T4 Templates</h3>
+            <h4>Parameter Object Model</h4>
+            <p>Within the T4 Templates, you’ll see a parameter at the top of the page. To view the object model of the parameter, use the Visual Studio Object Explorer.</p>
+            <h4>Finding the Salesforce dll</h4>
+            <ul>
+                <li>In explorer, open the path noted above for your version of Visual Studio</li>
+                <li>Search for <b>Salesforce.VisualStudio.Services.dll</b></li>
+                <li>Right Click on the file and select Open File Location</li>
+                <li>Copy the location</li>
+                <li>In Visual Studio, Select <b>View --> Object Browser</b></li>
+                <li>Click the <b>[..]</b> next to the Browse ComboBox in the top of the object browser</li>
+                <li>Paste the path into the ComboBox below the file listing </li>
+                <li>Double click the Salesforce.VisualStudio.Services.dll to add it to the Selected projects and components list and click [OK]</li>
+            </ul>
             <h3>T4 Template Syntax Coloring</h3>
             <p>The <a href="http://www.devart.com/t4-editor/" target="_blank">Devart T4 Editor</a> is a Visual Studio add-in for editing T4 templates with syntax highlighting, intellisense, code outlining, and all features of a first-class text editor add-in for Visual Studio.</p>
             <p><i>Note: As of November 10th, 2014, DevArt has not yet provided a version for Visual Studio 2015 Preview.</i> In the meantime, you can use Visual Studio 2013 to edit the T4 templates. We hope they'll have a preview version soon.</p>
+            <h3>Suggested Improvements</h3>
+            <p>If you find enhancements we should incorporate, please let us know at: <a href="https://visualstudio.uservoice.com/forums/265038" target="_blank" class="contentLink">UserVoice - Visual Studio Connected Services</a></p>
 		</td>
 	</tr>
 </table>
