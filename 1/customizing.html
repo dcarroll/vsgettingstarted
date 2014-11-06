@@ -51,18 +51,26 @@
             <p>The code scaffolded into your project is based on T4 templates that you can customize. The templates are located in your user's directory.</p>
             <p>To find the directory:</p>
             <ul>
-                <li>In Explorer, enter the following path: <font class="inlineCode" id="userPath">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPath')">Copy</button></li>
+                <li>Visual Studio 2013</li>
+                <ul>
+                    <li>In Explorer, enter the following path: <font class="inlineCode" id="userPath">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPath')">Copy</button></li>
+                </ul>
+                <li>Visual Studio 2015 Preview</li>
+                <ul>
+                    <li>In Explorer, enter the following path: <font class="inlineCode" id="userPath">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPath')">Copy</button></li>
+                </ul>
                 <li>Search for: <b>ConnectedService</b></li>
                 <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
             </ul>
             <p>There are three T4 templates:</p>
             <ul>
-                <li><b>Model.tt</b> - The Model template for each Salesforce Object: <font class="inlineCode">Models\Salesforce\*</font></li>
+                <li><b>SalesforceObject.tt</b> - The Model template for each Salesforce Object: <font class="inlineCode">Models\Salesforce\*</font></li>
                 <li><b>SalesforceOAuthRedirectHandler.tt</b>- The template for the Web Server Flow redirect handler: <font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></li>
                 <li><b>SalesforceService.tt</b> - The tempalte that represents the configured service object: <font class="inlineCode">Service References\Salesforce\SalesforceService</font></li>
             </ul>
             <h3>T4 Template Syntax Coloring</h3>
             <p>The <a href="http://www.devart.com/t4-editor/" target="_blank">Devart T4 Editor</a> is a Visual Studio add-in for editing T4 templates with syntax highlighting, intellisense, code outlining, and all features of a first-class text editor add-in for Visual Studio.</p>
+            <p><i>Note: As of November 10th, 2014, DevArt has not yet provided a version for Visual Studio 2015 Preview.</i> In the meantime, you can use Visual Studio 2013 to edit the T4 templates. We hope they'll have a preview version soon.</p>
 		</td>
 	</tr>
 </table>
