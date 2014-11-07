@@ -1,0 +1,199 @@
+body {
+    color: #1e1e1e;
+    font-family: "Segoe UI", Segoe, Arial, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px 24px 24px 0px;
+}
+
+.left {
+    float: left;
+    width: 176px;
+}
+
+.logoShell {
+    height: 104px;
+    position: relative;
+    width: 176px;
+}
+
+    .logoShell img {
+        left: 24px;
+        position: absolute;
+        top: 14px;
+    }
+
+.primaryNav {
+    margin-top: 38px;
+}
+
+    .primaryNav > a,
+    .primaryNav > a:hover,
+    .primaryNav > a:visited {
+        color: #1e1e1e;
+        display: block;
+        font-size: 11pt;
+        margin-top: 8px;
+        min-height: 28px;
+        padding: 4px 8px 0px 24px;
+        text-decoration: none;
+    }
+
+        .primaryNav > a:hover {
+            background-color: #d6ebff;
+        }
+
+        .primaryNav > a.selected,
+        .primaryNav > a.selected:hover {
+            background-color: #3399ff;
+            color: #ffffff;
+        }
+
+.content {
+    margin-left: 176px;
+    padding-left: 56px;
+}
+
+h1, h2, h3, h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    font-size: 28pt;
+    font-weight: 100;
+    padding-top: 26px;
+}
+
+h2 {
+    font-size: 18pt;
+    font-weight: 300;
+    padding-top: 20px;
+}
+
+h3 {
+    color: #9b4f96;
+    font-size: 14pt;
+    font-weight: 400;
+    padding-top: 26px;
+}
+
+h4 {
+    font-size: 11pt;
+    font-weight: 600;
+    padding-top: 21px;
+}
+
+p {
+    color: #717171;
+    font-size: 11pt;
+    line-height: 23px;
+    margin: 18px 0px 0px 0px;
+    padding: 0px;
+}
+
+ul, ol {
+    margin: 8px 0px 0px 30px;
+    padding: 0px;
+}
+
+li {
+    color: #717171;
+    font-size: 11pt;
+    padding-bottom: 3px;
+    padding-top: 9px;
+}
+
+a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+img {
+	border:none;
+}
+
+.inlineCode {
+    color: black;
+    border: 1px solid #e9ebee;
+}
+
+.csharpcode, .csharpcode pre {
+	border: 2px solid #cccccc;
+	border-radius: 4px;
+	overflow-x: auto;
+}
+
+.csharpcode.inline, .csharpcode.inline pre {
+    border: 0px;
+}
+
+.copyBtn {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  /*display: inline-block;*/
+  font-size: 14px;
+  /*font-weight: normal;*/
+  /*margin-bottom: 0;*/
+  line-height: 1.428571429;
+  padding: 6px 12px;
+  /*text-align: center;*/
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+  /*vertical-align: middle;*/
+  /*white-space: nowrap;*/
+}
+
+.copyBtn-success {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  color: #ffffff;
+}
+
+.tip {
+    color: #1e1e1e;
+    font-size: 11pt;
+    font-style: italic;
+    font-weight: 600;
+    padding-top: 22px;
+}
+
+/*
+
+img.inline {
+	margin:24px 0px 12px 0px;
+}
+
+img.inlineList {
+	margin:18px 0px 12px 32px;
+}
+
+
+.alignMiddle {
+	vertical-align:central;
+}
+
+.borderRight {
+		border-right:1px solid #e9ebee;
+}
+
+.inlineCodeBox, .inlineListCodeBox {
+	width:calc(100% - 100px);
+	height:auto;
+	overflow:auto;
+	margin:24px 0px 0px 0px;
+	border:1px solid #e9ebee;
+}
+
+.inlineListCodeBox {
+	margin:18px 0px 0px 32px;
+	padding:8px;
+}
+*/
