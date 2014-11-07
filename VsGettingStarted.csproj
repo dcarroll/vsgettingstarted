@@ -74,8 +74,12 @@
     <Content Include="images\sflogo.png" />
     <Content Include="index.html" />
     <Content Include="scripts\copyCode.js" />
+    <Content Include="scripts\linkTable.js" />
     <Content Include="scripts\starterpages.js" />
+    <Content Include="styles\linkTable.css" />
+    <Content Include="styles\code.csharp.css" />
     <Content Include="styles\csharp.css" />
+    <Content Include="styles\base.css" />
     <Content Include="styles\style.css" />
   </ItemGroup>
   <ItemGroup>
