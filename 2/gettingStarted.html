@@ -1,0 +1,1052 @@
+<!doctype html public "-//w3c//dtd html 3.2 final//en">
+<html>
+<head>
+    <title>Salesforce - Getting Started</title>
+    <link rel="stylesheet" href="../styles/style.css" type="text/css">
+    <link rel="stylesheet" href="../styles/csharp.css" type="text/css" />
+    <script type="text/javascript" src="../scripts/starterpages.js"></script>
+    <script type="text/javascript" src="../scripts/copyCode.js"></script>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" width="100%">
+	<tr>
+		<td class="leftColumn">
+			<div>
+				<div class="logoShell">
+                    <img src="../images/sflogo.png" width="110" height="77" alt="" style="top:14px" />
+				</div>
+				
+				<div class="primaryNav">
+					<a href="whatHappened.html">
+						<div class="primaryNavItem">
+							What happened?
+						</div>
+					</a>
+                    <a href="nextSteps.html">
+                        <div class="primaryNavItem">
+                            Next steps
+                        </div>
+                    </a>
+					<a href="gettingStarted.html">
+						<div class="primaryNavItemSelected">
+							Getting started
+						</div>
+					</a>
+                    <a href="customizing.html">
+                        <div class="primaryNavItem">
+                            Customizing
+                        </div>
+                    </a>
+                    <a href="ReadMe.html">
+                        <div class="primaryNavItem">
+                            ReadMe
+                        </div>
+                    </a>
+				</div>
+			</div>
+		</td>
+	
+		<td class="rightColumn">
+		
+            <h1>Developing with Salesforce</h1>
+            <h2>Access Salesforce Data using the REST APIs with .NET Code</h2>
+            <h3>developerforce/Force.com-Toolkit-for-NET</h3>
+            <p>The Salesforce Connected Service configures your project to work with the <a href="https://github.com/developerforce/Force.com-Toolkit-for-NET/wiki/Getting-Started" target="_blank" class="contentLink">developerforce/Force.com-Toolkit-for-NET</a></p>
+            <p>Within the Force.com-Toolkit-for-NET you'll find additional samples for how to use the SDK and program against the Salesforce REST APIs</p>
+            <h2>Code Samples</h2>
+            <p>Using the following walkthroughs and code snippets, you should be able to quickly get started working with the Salesforce RESTful services. For more information see <a href="https://developer.salesforce.com/docs" target="_blank" class="contentLink">Salesforce .NET REST Documentation</a>.</p>
+            <div class="linkTable">
+                <div class="linkTableNav">
+                    <div id="LinkTableNavMVC" class="linkTableNavItemSelected" onclick="resetHorizontalNav('LinkTableNavMVC', 'MVCLinks');"><a href="#">MVC Walkthrough</a></div>
+                    <div id="LinkTableNavConsole" class="linkTableNavItem" onclick="resetHorizontalNav('LinkTableNavConsole', 'ConsoleLinks');"><a href="#">Console App</a></div>
+                </div>
+					
+				<div id="MVCLinks" style="display:inline;">
+					<div class="LinkTableLinks">
+						<div class="linkTableSubNav">
+                            <a onclick="resetMVCLinks('MVCLinksSubNavOverview', 'MVCLinksOverview');" href="#"><div id="MVCLinksSubNavOverview" class="linkTableSubNavItemSelected">MVC Overview</div></a>
+							<a onclick="resetMVCLinks('MVCLinksSubNavController', 'MVCLinksController');" href="#"><div id="MVCLinksSubNavController" class="linkTableSubNavItem">MVC Controller</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavMenu', 'MVCLinksMenu' );" href="#"><div id="MVCLinksSubNavMenu" class="linkTableSubNavItem">Navigation Menu</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavIndex', 'MVCLinksViewIndex' );" href="#"><div id="MVCLinksSubNavIndex" class="linkTableSubNavItem">Index/List View</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavDetails', 'MVCLinksViewDetails' );" href="#"><div id="MVCLinksSubNavDetails" class="linkTableSubNavItem">Details View</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavEdit', 'MVCLinksViewEdit' );" href="#"><div id="MVCLinksSubNavEdit" class="linkTableSubNavItem">Edit View</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavDelete', 'MVCLinksViewDelete' );" href="#"><div id="MVCLinksSubNavDelete" class="linkTableSubNavItem">Delete View</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavCreate', 'MVCLinksViewCreate' );" href="#"><div id="MVCLinksSubNavCreate" class="linkTableSubNavItem">Create View</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavRunIt', 'MVCLinksRunIt' );" href="#"><div id="MVCLinksSubNavRunIt" class="linkTableSubNavItem">Run It</div></a>
+                            <a onclick="resetMVCLinks('MVCLinksSubNavTroubleshooting', 'MVCLinksTroubleshooting' );" href="#"><div id="MVCLinksSubNavTroubleshooting" class="linkTableSubNavItem">Woops</div></a>
+						</div>
+			    
+						<div class="linkTableCodeBox">
+                            <div id="MVCLinksOverview" style="display:inline;">
+                                <h2>Creating an MVC app to view, edit and delete Salesforce Contacts</h2>
+                                <p>ASP.net MVC apps follow the Model-View-Controller pattern. </p>
+                                <p>In the following steps, you'll create:</p> 
+                                <ul>
+                                    <li>An MVC Controller to retrieve the Contact object and provide Query, Create, Update and Delete functionality. Within the Controller, we'll validate the connection is authenticated. If not, the user will be redirected to login.</li>
+                                    <li>A Menu in the common Layouts folder for listing your Salesforce Contacts.</li>
+                                    <li>4 Views using razor syntax for Index, Create, Update and Delete. The Delete View will include a confirmation view as best practices include confirming the user really wanted to perform a destructive action.</li>
+                                </ul>
+                            </div>
+							<div id="MVCLinksController" style="display:none;">
+                                <h3>Add MVC Controller</h3>
+                                <ul>
+                                    <li>Right click on the Controllers folder and select <b>Add-->Controller...</b></li>
+                                    <li>Select <b>MVC 5 Controller - Empty</b></li>
+                                    <li>Name it: <b>Contacts</b>Controller</li>
+                                    <li>Replace the contents of the Controller with the following code:</li>
+                                    <li>Replace the namespace ContosoRepairManager with the namespace of your project</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeController')">Copy</button> 
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeController">
+<span class="kwrd">using</span> System.Linq;
+<span class="kwrd">using</span> System.Net;
+<span class="kwrd">using</span> System.Threading.Tasks;
+<span class="kwrd">using</span> System.Web.Mvc;
+<span class="kwrd">using</span> Salesforce.Common.Models;
+<span class="kwrd">using</span> Salesforce.Force;
+<span class="kwrd">using</span> ContosoRepairManager.Models.Salesforce;
+<span class="kwrd">using</span> ContosoRepairManager.Salesforce;
+<span class="kwrd">namespace</span> ContosoRepairManager.Controllers {
+    <span class="kwrd">public</span> <span class="kwrd">class</span> ContactsController : Controller {
+
+        <span class="rem">// Note: the SOQL Field list, and Binding Property list have subtle differences as custom properties may be mapped with the JsonProperty attribute to remove __c</span>
+        <span class="kwrd">const</span> <span class="kwrd">string</span> _ContactsPostBinding = <span class="str">"Id,Salutation,FirstName,LastName,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email"</span>;
+        
+        <span class="rem">// GET: Contacts</span>
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Index() {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="rem">// Query just the properties we need to display the selection with SOQL </span>
+            <span class="rem">// Querying all properties would waste bandwidth and performance</span>
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact"</span>);
+
+            <span class="kwrd">return</span> View(contacts.records);
+        }
+
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Details(<span class="kwrd">string</span> id) {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="rem">// Query the larger property list you wish to show. Still not the complete object, just what the View will display to reduce network traffic</span>
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id='{0}'"</span>, id));
+
+            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+        }
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit(<span class="kwrd">string</span> id) {
+            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>) {
+                <span class="kwrd">return</span> <span class="kwrd">new</span> HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="rem">// Query just the properties the Edit View will display to reduce network traffic</span>
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id='{0}'"</span>, id));
+
+            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+        }
+
+        <span class="rem">// POST: /Contacts/Edit/003i000000tm2KSAAY</span>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit([Bind(Include = _ContactsPostBinding)] Contact contact) {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="rem">// Update Salesforce, passing in the serialized contact object</span>
+            SuccessResponse success = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, contact);
+
+            <span class="kwrd">if</span> (success.success == <span class="str">"true"</span>) {
+                <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+            } <span class="kwrd">else</span> {
+                <span class="kwrd">return</span> View(contact);
+            }
+        }
+
+        <span class="rem">// GET: /Contacts/Delete/003i000000tm2KSAAY</span>
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Delete(<span class="kwrd">string</span> id) {
+            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>) {
+                <span class="kwrd">return</span> <span class="kwrd">new</span> HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="rem">// Query the properties you'll display for the user to confirm they wish to delete this Contact</span>
+            QueryResult&lt;Contact&gt; contacts =
+                await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id='{0}'"</span>, id));
+
+            <span class="kwrd">if</span> (contacts.records.Count == 0) {
+                <span class="kwrd">return</span> HttpNotFound();
+            }
+            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+        }
+
+        <span class="rem">// POST: /Contacts/Delete/003i000000tm2KSAAY</span>
+        [HttpPost, ActionName(<span class="str">"Delete"</span>)]
+        [ValidateAntiForgeryToken]
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; DeleteConfirmed(<span class="kwrd">string</span> id) {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="rem">// With the user confirming deletion, delete the Contact</span>
+            <span class="kwrd">var</span> success = await client.DeleteAsync(<span class="str">"Contact"</span>, id);
+
+            <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+        }
+
+        <span class="kwrd">public</span> ActionResult Create() {
+            <span class="kwrd">return</span> View();
+        }
+
+        <span class="rem">// POST: /Contacts/Create</span>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Create([Bind(Include = _ContactsPostBinding)] Contact contact) {
+            <span class="rem">// Ensure the user is authenticated</span>
+            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
+                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+            }
+            <span class="rem">// Initialize the Force client</span>
+            ForceClient client = new SalesforceService().GetWebServerForceClient();
+
+            <span class="kwrd">var</span> id = await client.CreateAsync(<span class="str">"Contact"</span>, contact);
+            <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+        }
+    }
+}</pre>
+                            </div>
+							<div id="MVCLinksMenu" style="display:none;">
+                                <h3>Add a Menu item for Salesforce Contacts</h3>
+                                <ul>
+                                    <li>Open <font class="inlineCode">Views\Shared\_Layout.cshtml</font>.</li>
+                                    <li>Within the <span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span> div, add the highlighted code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeMenu')">Copy</button> 
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span>
+    <span class="disabled">&lt;li&gt;@Html.ActionLink("Home", "Index", "Home")&lt;/li&gt;</span>
+    <span class="disabled">&lt;li&gt;@Html.ActionLink("About", "About", "Home")&lt;/li&gt;</span>
+    <span class="disabled">&lt;li&gt;@Html.ActionLink("Contact", "Contact", "Home")&lt;/li&gt;</span>
+    <span id="codeMenu"><span class="kwrd">&lt;</span><span class="html">li</span><span class="kwrd">&gt;</span>@Html.ActionLink("Salesforce Contacts", "Index", "Contacts")<span class="kwrd">&lt;/</span><span class="html">li</span><span class="kwrd">&gt;</span></span> 
+<span class="kwrd">&lt;/</span><span class="html">ul</span><span class="kwrd">&gt;</span>
+</pre>
+                            </div>
+                            <div id="MVCLinksViewIndex" style="display:none;">
+                                <h3>List View</h3>
+                                <ul>
+                                    <li>Within the Controller.Index Method, right-click and select <b>Add View</b></li>
+                                    <ul>
+                                        <li>View name: <b>Index</b></li>
+                                        <li>Template: <b>List</b></li>
+                                        <li>Model: <b>Contact (<i>[YourProjectName]</i>.Models.Salesforce)</b></li>
+                                    </ul>
+                                    <li>Click Add</li>
+                                    <li>Replace the contents of the razor file with the following code:</li>
+                                    <li><i>Note: Replace the @model namespace ContosoRepairManager with the namespace of your project</i></li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeListView')">Copy</button> 
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeListView">
+@model IEnumerable<span class="kwrd">&lt;</span><span class="html">ContosoRepairManager.Models.Salesforce.Contact</span><span class="kwrd">&gt;</span>
+@{
+    ViewBag.Title = "Contacts";
+}
+<span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Contacts<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">p</span><span class="kwrd">&gt;</span>
+    @Html.ActionLink("Create New", "Create")
+<span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">table</span> <span class="attr">class</span><span class="kwrd">="table"</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">tr</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.Salutation)
+        <span class="kwrd">&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.FirstName)
+        <span class="kwrd">&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.LastName)
+        <span class="kwrd">&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingCity)
+        <span class="kwrd">&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingState)
+        <span class="kwrd">&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingCountry)
+        <span class="kwrd">&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;&lt;/</span><span class="html">th</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">tr</span><span class="kwrd">&gt;</span>
+    @foreach (var item in Model) {
+        <span class="kwrd">&lt;</span><span class="html">tr</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.DisplayFor(modelItem =<span class="kwrd">&gt;</span> item.Salutation)
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.DisplayFor(modelItem =<span class="kwrd">&gt;</span> item.FirstName)
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.DisplayFor(modelItem =<span class="kwrd">&gt;</span> item.LastName)
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.DisplayFor(modelItem =<span class="kwrd">&gt;</span> item.MailingCity)
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.DisplayFor(modelItem =<span class="kwrd">&gt;</span> item.MailingState)
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.DisplayFor(modelItem =<span class="kwrd">&gt;</span> item.MailingCountry)
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">td</span><span class="kwrd">&gt;</span>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <span class="kwrd">&lt;/</span><span class="html">td</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">tr</span><span class="kwrd">&gt;</span>
+    }
+<span class="kwrd">&lt;/</span><span class="html">table</span><span class="kwrd">&gt;</span></pre>
+                            </div>
+                            <div id="MVCLinksViewDetails" style="display:none;">
+                                <h3>Details View</h3>
+                                <ul>
+                                    <li>Within the Controller.Details Method, right-click and select <b>Add View</b></li>
+                                    <ul>
+                                        <li>View name: <b>Details</b></li>
+                                        <li>Template: <b>Details</b></li>
+                                        <li>Model: <b>Contact (<i>[YourProjectName]</i>.Models.Salesforce)</b></li>
+                                    </ul>
+                                    <li>Click Add</li>
+                                    <li>Replace the contents of the razor file with the following code:</li>
+                                    <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                </ul>
+<button class="copyBtn copyBtn-success" onclick="copyCode('codeDetailsView')">Copy</button> 
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeDetailsView">
+@model ContosoRepairManager.Models.Salesforce.Contact
+@{
+    ViewBag.Title = "View";
+}
+<span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>View<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">hr</span> <span class="kwrd">/&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">dl</span> <span class="attr">class</span><span class="kwrd">="dl-horizontal"</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.Salutation)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.Salutation)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.FirstName)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.FirstName)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.LastName)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.LastName)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingStreet)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingStreet)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingCity)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingCity)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingState)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingState)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingCountry)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingCountry)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.Phone)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.Phone)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.Email)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.Email)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">dl</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">p</span><span class="kwrd">&gt;</span>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+<span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span></pre>
+                            </div>
+                            <div id="MVCLinksViewEdit" style="display:none;">
+                                <h3>Edit View</h3>
+                                <ul>
+                                    <li>Within the Controller.Edit Method, right-click and select <b>Add View</b></li>
+                                    <ul>
+                                        <li>View name: <b>Edit</b></li>
+                                        <li>Template: <b>Edit</b></li>
+                                        <li>Model: <b>Contact (<i>[YourProjectName]</i>.Models.Salesforce)</b></li>
+                                    </ul>
+                                    <li>Click Add</li>
+                                    <li>Replace the contents of the razor file with the following code:</li>
+                                    <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeEditView')">Copy</button> 
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeEditView">
+@model ContosoRepairManager.Models.Salesforce.Contact
+@{
+    ViewBag.Title = "Edit";
+}
+<span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Edit<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-horizontal"</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">hr</span> <span class="kwrd">/&gt;</span>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model =<span class="kwrd">&gt;</span> model.Id)
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.Salutation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.Salutation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.Salutation, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.FirstName, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.LastName, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingStreet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingStreet, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingCity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingCity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingCity, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingState, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingState, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingState, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingCountry, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingCountry, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingCountry, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.Phone, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.Email, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-offset-2 col-md-10"</span><span class="kwrd">&gt;</span>
+                <span class="kwrd">&lt;</span><span class="html">input</span> <span class="attr">type</span><span class="kwrd">="submit"</span> <span class="attr">value</span><span class="kwrd">="Save"</span> <span class="attr">class</span><span class="kwrd">="btn btn-default"</span> <span class="kwrd">/&gt;</span>
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+}
+<span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    @Html.ActionLink("Back to List", "Index")
+<span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}</pre>
+                            </div>
+                            <div id="MVCLinksViewDelete" style="display:none;">
+                                <h3>Delete View</h3>
+                                <ul>
+                                    <li>Within the Controller.Delete Method, right-click and select <b>Add View</b></li>
+                                    <ul>
+                                        <li>View name: <b>Delete</b></li>
+                                        <li>Template: <b>Delete</b></li>
+                                        <li>Model: <b>Contact (<i>[YourProjectName]</i>.Models.Salesforce)</b></li>
+                                    </ul>
+                                    <li>Click Add</li>
+                                    <li>Replace the contents of the razor file with the following code:</li>
+                                    <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeDeleteView')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeDeleteView">
+@model ContosoRepairManager.Models.Salesforce.Contact
+@{
+    ViewBag.Title = "Delete";
+}
+<span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Delete<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">h3</span><span class="kwrd">&gt;</span>Are you sure you want to delete this?<span class="kwrd">&lt;/</span><span class="html">h3</span><span class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">hr</span> <span class="kwrd">/&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">dl</span> <span class="attr">class</span><span class="kwrd">="dl-horizontal"</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.FirstName)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.FirstName)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.LastName)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.LastName)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingCity)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingCity)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingState)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingState)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+            @Html.DisplayNameFor(model =<span class="kwrd">&gt;</span> model.MailingCountry)
+        <span class="kwrd">&lt;/</span><span class="html">dt</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+            @Html.DisplayFor(model =<span class="kwrd">&gt;</span> model.MailingCountry)
+        <span class="kwrd">&lt;/</span><span class="html">dd</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">dl</span><span class="kwrd">&gt;</span>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-actions no-color"</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">input</span> <span class="attr">type</span><span class="kwrd">="submit"</span> <span class="attr">value</span><span class="kwrd">="Delete"</span> <span class="attr">class</span><span class="kwrd">="btn btn-default"</span> <span class="kwrd">/&gt;</span> |
+            @Html.ActionLink("Back to List", "Index")
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    }
+<span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span></pre>
+                            </div>
+                            <div id="MVCLinksViewCreate" style="display:none;">
+                                <h3>Create View</h3>
+                                <ul>
+                                    <li>Within the Controller.Create Method, right-click and select <b>Add View</b></li>
+                                    <ul>
+                                        <li>View name: <b>Create</b></li>
+                                        <li>Template: <b>Create</b></li>
+                                        <li>Model: <b>Contact (<i>[YourProjectName]</i>.Models.Salesforce)</b></li>
+                                    </ul>
+                                    <li>Click Add</li>
+                                    <li>Replace the contents of the razor file with the following code:</li>
+                                    <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeCreateView')">Copy</button>                             
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeCreateView">
+@model ContosoRepairManager.Models.Salesforce.Contact
+@{
+    ViewBag.Title = "Create";
+}
+<span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Create<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-horizontal"</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">hr</span> <span class="kwrd">/&gt;</span>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.Salutation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.Salutation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.Salutation, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.FirstName, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.LastName, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingStreet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingStreet, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingStreet, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingCity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingCity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingCity, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingState, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingState, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingState, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingPostalCode, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.MailingCountry, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.MailingCountry, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.MailingCountry, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.Phone, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            @Html.LabelFor(model =<span class="kwrd">&gt;</span> model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-10"</span><span class="kwrd">&gt;</span>
+                @Html.EditorFor(model =<span class="kwrd">&gt;</span> model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model =<span class="kwrd">&gt;</span> model.Email, "", new { @class = "text-danger" })
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-group"</span><span class="kwrd">&gt;</span>
+            <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="col-md-offset-2 col-md-10"</span><span class="kwrd">&gt;</span>
+                <span class="kwrd">&lt;</span><span class="html">input</span> <span class="attr">type</span><span class="kwrd">="submit"</span> <span class="attr">value</span><span class="kwrd">="Create"</span> <span class="attr">class</span><span class="kwrd">="btn btn-default"</span> <span class="kwrd">/&gt;</span>
+            <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+}
+<span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
+    @Html.ActionLink("Back to List", "Index")
+<span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}</pre>
+                            </div>
+                            <div id="MVCLinksRunIt" style="display:none;">
+                                <h3>Run the app</h3>
+                                <ul>
+                                    <li>Hit F5 or CTRL+F5 to start your app</li>
+                                    <li>Click the Salesforce Contacts link</li>
+                                    <li>Login with your Salesforce account</li>
+                                    <li>Create a new contact</li>
+                                    <li>Click the details on the newly created contact</li>
+                                    <li>Edit it, changing the name</li>
+                                    <li>Delete the contact</li>
+                                </ul>
+                                <p>Voila, you've just walked through creating a Salesforce contact in an ASP.net MVC application, using the Salesforce REST APIs and the <a href="https://github.com/developerforce/Force.com-Toolkit-for-NET/wiki/Getting-Started" target="_blank" class="contentLink">developerforce/Force.com-Toolkit-for-NET</a></p>
+                            </div>
+                            <div id="MVCLinksTroubleshooting" style="display:none;">
+                                <h3>Having some problems? Here's some quick tips we've found along the way</h3>
+                                <ul>
+                                    <li><b>Failures when completing the wizard?</b> - Check the output window, as we log progress, and timings for the steps being completed.</li>
+                                    <li><b>Got an <font style="color:maroon">invalid client credentials</font> exception when you clicked on the Salesforce Contacts link?</b> - Did you copy the Secret from the Salesforce Portal? It's a secret, so Salesforce wouldn't let us put the value in your project directly.</li>
+                                </ul>
+                            </div>
+                        </div>
+					</div>
+				</div>
+				
+				
+				<div id="ConsoleLinks" style="display:none;">
+					<div class="LinkTableLinks">
+						<div class="linkTableSubNav">
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNavOverview', 'ConsoleLinksOverview');" href="#"><div id="ConsoleLinksSubNavOverview" class="linkTableSubNavItemSelected">Console App Overview</div></a>
+                            <a onclick="resetConsoleLinks('ConsoleLinksSubNavUpdateService', 'ConsoleLinksCodeUpdateService');" href="#"><div id="ConsoleLinksSubNavUpdateService" class="linkTableSubNavItem">Updating Authentication</div></a>
+                            <a onclick="resetConsoleLinks('ConsoleLinksSubNavUsing', 'ConsoleLinksCodeUsing');" href="#"><div id="ConsoleLinksSubNavUsing" class="linkTableSubNavItem">Using Statements</div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNav1', 'ConsoleLinksCode1');" href="#"><div id="ConsoleLinksSubNav1" class="linkTableSubNavItem">Query</div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNav2', 'ConsoleLinksCode2');" href="#"><div id="ConsoleLinksSubNav2" class="linkTableSubNavItem">Create, Update, Delete</div></a>
+							<a onclick="resetConsoleLinks('ConsoleLinksSubNav3', 'ConsoleLinksCode3');" href="#"><div id="ConsoleLinksSubNav3" class="linkTableSubNavItem">Using Dynamics</div></a>
+                            <a onclick="resetConsoleLinks('ConsoleLinksSubNavCallSampleMethods', 'ConsoleLinksCallSampleMethods');" href="#"><div id="ConsoleLinksSubNavCallSampleMethods" class="linkTableSubNavItem">Updating Main()</div></a>
+						</div>
+			    
+						<div class="linkTableCodeBox">
+                            <div id="ConsoleLinksOverview" style="display:inline;">
+                                <p>A basic Console App that utilized the System Account - Username/Password authentication strategy and performs some basic CRUD operations.</p>
+                                <p>When creating a Console App, be sure to choose the Service Account-Username/Password runtime authentication strategy.</p>
+                                <p><b>Note:</b> This sample assumes you've included the <b>Contact</b> Salesforce Object.</p>
+                            </div>
+                            <div id="ConsoleLinksCodeUpdateService" style="display:none;">
+                                <h3>Using a Service Account with Username/Password authentication</h3>
+                                <p>Developers will often write a Console application for initial testing, prototyping, or as a headless application run as a scheduled job.</p>
+                                <p>In console applications, there's no web page, httpContext, or UI to speak of. In this sample, we'll use the Username/Password authentication strategy to authenticate against Salesforce without user interaction.</p>
+                                <ul>
+                                    <li>Open <font class="inlineCode">app.config</font> and set the following values.</li>
+                                    <ul>
+                                        <li><b>ConsumerSecret</b> is found using the information in Next Steps above.</li>
+                                        <li><b>Username</b> is the user the console will use at runtime. Typically a service account with limited permissions, but for demos, your account can be used.</li>
+                                        <li><b>SecurityToken</b> is retrieved in the Salesforce Portal. See more info <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm&language=en"> for retrieving the securitytoken</a></li>
+                                    </ul>
+                                </ul>
+<pre class="csharpcode">
+&lt;add key=<span class="str">"Salesforce:ConsumerKey"</span> value=<span class="str">"populated by the Connected Service Configuration"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:ConsumerSecret"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:Username"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:Password"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:SecurityToken"</span> value=<span class="str">"requiredValue"</span> /&gt;
+</pre>
+                                <ul>
+                            </div>
+                            <div id="ConsoleLinksCodeUsing" style="display:none;">
+                                <h3>Add using statements</h3>
+                                <ul>
+                                    <li>Open <font class="inlineCode"> Program.cs</font></li>
+                                    <li>Include the following using statements:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeUsing')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeUsing">
+<span class="kwrd">using</span> Salesforce.Common; 
+<span class="kwrd">using</span> Salesforce.Common.Models; 
+<span class="kwrd">using</span> Salesforce.Force;
+</pre>
+                            </div>
+                            <div id="ConsoleLinksCode1" style="display:none;">
+                                <h3>Add a Query Contacts Method</h3>
+                                <ul>
+                                    <li>In <font class="inlineCode"> Program.cs</font>, below the Main(string[] args) method, add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeQueryContacts')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeQueryContacts">
+<span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryContacts() {
+
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
+    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetUsernamePasswordForceClient();
+    Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
+
+    Console.WriteLine(<span class="str">"Get a list of Contacts"</span>);
+    <span class="rem">// a collection to hold the results as we get multile resultsets</span>
+    <span class="kwrd">var</span> contacts = <span class="kwrd">new</span> List&lt;Models.Salesforce.Contact&gt;();
+
+    <span class="kwrd">var</span> results = await client.QueryAsync&lt;Models.Salesforce.Contact&gt;(
+        <span class="str">"SELECT Id, FirstName, LastName, Email FROM Contact ORDER BY LastName, FirstName"</span>);
+            
+    <span class="kwrd">var</span> totalSize = 0;
+    totalSize = results.totalSize;
+    Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"Queried {0} records."</span>, totalSize));
+
+    contacts.AddRange(results.records);
+    <span class="kwrd">var</span> nextRecordsUrl = results.nextRecordsUrl;
+
+    while (!<span class="kwrd">string</span>.IsNullOrEmpty(nextRecordsUrl)) {
+
+        Console.WriteLine(<span class="str">"Found nextRecordsUrl."</span>);
+        <span class="rem">// Query the next ResultSet</span>
+        QueryResult&lt;Models.Salesforce.Contact&gt; continuationResults = await client.QueryContinuationAsync&lt;Models.Salesforce.Contact&gt;(nextRecordsUrl);
+
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"Queried an additional {0} records."</span>, continuationResults.totalSize));
+
+        <span class="rem">// Add the resultSet to our parent collection</span>
+        contacts.AddRange(continuationResults.records);
+
+        <span class="rem">//pass nextRecordsUrl back to client.QueryAsync to request next set of records</span>
+        nextRecordsUrl = continuationResults.nextRecordsUrl;
+    }
+    Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"Retrieved accounts {0}, expected size = {1}"</span>, totalSize, contacts.Count()));
+    Console.WriteLine();
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.WriteLine(<span class="str">"Print out the list of {0} contacts? (y/n)"</span>, contacts.Count());
+
+
+    <span class="kwrd">if</span> (Console.ReadKey(<span class="kwrd">true</span>).Key == ConsoleKey.Y) {
+        <span class="rem">// Format a console "table" with headings </span>
+        Console.ResetColor();
+        Console.BackgroundColor = ConsoleColor.Blue;
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine(<span class="str">"{0}{1}{2}"</span>, <span class="str">"Last Name"</span>.PadRight(20), <span class="str">"First Name"</span>.PadRight(15), <span class="str">"Email"</span>.PadRight(30));
+        Console.BackgroundColor = ConsoleColor.White;
+        Console.ForegroundColor = ConsoleColor.Blue;
+        <span class="kwrd">foreach</span> (<span class="kwrd">var</span> contact <span class="kwrd">in</span> contacts) {
+
+            Console.WriteLine(<span class="str">"{0}{1}{2}"</span>, contact.LastName.PadRight(20), contact.FirstName.PadRight(15), (contact.Email + <span class="str">""</span>).PadRight(30).Substring(0, 30));
+        }
+    }
+    Console.ResetColor();
+
+}</pre>
+                            </div>
+                            <div id="ConsoleLinksCode2" style="display:none;">
+                                <h3>Add Create, Update and Delete functionality</h3>
+                                <ul>
+                                    <li>In <font class="inlineCode"> Program.cs</font>, below the QueryContacts() method, add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeCreateUpdateDeleteContact')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeCreateUpdateDeleteContact">
+<span class="kwrd">private</span> <span class="kwrd">static</span> async Task CreateUpdateDeleteContact() {
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
+    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetUsernamePasswordForceClient();
+    Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
+
+    <span class="rem">// Create a sample record</span>
+    Console.WriteLine(<span class="str">"Creating test Contact."</span>);
+    <span class="kwrd">var</span> contact = <span class="kwrd">new</span> Models.Salesforce.Contact{ 
+        FirstName = <span class="str">"Freddy"</span>, 
+        LastName=<span class="str">"Krueger"</span>, 
+        MailingStreet=<span class="str">"Elm Street"</span> };
+
+    contact.Id = await client.CreateAsync(<span class="str">"Contact"</span>, contact);
+    <span class="kwrd">if</span> (contact.Id == <span class="kwrd">null</span>) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to create test Contact."</span>);
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="str">"--&gt; Successfully created test record."</span>);
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+
+    <span class="rem">// Update the sample record</span>
+    <span class="rem">// Shows that annonymous types can be used as well</span>
+    Console.WriteLine(<span class="str">"Updating test record."</span>);
+    <span class="kwrd">var</span> updateSuccess = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, <span class="kwrd">new</span> { MailingCity = <span class="str">"Some City"</span> });
+    <span class="kwrd">if</span> (updateSuccess.success != <span class="str">"true"</span>) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to update test record!"</span>);
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="str">"--&gt; Successfully created test record."</span>);
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+    <span class="rem">// Retrieve the sample record</span>
+    <span class="rem">// How to query with a WHERE clause</span>
+    Console.WriteLine(<span class="str">"Retrieving the record by ID."</span>);
+    <span class="kwrd">var</span> result= await client.QueryAsync&lt;Models.Salesforce.Contact&gt;(
+        <span class="kwrd">string</span>.Format(<span class="str">"SELECT FirstName, LastName, Email, MailingStreet, MailingCity FROM Contact WHERE Id = '{0}'"</span>, contact.Id));
+    <span class="kwrd">if</span> (result.records.Count() == 0) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to retrieve the record by ID!"</span>);
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        <span class="rem">// Use FirstOrDefault extension method to get a single item from QueryAsync</span>
+        <span class="rem">// note QueryResult returns a result objects, with records following the common REST programming model</span>
+        contact = result.records.FirstOrDefault();
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"--&gt; Successfully found {0}, {1}"</span>, contact.LastName, contact.FirstName));
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+    <span class="rem">// Query for record by name</span>
+    Console.WriteLine(<span class="str">"Querying the Contacts by FirstName."</span>);
+    <span class="kwrd">var</span> searchParam = <span class="str">"Fred"</span>;
+    <span class="kwrd">var</span> parameterizedResults = await client.QueryAsync&lt;Models.Salesforce.Contact&gt;(
+        <span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, FirstName, LastName FROM Contact WHERE FirstName Like '%{0}%'"</span>, searchParam));
+
+    <span class="rem">// Get the </span>
+    contact= parameterizedResults.records.FirstOrDefault();
+    <span class="kwrd">if</span> (contact == <span class="kwrd">null</span>) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"--&gt; Failed to find any Contacts named {0}"</span>, searchParam));
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="kwrd">string</span>.Format(<span class="str">"--&gt; Found {0} records named {1}"</span>, parameterizedResults.records.Count(), searchParam));
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+    <span class="rem">// Delete account</span>
+    Console.WriteLine(<span class="str">"Deleting the record by ID."</span>);
+    <span class="kwrd">var</span> deleteSuccess = await client.DeleteAsync(<span class="str">"Contact"</span>, contact.Id);
+    <span class="kwrd">if</span> (!deleteSuccess) {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(<span class="str">"--&gt; Failed to delete the record by ID!"</span>);
+        Console.ResetColor();
+        <span class="kwrd">return</span>;
+    } <span class="kwrd">else</span> {
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine(<span class="str">"--&gt; Deleted the record by ID."</span>);
+        Console.ResetColor();
+    }
+    Console.WriteLine();
+
+}</pre>
+                            </div>
+                            <div id="ConsoleLinksCode3" style="display:none;">
+                                <h3>Add a Query with dynamic types</h3>
+                                <ul>
+                                    <li>In <font class="inlineCode">Program.cs</font>, below the CreateUpdateDeleteContact() method, add the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeQueryWithDynamic')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeQueryWithDynamic">
+<span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryWithDynamic() {
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
+    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetUsernamePasswordForceClient();
+    Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
+
+    <span class="rem">// Selecting multiple accounts into a dynamic</span>
+    Console.WriteLine(<span class="str">"Querying multiple records."</span>);
+    <span class="kwrd">var</span> dynamicAccounts = await client.QueryAsync&lt;dynamic&gt;(<span class="str">"SELECT ID, Name FROM Account LIMIT 10"</span>);
+
+    <span class="rem">// Format a console "table" with headings </span>
+    Console.ResetColor();
+    Console.BackgroundColor = ConsoleColor.Blue;
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine(<span class="str">"{0}{1}"</span>, <span class="str">"Id"</span>.PadRight(20), <span class="str">"Name"</span>.PadRight(30));
+    Console.BackgroundColor = ConsoleColor.White;
+    Console.ForegroundColor = ConsoleColor.Blue;
+    <span class="kwrd">foreach</span> (dynamic acct <span class="kwrd">in</span> dynamicAccounts.records) {
+        Console.WriteLine(<span class="str">"{0}{1}"</span>, ((<span class="kwrd">string</span>)(acct.Id)).PadRight(20), ((<span class="kwrd">string</span>)(acct.Name)).PadRight(30).Substring(0, 30));
+    }
+    Console.ResetColor();
+
+}</pre>
+
+                            </div>
+                            <div id="ConsoleLinksCallSampleMethods" style="display:none;">
+                                <h3>Call the Sample Methods in Sequence</h3>
+                                <ul>
+                                    <li>Replace <font class="inlineCode">Main()</font> method, with the following code:</li>
+                                    <li>Hit F5 to test your console app.</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeMainMethod')">Copy</button>
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeMainMethod">
+<span class="kwrd">static</span> <span class="kwrd">void</span> Main(<span class="kwrd">string</span>[] args) {
+
+    <span class="kwrd">try</span> {
+        <span class="kwrd">var</span> queryContacts= QueryContacts();
+        queryContacts.Wait();
+        <span class="kwrd">var</span> createUpdateDeleteContact = CreateUpdateDeleteContact();
+        createUpdateDeleteContact.Wait();
+        <span class="kwrd">var</span> queryWithDynamic = QueryWithDynamic();
+        queryWithDynamic.Wait();
+
+    } <span class="kwrd">catch</span> (Exception e) {
+        <span class="rem">// Drill into the inner exception as the parent exception is related to the Task</span>
+
+        Console.ResetColor(); <span class="rem">// Show errors as red</span>
+        Console.ForegroundColor = ConsoleColor.Red;
+
+        Console.WriteLine(e.Message);
+        <span class="kwrd">var</span> innerException = e.InnerException;
+        while (innerException != <span class="kwrd">null</span>) {
+            Console.WriteLine(innerException.Message);
+
+            innerException = innerException.InnerException;
+        }
+    }
+
+    Console.WriteLine();
+    Console.BackgroundColor = ConsoleColor.DarkGreen;
+    Console.ForegroundColor = ConsoleColor.Black;
+    Console.WriteLine(<span class="str">"Press ENTER to Exit"</span>);
+    Console.ReadLine();
+}
+</pre>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

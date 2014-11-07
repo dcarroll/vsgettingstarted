@@ -69,6 +69,12 @@
     <Content Include="1\nextSteps.html" />
     <Content Include="1\ReadMe.html" />
     <Content Include="1\whatHappened.html" />
+    <Content Include="2\customizing.html" />
+    <Content Include="2\gettingStarted.html" />
+    <Content Include="2\Index.html" />
+    <Content Include="2\nextSteps.html" />
+    <Content Include="2\ReadMe.html" />
+    <Content Include="2\whatHappened.html" />
     <Content Include="images\ConsumerSecret.png" />
     <Content Include="images\sfdc_platform_rgb.png" />
     <Content Include="images\sflogo.png" />
