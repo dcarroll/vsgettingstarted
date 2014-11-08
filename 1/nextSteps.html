@@ -24,7 +24,7 @@
         <h3>Web Server & Username/Password Auth Strategies</h3>
         <p>If you've selected <b>Web Server or Username/Password Service Account</b> for your runtime authentication strategy, you'll need to update <font class="inlineCode">web.config</font> with the Consumer Secret from the <a href="https://login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank">Salesforce Portal</a>.</p>
         <ul>
-            <li>Open <font class="inlineCode">web.config</font> and note the Connected App name</li>
+            <li>Open <font class="inlineCode">app/web.config</font> and note the Connected App name</li>
             <pre class="csharpcode">
 <span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
     <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
