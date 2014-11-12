@@ -17,6 +17,7 @@
             <a href="gettingStarted.html">Getting started</a>
             <a class="selected" href="customizing.html">Customizing</a>
             <a href="ReadMe.html">ReadMe</a>
+            <a href="providingFeedback.html">Feedback</a>
         </div>
     </div>
     <div class="content">
@@ -24,6 +25,12 @@
         <h3>Customizing the Scaffolding with T4 Templates</h3>
         <p>The code scaffolded into your project is based on T4 templates that you can customize. The templates are located in your user's directory.</p>
         <p>To find the directory:</p>
+        <ul>
+            <li>In Explorer, enter the following path:<font class="inlineCode" id="userPathDev14">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font><button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button></li>
+            <li>Search for: <b>ConnectedService</b></li>
+            <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
+        </ul>
+        <!--
         <ul>
             <li>Visual Studio 2013</li>
             <ul>
@@ -36,6 +43,7 @@
             <li>Search for: <b>ConnectedService</b></li>
             <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
         </ul>
+        -->
         <p>There are three T4 templates:</p>
         <ul>
             <li><b>SalesforceObject.tt</b> - The Model template for each Salesforce Object: <font class="inlineCode">Models\Salesforce\*</font></li>
@@ -44,7 +52,7 @@
         </ul>
         <h3>Editing T4 Templates</h3>
         <h4>Parameter Object Model</h4>
-        <p>Within the T4 Templates, you’ll see a parameter at the top of the page. To view the object model of the parameter, use the Visual Studio Object Explorer.</p>
+        <p>Within the T4 Templates, you’ll see a parameter at the top of the page. To view the object model of the parameter, use the Visual Studio Object Browser.</p>
         <h4>Finding the Salesforce dll</h4>
         <ul>
             <li>In explorer, open the path noted above for your version of Visual Studio</li>

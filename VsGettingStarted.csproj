@@ -63,6 +63,7 @@
     <Content Include="054\nextSteps.html" />
     <Content Include="054\ReadMe.html" />
     <Content Include="054\whatHappened.html" />
+    <Content Include="1\providingFeedback.html" />
     <Content Include="1\customizing.html" />
     <Content Include="1\gettingStarted.html" />
     <Content Include="1\Index.html" />
@@ -72,6 +73,7 @@
     <Content Include="images\ConsumerSecret.png" />
     <Content Include="images\sfdc_platform_rgb.png" />
     <Content Include="images\sflogo.png" />
+    <Content Include="images\VSLogo.png" />
     <Content Include="index.html" />
     <Content Include="scripts\copyCode.js" />
     <Content Include="scripts\linkTable.js" />
