@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Salesforce - Required Next Steps</title>
+    <link type="text/css" rel="stylesheet" href="../styles/base.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/code.csharp.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="left">
+        <div class="logoShell">
+            <img src="../images/sflogo.png" />
+        </div>
+        <div class="primaryNav">
+            <a href="whatHappened.html">What happened?</a>
+            <a class="selected" href="nextSteps.html">Next steps</a>
+            <a href="gettingStarted.html">Getting started</a>
+            <a href="customizing.html">Customizing</a>
+            <a href="ReadMe.html">ReadMe</a>
+            <a href="providingFeedback.html">Feedback</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Developing with Salesforce</h1>
+        <h2>Depending on the options you've chosen, there may be some mandatory next steps to query Salesforce</h2>
+        <h3>Web Server & Username/Password Auth Strategies</h3>
+        <p>If you've selected <b>Web Server or Username/Password Service Account</b> for your runtime authentication strategy, you'll need to update <font class="inlineCode">app/web.config</font> with the Consumer Secret from <a href="https://login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank">Salesforce Setup</a>.</p>
+        <ul>
+            <li>Open <font class="inlineCode">app/web.config</font> and note the Connected App name</li>
+            <pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+    <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+    <span class="disabled">&lt;add key="Salesforce:ConsumerKey" value="yourKey"/&gt;</span>
+    <span class="disabled">...</span>
+</pre>
+            <li>Log into <a href="https://login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank">Salesforce Setup</a>.</li>
+            <li>Scroll down to view the <b>Connected Apps</b></li>
+            <li>Click the the <b>Connected App Name</b>, <i>not the Edit or Manage link</i></li>
+            <li>
+                <div>In the <b>API (enable OAuth Settings)</b> section, find the <b>Consumer Secret</b> and click the link to show the key.</div>
+                <br />
+                <img src="../images/ConsumerSecret.png" width="1024">
+            </li>
+            <li>Copy the consumer key value from Salesforce and paste it in your application's <font class="inlineCode">app/web.config</font> file as the value of the <font class="inlineCode">Salesforce:ConsumerSecret</font> app setting.</li>
+            <li>For C# projects, remove the build #error reminder in <font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font>.</li>
+        </ul>
+        <h3>Username/Password Service Accounts</h3>
+        <p>If you've selected <b>Username/Password Service Account</b> for your runtime authentication strategy, you'll need to update <font class="inlineCode">app/web.config</font> with the Username, Password and Security Token. For more info: <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm" target="_blank">How to get your Security Token</a>.</p>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+

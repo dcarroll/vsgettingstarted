@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Salesforce - What happened to my project</title>
+    <link type="text/css" rel="stylesheet" href="../styles/base.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/code.csharp.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+</head>
+<body>
+    <div class="left">
+        <div class="logoShell">
+            <img src="../images/sflogo.png" />
+        </div>
+        <div class="primaryNav">
+            <a class="selected" href="whatHappened.html">What happened?</a>
+            <a href="nextSteps.html">Next steps</a>
+            <a href="gettingStarted.html">Getting started</a>
+            <a href="customizing.html">Customizing</a>
+            <a href="ReadMe.html">ReadMe</a>
+            <a href="providingFeedback.html">Feedback</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Developing with Salesforce</h1>
+        <h2>Here is how your project has been updated to use Salesforce</h2>
+        <h3>References have been added to your project</h3>
+        <h4>NuGet package references</h4>
+        <ul>
+            <li><a href="http://www.nuget.org/packages/DeveloperForce.Force/" target="_blank">developerforce.force</a></li>
+        </ul>
+        <p><i>*This NuGet package provides a .NET library for interacting with Salesforce's Force.com core REST APIs.</i></p>
+        <h4>.NET references</h4>
+        <ul>
+            <li>System.Configuration</li>
+            <li>System.Web</li>
+            <li>System.ComponentModel.DataAnnotations *</li>
+        </ul>
+        <p><i>* added if you've chosen to Scaffold the Salesforce Objects</i></p>
+        <h3>A configured connection class was added to the Service folder</h3>
+        <p>A configured service class, <font class="inlineCode">SalesforceService.cs/vb</font> was added to the <font class="inlineCode">Service References</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST queries.</p>
+        <p>With the values being read from <font class="inlineCode">app/web.config</font>, you can manage the configurations as they change through your deployment environments.</p>
+        <h3>Your app/web.config has new configuration values</h3>
+        <p>Depending on the project type and the authentication strategies you've chosen, some of the following entries have been added.</p>
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active" ><a href="#webserver" aria-controls="webserver" role="tab" data-toggle="tab">Web Server Flow</a></li>
+                <li role="presentation"><a href="#usernamepassword" aria-controls="usernamepassword" role="tab" data-toggle="tab">Username/Password Flow</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="webserver">
+<pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+<span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/ProjectName-SalesforceRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+</pre>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="usernamepassword">
+<pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+<span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/ProjectName-SalesforceRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Username"</span> <span class="attr">value</span><span class="kwrd">="yourUsername"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Password"</span> <span class="attr">value</span><span class="kwrd">="yourPassword"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:SecurityToken"</span> <span class="attr">value</span><span class="kwrd">="yourSecurityToken"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+</pre>
+                    <p><i>*For more information about Security Tokens, visit <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm" target="_blank">Resetting Your Security Token</a></i></p>
+                </div>
+            </div>
+        </div>
+        <h3>A Connected App was created in Salesforce Setup</h3>
+        <p>Based on the authentication strategy you've chosen, a <a href="https://developer.salesforce.com/page/Connected_Apps" target="_blank">Connected App</a> was configured enabling your application to be authenticated against the Salesforce REST APIs. The configuration values have been saved to <font class="inlineCode">app/web.config</font>. You may change the Connected App in <a href="https:/login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank">Salesforce Setup</a>.</p>
+        <p>To find the name, open <font class="inlineCode">app/web.config</font>, and look for the following line:</p>
+        <pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+    <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+<span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
+</pre>
+        <div class="tip">Deployment Tip</div>
+        <p>When you're ready to deploy your application to another environment, you'll need to edit or create another <a href="https://developer.salesforce.com/page/Connected_Apps" target="_blank">Connected App</a> with the appropriate settings, particularly the <a href="https://help.salesforce.com/apex/HTFederatedSearchResults#q=Editing%20a%20Connected%20App&t=AllTab&sort=relevancy" target="_blank">callback url</a>, and update the <font class="inlineCode">app/web.config</font> file to the target environment.</p>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

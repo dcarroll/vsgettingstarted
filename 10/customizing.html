@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Salesforce - Customizing the Scaffolding</title>
+    <link type="text/css" rel="stylesheet" href="../styles/base.css" />
+    <link type="text/css" rel="stylesheet" href="../styles/code.csharp.css" />
+    <script type="text/javascript" src="../scripts/copyCode.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+    <div class="left">
+        <div class="logoShell">
+            <img src="../images/sflogo.png" />
+        </div>
+        <div class="primaryNav">
+            <a href="whatHappened.html">What happened?</a>
+            <a href="nextSteps.html">Next steps</a>
+            <a href="gettingStarted.html">Getting started</a>
+            <a class="selected" href="customizing.html">Customizing</a>
+            <a href="ReadMe.html">ReadMe</a>
+            <a href="providingFeedback.html">Feedback</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Developing with Salesforce</h1>
+        <h3>Customizing the Scaffolding with T4 Templates</h3>
+        <p>The code scaffolded into your project is based on T4 templates that you can customize. The templates are located in your user's directory.</p>
+        <p>To find the directory:</p>
+        <ul>
+            <li>In Explorer, enter the following path:<font class="inlineCode" id="userPathDev14">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font><button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button></li>
+            <li>Search for: <b>ConnectedService</b></li>
+            <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
+        </ul>
+        <!--
+        <ul>
+            <li>Visual Studio 2013</li>
+            <ul>
+                <li>In Explorer, enter the following path: <font class="inlineCode" id="userPathDev12">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev12')">Copy</button></li>
+            </ul>
+            <li>Visual Studio 2015 Preview</li>
+            <ul>
+                <li>In Explorer, enter the following path: <font class="inlineCode" id="userPathDev14">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button></li>
+            </ul>
+            <li>Search for: <b>ConnectedService</b></li>
+            <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
+        </ul>
+        -->
+        <p>There are three T4 templates:</p>
+        <ul>
+            <li><b>SalesforceObject.tt</b> - The Model template for each Salesforce Object: <font class="inlineCode">Models\Salesforce\*</font></li>
+            <li><b>SalesforceOAuthRedirectHandler.tt</b>- The template for the Web Server Flow redirect handler: <font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></li>
+            <li><b>SalesforceService.tt</b> - The tempalte that represents the configured service object: <font class="inlineCode">Service References\Salesforce\SalesforceService</font></li>
+        </ul>
+        <h3>Editing T4 Templates</h3>
+        <h4>Parameter Object Model</h4>
+        <p>Within the T4 Templates, you’ll see a parameter at the top of the page. To view the object model of the parameter, use the Visual Studio Object Browser.</p>
+        <h4>Finding the Salesforce dll</h4>
+        <ul>
+            <li>In explorer, open the path noted above for your version of Visual Studio</li>
+            <li>Search for <b>Salesforce.VisualStudio.Services.dll</b></li>
+            <li>Right Click on the file and select Open File Location</li>
+            <li>Copy the location</li>
+            <li>In Visual Studio, Select <b>View --> Object Browser</b></li>
+            <li>Click the <b>[..]</b> next to the Browse ComboBox in the top of the object browser</li>
+            <li>Paste the path into the ComboBox below the file listing </li>
+            <li>Double click the Salesforce.VisualStudio.Services.dll to add it to the Selected projects and components list and click [OK]</li>
+        </ul>
+        <h3>T4 Template Syntax Coloring</h3>
+        <p>The <a href="http://www.devart.com/t4-editor/" target="_blank">Devart T4 Editor</a> is a Visual Studio add-in for editing T4 templates with syntax highlighting, intellisense, code outlining, and all features of a first-class text editor add-in for Visual Studio.</p>
+        <p><i>Note: As of November 10th, 2014, DevArt has not yet provided a version for Visual Studio 2015 Preview.</i> In the meantime, you can use Visual Studio 2013 to edit the T4 templates. We hope they'll have a preview version soon.</p>
+        <h3>Suggested Improvements</h3>
+        <p>If you find enhancements we should incorporate, please let us know at: <a href="https://visualstudio.uservoice.com/forums/265038" target="_blank">UserVoice - Visual Studio Connected Services</a></p>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

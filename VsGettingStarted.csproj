@@ -63,6 +63,13 @@
     <Content Include="054\nextSteps.html" />
     <Content Include="054\ReadMe.html" />
     <Content Include="054\whatHappened.html" />
+    <Content Include="10\customizing.html" />
+    <Content Include="10\gettingStarted.html" />
+    <Content Include="10\Index.html" />
+    <Content Include="10\nextSteps.html" />
+    <Content Include="10\providingFeedback.html" />
+    <Content Include="10\ReadMe.html" />
+    <Content Include="10\whatHappened.html" />
     <Content Include="1\providingFeedback.html" />
     <Content Include="1\customizing.html" />
     <Content Include="1\gettingStarted.html" />
@@ -71,7 +78,7 @@
     <Content Include="1\ReadMe.html" />
     <Content Include="1\whatHappened.html" />
     <Content Include="images\ConsumerSecret.png" />
-    <Content Include="images\sfdc_platform_rgb.png" />
+    <Content Include="images\Salesforce_Logo_RGB_8_13_14.png" />
     <Content Include="images\sflogo.png" />
     <Content Include="images\VSLogo.png" />
     <Content Include="index.html" />
