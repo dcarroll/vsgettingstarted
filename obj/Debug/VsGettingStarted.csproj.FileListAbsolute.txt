@@ -1,5 +1,0 @@
-C:\Users\Account1\Documents\GitHub\vsgettingstarted\bin\VsGettingStarted.dll
-C:\Users\Account1\Documents\GitHub\vsgettingstarted\bin\VsGettingStarted.pdb
-C:\Users\Account1\Documents\GitHub\vsgettingstarted\obj\Debug\VsGettingStarted.csprojResolveAssemblyReference.cache
-C:\Users\Account1\Documents\GitHub\vsgettingstarted\obj\Debug\VsGettingStarted.dll
-C:\Users\Account1\Documents\GitHub\vsgettingstarted\obj\Debug\VsGettingStarted.pdb

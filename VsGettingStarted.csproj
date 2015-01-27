@@ -78,7 +78,6 @@
     <Content Include="1\ReadMe.html" />
     <Content Include="1\whatHappened.html" />
     <Content Include="images\ConsumerSecret.png" />
-    <Content Include="images\Salesforce_Logo_RGB_8_13_14.png" />
     <Content Include="images\sflogo.png" />
     <Content Include="images\VSLogo.png" />
     <Content Include="index.html" />
