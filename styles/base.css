@@ -54,6 +54,11 @@ body {
     padding-left: 56px;
 }
 
+.contentz {
+    margin-left: 76px;
+    padding-left: 56px;
+}
+
 h1, h2, h3, h4 {
     margin: 0px;
     padding: 0px;
@@ -104,6 +109,12 @@ li {
     padding-top: 9px;
 }
 
+.tight {
+    margin-bottom: 3px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
 a {
     color: #007acc;
     text-decoration: none;

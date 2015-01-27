@@ -40,7 +40,7 @@
         </ul>
         <p><i>* added if you've chosen to Scaffold the Salesforce Objects</i></p>
         <h3>A configured connection class was added to the Service folder</h3>
-        <p>A configured service class, <font class="inlineCode">SalesforceService.cs/vb</font> was added to the <font class="inlineCode">Service References</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST queries.</p>
+        <p>A configured service class, <font class="inlineCode">SalesforceService.cs</font> was added to the <font class="inlineCode">Service References</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST queries.</p>
         <p>With the values being read from <font class="inlineCode">app/web.config</font>, you can manage the configurations as they change through your deployment environments.</p>
         <h3>Your app/web.config has new configuration values</h3>
         <p>Depending on the project type and the authentication strategies you've chosen, some of the following entries have been added.</p>
@@ -80,7 +80,8 @@
             </div>
         </div>
         <h3>A Connected App was created in Salesforce Setup</h3>
-        <p>Based on the authentication strategy you've chosen, a <a href="https://developer.salesforce.com/page/Connected_Apps" target="_blank">Connected App</a> was configured enabling your application to be authenticated against the Salesforce REST APIs. The configuration values have been saved to <font class="inlineCode">app/web.config</font>. You may change the Connected App in <a href="https:/login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank">Salesforce Setup</a>.</p>
+        <p>Based on the authentication strategy you've chosen, a <a href="https://developer.salesforce.com/page/Connected_Apps" target="_blank">Connected App</a> was configured enabling your application to be authenticated against the Salesforce REST APIs.  A Consumer Key and Consumer Secret have been created for your Connected App and saved to <font class="inlineCode">app/web.config</font>. You may change the Connected App in <a href="https:/login.salesforce.com/02u?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DDevTools&setupid=TabSet" target="_blank">Salesforce Setup</a>.</p>
+        <p>*<i><strong>Note:</strong> if you change your Consumer Secret you will need to update the app/web.config file to reflect the new values.</i></p>
         <p>To find the name, open <font class="inlineCode">app/web.config</font>, and look for the following line:</p>
         <pre class="csharpcode">
 <span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
