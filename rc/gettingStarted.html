@@ -43,6 +43,8 @@
                 <div class="linkTableSubNav">
                     <a id="MVCLinksSubNavOverview" class="selected" href="#">MVC Overview</a>
                     <a id="MVCLinksSubNavController" href="#">MVC Controller</a>
+                    <a id="MVCLinksSubNavViewAuthError" href="#">Auth Error View</a>
+                    <a id="MVCLinksSubNavViewUnexError" href="#">API Errors View</a>
                     <a id="MVCLinksSubNavMenu" href="#">Navigation Menu</a>
                     <a id="MVCLinksSubNavViewIndex" href="#">Index/List View</a>
                     <a id="MVCLinksSubNavViewDetails" href="#">Details View</a>
@@ -75,152 +77,272 @@
                         </ul>
                         <button class="copyBtn copyBtn-success" onclick="copyCode('codeController')">Copy</button>
 <!-- code formatted by http://manoli.net/csharpformat/ -->
-<pre class="csharpcode" id="codeController">
+<!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode">
+<span class="kwrd">using</span> Salesforce.Common.Models;
+<span class="kwrd">using</span> System;
+<span class="kwrd">using</span> System.Collections.Generic;
 <span class="kwrd">using</span> System.Linq;
 <span class="kwrd">using</span> System.Net;
 <span class="kwrd">using</span> System.Threading.Tasks;
+<span class="kwrd">using</span> System.Web;
 <span class="kwrd">using</span> System.Web.Mvc;
-<span class="kwrd">using</span> Salesforce.Common.Models;
-<span class="kwrd">using</span> Salesforce.Force;
-<span class="kwrd">using</span> ContosoRepairManager.Models.Salesforce;
-<span class="kwrd">using</span> ContosoRepairManager.Salesforce;
-<span class="kwrd">namespace</span> ContosoRepairManager.Controllers {
-    <span class="kwrd">public</span> <span class="kwrd">class</span> ContactsController : Controller {
+<span class="kwrd">using</span> WebApplication23.Models.Salesforce;
+<span class="kwrd">using</span> WebApplication23.Salesforce;
 
+<span class="kwrd">namespace</span> WebApplication2.Controllers
+{
+    <span class="kwrd">public</span> <span class="kwrd">class</span> ContactsController : Controller
+    {
         <span class="rem">// Note: the SOQL Field list, and Binding Property list have subtle differences as custom properties may be mapped with the JsonProperty attribute to remove __c</span>
         <span class="kwrd">const</span> <span class="kwrd">string</span> _ContactsPostBinding = <span class="str">"Id,Salutation,FirstName,LastName,MailingStreet,MailingCity,MailingState,MailingPostalCode,MailingCountry,Phone,Email"</span>;
-        
+
         <span class="rem">// GET: Contacts</span>
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Index() {
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Index()
+        {
+            IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
+            <span class="kwrd">try</span>
+            {
+                selectedContacts = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                    async (client) =&gt;
+                    {
+                        QueryResult&lt;Contact&gt; contacts =
+                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact"</span>);
+
+                        <span class="kwrd">return</span> contacts.records;
+                    }
+                    );
             }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"query Salesforce Contacts"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
+            }
 
-            <span class="rem">// Query just the properties we need to display the selection with SOQL </span>
-            <span class="rem">// Querying all properties would waste bandwidth and performance</span>
-            QueryResult&lt;Contact&gt; contacts =
-                await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact"</span>);
-
-            <span class="kwrd">return</span> View(contacts.records);
+            <span class="kwrd">return</span> View(selectedContacts);
         }
 
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Details(<span class="kwrd">string</span> id) {
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Details(<span class="kwrd">string</span> id)
+        {
+            IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
+            <span class="kwrd">try</span>
+            {
+                selectedContacts = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                    async (client) =&gt;
+                    {
+                        QueryResult&lt;Contact&gt; contacts =
+                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id = '"</span> + id + <span class="str">"'"</span>);
+
+                        <span class="kwrd">return</span> contacts.records;
+                    }
+                    );
             }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"Salesforce Contacts Details"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
+            }
 
-            <span class="rem">// Query the larger property list you wish to show. Still not the complete object, just what the View will display to reduce network traffic</span>
-            QueryResult&lt;Contact&gt; contacts =
-                await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id='{0}'"</span>, id));
-
-            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+            <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
         }
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit(<span class="kwrd">string</span> id) {
-            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>) {
-                <span class="kwrd">return</span> <span class="kwrd">new</span> HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit(<span class="kwrd">string</span> id)
+        {
+            IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
+            <span class="kwrd">try</span>
+            {
+                selectedContacts = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                    async (client) =&gt;
+                    {
+                        QueryResult&lt;Contact&gt; contacts =
+                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id = '"</span> + id + <span class="str">"'"</span>);
+
+                        <span class="kwrd">return</span> contacts.records;
+                    }
+                    );
+            }
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"Edit Salesforce Contacts"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
 
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
-            }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
-
-            <span class="rem">// Query just the properties the Edit View will display to reduce network traffic</span>
-            QueryResult&lt;Contact&gt; contacts =
-                await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id='{0}'"</span>, id));
-
-            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+            <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
         }
 
         <span class="rem">// POST: /Contacts/Edit/003i000000tm2KSAAY</span>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit([Bind(Include = _ContactsPostBinding)] Contact contact) {
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit([Bind(Include = _ContactsPostBinding)] Contact contact)
+        {
+            SuccessResponse success = <span class="kwrd">new</span> SuccessResponse();
+            <span class="kwrd">try</span>
+            {
+                success = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                    async (client) =&gt;
+                    {
+                        success = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, contact);
+                        <span class="kwrd">return</span> success;
+                    }
+                    );
             }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"Edit Salesforce Contact"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
 
-            <span class="rem">// Update Salesforce, passing in the serialized contact object</span>
-            SuccessResponse success = await client.UpdateAsync(<span class="str">"Contact"</span>, contact.Id, contact);
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
+            }
 
-            <span class="kwrd">if</span> (success.success == <span class="str">"true"</span>) {
+            <span class="kwrd">if</span> (success.success == <span class="str">"true"</span>)
+            {
                 <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
-            } <span class="kwrd">else</span> {
+            }
+            <span class="kwrd">else</span>
+            {
                 <span class="kwrd">return</span> View(contact);
             }
         }
 
         <span class="rem">// GET: /Contacts/Delete/003i000000tm2KSAAY</span>
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Delete(<span class="kwrd">string</span> id) {
-            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>) {
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Delete(<span class="kwrd">string</span> id)
+        {
+            <span class="kwrd">if</span> (id == <span class="kwrd">null</span>)
+            {
                 <span class="kwrd">return</span> <span class="kwrd">new</span> HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
-            }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
 
-            <span class="rem">// Query the properties you'll display for the user to confirm they wish to delete this Contact</span>
-            QueryResult&lt;Contact&gt; contacts =
-                await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id='{0}'"</span>, id));
+            IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
+            <span class="kwrd">try</span>
+            {
+                selectedContacts = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                async (client) =&gt;
+                {
+                    <span class="rem">// Query the properties you'll display for the user to confirm they wish to delete this Contact</span>
+                    QueryResult&lt;Contact&gt; contacts =
+                        await client.QueryAsync&lt;Contact&gt;(<span class="kwrd">string</span>.Format(<span class="str">"SELECT Id, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id='{0}'"</span>, id));
 
-            <span class="kwrd">if</span> (contacts.records.Count == 0) {
-                <span class="kwrd">return</span> HttpNotFound();
+                    <span class="kwrd">return</span> contacts.records;
+                }
+                );
             }
-            <span class="kwrd">return</span> View(contacts.records.FirstOrDefault());
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"query Salesforce Contacts"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
+            }
+            <span class="kwrd">if</span> (selectedContacts.Count() == 0)
+            {
+                <span class="kwrd">return</span> View();
+            }
+            <span class="kwrd">else</span>
+            {
+                <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
+            }
         }
 
         <span class="rem">// POST: /Contacts/Delete/003i000000tm2KSAAY</span>
         [HttpPost, ActionName(<span class="str">"Delete"</span>)]
         [ValidateAntiForgeryToken]
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; DeleteConfirmed(<span class="kwrd">string</span> id) {
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; DeleteConfirmed(<span class="kwrd">string</span> id)
+        {
+            <span class="kwrd">bool</span> success = <span class="kwrd">false</span>;
+            <span class="kwrd">try</span>
+            {
+                success = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                    async (client) =&gt;
+                    {
+                        success = await client.DeleteAsync(<span class="str">"Contact"</span>, id);
+                        <span class="kwrd">return</span> success;
+                    }
+                    );
             }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
-
-            <span class="rem">// With the user confirming deletion, delete the Contact</span>
-            <span class="kwrd">var</span> success = await client.DeleteAsync(<span class="str">"Contact"</span>, id);
-
-            <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"Delete Salesforce Contacts"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
+            }
+            <span class="kwrd">if</span> (success)
+            {
+                <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+            }
+            <span class="kwrd">else</span>
+            {
+                <span class="kwrd">return</span> View();
+            }
         }
 
-        <span class="kwrd">public</span> ActionResult Create() {
+        <span class="kwrd">public</span> ActionResult Create()
+        {
             <span class="kwrd">return</span> View();
         }
 
         <span class="rem">// POST: /Contacts/Create</span>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Create([Bind(Include = _ContactsPostBinding)] Contact contact) {
-            <span class="rem">// Ensure the user is authenticated</span>
-            <span class="kwrd">if</span> (!SalesforceService.IsAuthenticated()) {
-                <span class="kwrd">return</span> <span class="kwrd">this</span>.Redirect(SalesforceOAuthRedirectHandler.GetAuthorizationUrl());
+        <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Create([Bind(Include = _ContactsPostBinding)] Contact contact)
+        {
+            String id = String.Empty;
+            <span class="kwrd">try</span>
+            {
+                id = await SalesforceService.MakeAuthenticatedClientRequestAsync(
+                    async (client) =&gt;
+                    {
+                        <span class="kwrd">return</span> await client.CreateAsync(<span class="str">"Contact"</span>, contact);
+                    }
+                    );
             }
-            <span class="rem">// Initialize the Force client</span>
-            ForceClient client = new SalesforceService().GetWebServerForceClient();
+            <span class="kwrd">catch</span> (Exception e)
+            {
+                <span class="kwrd">this</span>.ViewBag.OperationName = <span class="str">"Create Salesforce Contact"</span>;
+                <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
+                <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
+            }
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            {
+                <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
+            }
 
-            <span class="kwrd">var</span> id = await client.CreateAsync(<span class="str">"Contact"</span>, contact);
-            <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="kwrd">null</span>)
+            {
+                <span class="kwrd">return</span> RedirectToAction(<span class="str">"Index"</span>);
+            } <span class="kwrd">else</span>
+            {
+                <span class="kwrd">return</span> View(contact);
+            }
         }
+
     }
-}
-</pre>
+}</pre>
                     </div>
                     <div id="MVCLinksMenu" style="display: none">
                         <h3>Add a Menu item for Salesforce Contacts</h3>
