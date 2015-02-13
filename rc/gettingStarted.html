@@ -67,7 +67,7 @@
                             </ul>
                         </div>
                         <div id="MVCLinksController" style="display: none">
-                            <h3>Add MVC Controller</h3>
+                            <h3 class="hh3">Add MVC Controller</h3>
                             <ul>
                                 <li>Right click on the Controllers folder and select <b>Add-->Controller...</b></li>
                                 <li>Select <b>MVC 5 Controller - Empty</b></li>
@@ -77,8 +77,7 @@
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeController')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
-                            <!-- code formatted by http://manoli.net/csharpformat/ -->
-<pre class="csharpcode" style="word-wrap: normal;">
+<pre class="csharpcode" style="word-wrap: normal;" id="codeController">
 <span class="kwrd">using</span> Salesforce.Common.Models;
 <span class="kwrd">using</span> System;
 <span class="kwrd">using</span> System.Collections.Generic;
@@ -324,19 +323,61 @@
 }</pre>
                         </div>
                         <div id="MVCLinksAuthError" style="display: none">
-                            <h3>Add a partial page to provide login link if not yet authorized</h3>
+                            <h3 class="hh3">Add a partial view to provide login link if not yet authorized</h3>
                             <p>When the list of contacts page loads, it tries to get a list of contact from Salesforce. If this fails due to lack of authentication, we want to provide a link to the user to login.</p>
                             <p>This is just one way to handle authentication, you may want to authenticate up front, or when the user accesses an authorized resource without making them click a link.</p>
-                        </div>
+                            <h3>Add Auth Error Page</h3>
+                            <ul>
+                                <li>Right click on the Views/Shared folder and select <b>Add-->View...</b></li>
+                                <li>Name it: <b> _AuthError.cshtml</b></li>
+                                <li>Select <b>Empty (without model) for the template</b></li>
+                                <li>Click the <b>Add</b> button</li>
+                                <li>Replace the contents of the View with the following code:</li>
+                            </ul>
+                            <button class="copyBtn copyBtn-success" onclick="copyCode('codeAuthError')">Copy</button>
+
+<pre class="csharpcode" id="codeAuthError">
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+@<span class="kwrd">if</span> (ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
+{
+    &lt;p&gt;You have to sign-<span class="kwrd">in</span> to @ViewBag.OperationName. Click &lt;a href=<span class="str">"@ViewBag.AuthorizationUrl"</span> title=<span class="str">"here"</span>&gt;here&lt;/a&gt; to sign-<span class="kwrd">in</span>.&lt;/p&gt;
+    &lt;p&gt;@ViewBag.ErrorMessage&lt;/p&gt;
+}
+</pre>
+                            </div>
+                            <div id="MVCLinksUnexError" style="display: none">
+                                <h3 class="hh3">Add a partial view to provide error messages returned from the Salesforce API</h3>
+                                <p>This partial page will only be visible when there is an unexpected error returned to the user.</p>
+                                <h3>Add Error Page</h3>
+                                <ul>
+                                    <li>Right click on the Views/Shared folder and select <b>Add-->View...</b></li>
+                                    <li>Name it: <b> _UnexpectedError.cshtml</b></li>
+                                    <li>Select <b>Empty (without model) for the template</b></li>
+                                    <li>Click the <b>Add</b> button</li>
+                                    <li>Replace the contents of the View with the following code:</li>
+                                </ul>
+                                <button class="copyBtn copyBtn-success" onclick="copyCode('codeUnexError')">Copy</button>
+
+    <!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeUnexError">
+@if (ViewBag.ErrorMessage != "AuthorizationRequired" &amp;&amp; ViewBag.ErrorMessage != null)
+{
+    <span class="kwrd">&lt;</span><span class="html">p</span> <span class="attr">class</span><span class="kwrd">="text-danger"</span><span class="kwrd">&gt;</span>
+        An unexpected error occurred while attempting to @ViewBag.OperationName<span class="kwrd">&lt;</span><span class="html">br</span> <span class="kwrd">/&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">strong</span><span class="kwrd">&gt;</span>Error: @ViewBag.ErrorMessage<span class="kwrd">&lt;/</span><span class="html">strong</span><span class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span>
+}
+</pre>
+                            </div>
                         <div id="MVCLinksMenu" style="display: none">
-                            <h3>Add a Menu item for Salesforce Contacts</h3>
+                            <h3 class="hh3">Add a Menu item for Salesforce Contacts</h3>
                             <ul>
                                 <li>Open <font class="inlineCode">Views\Shared\_Layout.cshtml</font>.</li>
                                 <li>Within the <span class="csharpcode inline"><span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span></span> div, add the highlighted code:</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeMenu')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
-<pre class="csharpcode">
+<pre class="csharpcode" id="codeMenu">
 <span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span>
     <span class="disabled">&lt;li&gt;@Html.ActionLink("Home", "Index", "Home")&lt;/li&gt;</span>
     <span class="disabled">&lt;li&gt;@Html.ActionLink("About", "About", "Home")&lt;/li&gt;</span>
@@ -346,7 +387,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewIndex" style="display: none">
-                            <h3>List View</h3>
+                            <h3 class="hh3">List View</h3>
                             <ul>
                                 <li>Within the Controller.Index Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -369,6 +410,7 @@
 <span class="kwrd">&lt;</span><span class="html">p</span><span class="kwrd">&gt;</span>
     @Html.ActionLink("Create New", "Create")
 <span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span>
+@Html.Partial("_UnexpectedError")
 <span class="kwrd">&lt;</span><span class="html">table</span> <span class="attr">class</span><span class="kwrd">="table"</span><span class="kwrd">&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">tr</span><span class="kwrd">&gt;</span>
         <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
@@ -419,10 +461,11 @@
         <span class="kwrd">&lt;/</span><span class="html">tr</span><span class="kwrd">&gt;</span>
     }
 <span class="kwrd">&lt;/</span><span class="html">table</span><span class="kwrd">&gt;</span>
+@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewDetails" style="display: none">
-                            <h3>Details View</h3>
+                            <h3 class="hh3">Details View</h3>
                             <ul>
                                 <li>Within the Controller.Details Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -444,6 +487,7 @@
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>View<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
+@Html.Partial("_UnexpectedError")
     <span class="kwrd">&lt;</span><span class="html">hr</span> <span class="kwrd">/&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">dl</span> <span class="attr">class</span><span class="kwrd">="dl-horizontal"</span><span class="kwrd">&gt;</span>
         <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
@@ -512,10 +556,11 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 <span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span>
+@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewEdit" style="display: none">
-                            <h3>Edit View</h3>
+                            <h3 class="hh3">Edit View</h3>
                             <ul>
                                 <li>Within the Controller.Edit Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -535,6 +580,7 @@
     ViewBag.Title = "Edit";
 }
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Edit<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+@Html.Partial("_UnexpectedError")
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-horizontal"</span><span class="kwrd">&gt;</span>
@@ -625,10 +671,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewDelete" style="display: none">
-                            <h3>Delete View</h3>
+                            <h3 class="hh3">Delete View</h3>
                             <ul>
                                 <li>Within the Controller.Delete Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -648,6 +695,7 @@
     ViewBag.Title = "Delete";
 }
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Delete<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+@Html.Partial("_UnexpectedError")
 <span class="kwrd">&lt;</span><span class="html">h3</span><span class="kwrd">&gt;</span>Are you sure you want to delete this?<span class="kwrd">&lt;/</span><span class="html">h3</span><span class="kwrd">&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
@@ -692,10 +740,11 @@
         <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
     }
 <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
+@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewCreate" style="display: none">
-                            <h3>Create View</h3>
+                            <h3 class="hh3">Create View</h3>
                             <ul>
                                 <li>Within the Controller.Create Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -715,6 +764,7 @@
     ViewBag.Title = "Create";
 }
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Create<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
+@Html.Partial("_UnexpectedError")
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-horizontal"</span><span class="kwrd">&gt;</span>
@@ -804,10 +854,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksRunIt" style="display: none">
-                            <h3>Run the app</h3>
+                            <h3 class="hh3">Run the app</h3>
                             <ul>
                                 <li>Hit F5 or CTRL+F5 to start your app</li>
                                 <li>Click the Salesforce Contacts link</li>
@@ -846,7 +897,7 @@
                             <p><b>Note:</b> This sample assumes you selected the <b>Contact</b> Salesforce Object in the scaffolding step of the wizard.</p>
                         </div>
                         <div id="ConsoleLinksCodeUpdateService" style="display: none">
-                            <h3>Using a Service Account with Username/Password authentication</h3>
+                            <h3 class="hh3">Using a Service Account with Username/Password authentication</h3>
                             <p>Developers will often write a Console application for initial testing, prototyping, or as a headless application run as a scheduled job.</p>
                             <p>In console applications, there's no web page, httpContext, or UI to speak of. In this sample, we'll use the Username/Password authentication strategy to authenticate against Salesforce without user interaction.</p>
                             <ul>
@@ -867,7 +918,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCodeUsing" style="display: none">
-                            <h3>Add using statements</h3>
+                            <h3 class="hh3">Add using statements</h3>
                             <ul>
                                 <li>Open <font class="inlineCode"> Program.cs</font></li>
                                 <li>Include the following using statements:</li>
@@ -881,7 +932,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode1" style="display: none">
-                            <h3>Add a Query Contacts Method</h3>
+                            <h3 class="hh3">Add a Query Contacts Method</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the Main(string[] args) method, add the following code:</li>
                             </ul>
@@ -935,7 +986,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode2" style="display: none">
-                            <h3>Add Create, Update and Delete functionality</h3>
+                            <h3 class="hh3">Add Create, Update and Delete functionality</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the QueryContacts() method, add the following code:</li>
                             </ul>
@@ -1033,7 +1084,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode3" style="display: none">
-                            <h3>Add a Query with dynamic types</h3>
+                            <h3 class="hh3">Add a Query with dynamic types</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the CreateUpdateDeleteContact() method, add the following code:</li>
                             </ul>
@@ -1062,7 +1113,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCallSampleMethods" style="display: none">
-                            <h3>Call the Sample Methods in Sequence</h3>
+                            <h3 class="hh3">Call the Sample Methods in Sequence</h3>
                             <ul>
                                 <li>Replace <font class="inlineCode">Main()</font> method, with the following code:</li>
                                 <li>Hit F5 to test your console app.</li>
