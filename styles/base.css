@@ -131,10 +131,21 @@ a {
 img {
 	border:none;
 }
-
+table, th, td {
+     border: 1px solid black;
+ }
+th,td {
+    padding:30px;
+}
 .inlineCode {
     color: black;
     border: 1px solid #e9ebee;
+}
+.cmdCode {
+	border:1px solid #e9ebee;
+    color:white;
+    background:black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .csharpcode, .csharpcode pre {

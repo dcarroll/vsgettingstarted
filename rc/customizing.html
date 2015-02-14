@@ -26,39 +26,87 @@
     <div class="content">
         <h1>Developing with Salesforce</h1>
         <h3>Customizing the Scaffolding with T4 Templates</h3>
-        <p>The code scaffolded into your project is based on T4 templates that you can customize. The templates are located in your user's directory.</p>
-        <p>To find the directory:</p>
+        <p>The code scaffolded into your project is based on T4 templates that you can customize.</p>
+        <p>The steps are the following:</p>
         <ul>
-            <li>In Explorer, enter the following path:<font class="inlineCode" id="userPathDev14">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font><button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button></li>
-            <li>Search for: <b>ConnectedService</b></li>
-            <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
+            <li>Create a directory for your customized templates</li>
+            <li>Find the extension directory with the master templates you wish to customize</li>
+            <li>Copy the master templates to the customized directory</li>
+            <li>Customize the T4 templates</li>
         </ul>
-        <!--
+        <p>
+            The Salesforce Provider will look in the following directory for customized templates:<br />
+            <font class="inlineCode">%userprofile%\Documents\Visual Studio 2015\Templates\ConnectedServiceTemplates\Visual C#\Salesforce</font><br />
+            However, this directory doesn't exist by default, so you'll have to create the directory first.
+        </p>
+        <h4>Create the customized template directory</h4>
         <ul>
-            <li>Visual Studio 2013</li>
-            <ul>
-                <li>In Explorer, enter the following path: <font class="inlineCode" id="userPathDev12">%userprofile%\appdata\local\Microsoft\VisualStudio\12.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev12')">Copy</button></li>
-            </ul>
-            <li>Visual Studio 2015 Preview</li>
-            <ul>
-                <li>In Explorer, enter the following path: <font class="inlineCode" id="userPathDev14">%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions</font> <button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button></li>
-            </ul>
-            <li>Search for: <b>ConnectedService</b></li>
-            <li>Double click to open the <b>Templates Folder</b> and the language you wish to customize</li>
+            <li>Launch a standard Command Prompt</li>
+            <li>
+                Execute the following command to create and open the above directory.<br />
+                <font class="cmdCode" id="makeUserTemplateDir">mkdir "%userprofile%\Documents\Visual Studio 2015\Templates\ConnectedServiceTemplates\Visual C#\Salesforce" && start explorer "%userprofile%\Documents\Visual Studio 2015\Templates\ConnectedServiceTemplates\Visual C#\Salesforce"</font><button class="copyBtn copyBtn-success" onclick="copyCode('makeUserTemplateDir')">Copy</button>
+            </li>
         </ul>
-        -->
+        <h4>Finding the master templates</h4>
+        <p>Each version of the Salesforce Provider will place master templates in the extension directory. The provider never reads from this directory. They are placed here for reference only. If templates aren't found in the custom directory above, it will use templates from resources embeded in the provider.</p>
+        <p>With the directory in place, you can now copy the templates from the extension directory to the directory you just created.</p>
+        <p>Extensions are placed in a unique directory, so we'll need to do a quick search to find it.</p>
+        <ul>
+            <li>
+                In the same command prompt, execute following command to open the root extension directory:<br />
+                <font class="cmdCode" id="userPathDev14">start explorer "%userprofile%\appdata\local\Microsoft\VisualStudio\14.0\Extensions"</font><button class="copyBtn copyBtn-success" onclick="copyCode('userPathDev14')">Copy</button>
+            </li>
+            <li>Search for: <font class="inlineCode" id="searchForTemplate">SalesforceService.tt</font><button class="copyBtn copyBtn-success" onclick="copyCode('searchForTemplate')">Copy</button></li>
+            <li>Right-Click and select <b>Open File Location</b></li>
+        </ul>
         <p>There are three T4 templates:</p>
-        <ul>
-            <li><b>SalesforceObject.tt</b> - The Model template for each Salesforce Object: <font class="inlineCode">Models\Salesforce\*</font></li>
-            <li><b>SalesforceOAuthRedirectHandler.tt</b>- The template for the Web Server Flow redirect handler: <font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></li>
-            <li><b>SalesforceService.tt</b> - The tempalte that represents the configured service object: <font class="inlineCode">Service References\Salesforce\SalesforceService</font></li>
-        </ul>
+        <table style="width:100%">
+            <tr>
+                <th>Filename</th>
+                <th>Description</th>
+                <th>Project Location</th>
+            </tr>
+            <tr>
+                <td><b>SalesforceOAuthRedirectHandler.tt</b></td>
+                <td>The template for the Web Server Flow redirect handler</td>
+                <td><font class="inlineCode">Service References\Salesforce\SalesforceOAuthRedirectHandler.cs</font></td>
+            </tr>
+            <tr>
+                <td><b>SalesforceObject.tt</b></td>
+                <td>The Model template for each scaffolded Salesforce Object</td>
+                <td><font class="inlineCode">Models\Salesforce\*</font></td>
+            </tr>
+            <tr>
+                <td><b>SalesforceService.tt</b></td>
+                <td>The tempalte that represents the configured service object</td>
+                <td><font class="inlineCode">Service References\Salesforce\SalesforceService</font></td>
+            </tr>
+        </table>
+        <h4>Copying the templates</h4>
+        <p>Copy any, or all of the templates you wish to customize to the directory created above.</p>
         <h3>Editing T4 Templates</h3>
+        <p>Within each template, you'll see a parameter which is referenced when completing the template. Below is an example from the SalesforceObject.tt template</p>
+
+        <!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode">
+&lt;#@ template debug=<span class="str">"false"</span> hostspecific=<span class="str">"false"</span> language=<span class="str">"C#"</span> #&gt;
+&lt;#@ assembly name=<span class="str">"Salesforce.VisualStudio.Services.dll"</span> #&gt;
+&lt;#@ import <span class="kwrd">namespace</span>=<span class="str">"Salesforce.VisualStudio.Services.ConnectedService.CodeModel"</span> #&gt;
+&lt;#@ output extension=<span class="str">".cs"</span> #&gt;
+&lt;#@ parameter type=<span class="str">"Salesforce.VisualStudio.Services.ConnectedService.CodeModel.GeneratedObject"</span> name=<span class="str">"generatedObject"</span> #&gt;
+...
+<span class="kwrd">namespace</span> &lt;#= generatedObject.Service.ModelsNamespace #&gt;
+{
+        <span class="kwrd">public</span> <span class="kwrd">class</span> &lt;#= generatedObject.Model.Name #&gt;
+    {
+&lt;#
+</pre>
+        <p>By referencing the generatedObject, and the properties on it you can populate values within the template.</p>
         <h4>Parameter Object Model</h4>
-        <p>Within the T4 Templates, you’ll see a parameter at the top of the page. To view the object model of the parameter, use the Visual Studio Object Browser.</p>
+        <p>To view the object model of the parameter, use the Visual Studio Object Browser.</p>
         <h4>Finding the Salesforce dll</h4>
         <ul>
-            <li>In explorer, open the path noted above for your version of Visual Studio</li>
+            <li>In explorer, open the path noted above for the extension directory</li>
             <li>Search for <b>Salesforce.VisualStudio.Services.dll</b></li>
             <li>Right Click on the file and select Open File Location</li>
             <li>Copy the location</li>
@@ -70,6 +118,13 @@
         <h3>T4 Template Syntax Coloring</h3>
         <p>The <a href="http://www.devart.com/t4-editor/" target="_blank">Devart T4 Editor</a> is a Visual Studio add-in for editing T4 templates with syntax highlighting, intellisense, code outlining, and all features of a first-class text editor add-in for Visual Studio.</p>
         <p><i>Note: As of November 10th, 2014, DevArt has not yet provided a version for Visual Studio 2015 Preview.</i> In the meantime, you can use Visual Studio 2013 to edit the T4 templates. We hope they'll have a preview version soon.</p>
+        <h2>Frequently Asked Questions</h2>
+        <h3><b>Q:</b> Why aren't the templates in this custom directory location already?</h3>
+        <h4><b>A:</b> With each version of the Salesforce provider, we may update the template code. In order to provide you a copy to start with, without overwriting your custom edits, we needed a uniqe location to place the master templates</h4>
+        <h3><b>Q:</b> Why isn't the custom directory created with the provider?</h3>
+        <p><b>A:</b> VSIX have limited access to the file system to assure they have limited impact to muck wiht the stability of your environment. In this case, the VSIX is unable to create directories outside the scope of the VSIX.</p>
+        <h3><b>Q:</b> Why not just create the directory under the extension?</h3>
+        <p><b>A:</b> When the extension is removed or updated, the extension directory is completely removed, which would delete any customizations you've created.</p>
         <h3>Suggested Improvements</h3>
         <p>If you find enhancements we should incorporate, please let us know at: <a href="https://visualstudio.uservoice.com/forums/265038" target="_blank">UserVoice - Visual Studio Connected Services</a></p>
     </div>
