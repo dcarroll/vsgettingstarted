@@ -68,7 +68,7 @@ ipch/
 *.cachefile
 
 # Roslyn cache files
-Salesforce.VisualStudio.Services.sln.ide/
+VsGettingStarted.sln.ide/
 
 # Visual Studio profiler
 *.psess
