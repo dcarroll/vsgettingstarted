@@ -324,7 +324,7 @@
                         </div>
                         <div id="MVCLinksAuthError" style="display: none">
                             <h3 class="hh3">Add a partial view to provide login link if not yet authorized</h3>
-                            <p>When the list of contacts page loads, it tries to get a list of contact from Salesforce. If this fails due to lack of authentication, we want to provide a link to the user to login.</p>
+                            <p>When the list of contacts page loads, it tries to get a list of contact from Salesforce. If this fails due to lack of authentication, we want to provide a link for the user to login.</p>
                             <p>This is just one way to handle authentication, you may want to authenticate up front, or when the user accesses an authorized resource without making them click a link.</p>
                             <h3>Add Auth Error Page</h3>
                             <ul>
@@ -334,9 +334,7 @@
                                 <li>Replace the contents of the View with the following code:</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeAuthError')">Copy</button>
-
-<pre class="csharpcode" id="codeAuthError">
-    <!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeAuthError"><!-- code formatted by http://manoli.net/csharpformat/ -->
 @<span class="kwrd">if</span> (ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
 {
     &lt;p&gt;You have to sign-<span class="kwrd">in</span> to @ViewBag.OperationName. Click &lt;a href=<span class="str">"@ViewBag.AuthorizationUrl"</span> title=<span class="str">"here"</span>&gt;here&lt;/a&gt; to sign-<span class="kwrd">in</span>.&lt;/p&gt;
@@ -386,6 +384,9 @@
                         </div>
                         <div id="MVCLinksViewIndex" style="display: none">
                             <h3 class="hh3">List View</h3>
+                            <p>Using MVC Scaffolding, we can build out the view based on the Model classes scaffolded based on the Salesforce objects.</p>
+                            <p><b>Note:</b> because we're using a new auth pattern for validating users inline, there are two extra Partial views added to the page.</p>
+                            <p>Copying this code will add these views, however as you move past the sample and use the MVC View Scaffolding, be sure to add these partial views if you continue to use the auth pattern in the controllers.</p>
                             <ul>
                                 <li>Within the Controller.Index Method, right-click and select <b>Add View</b></li>
                                 <ul>
