@@ -56,7 +56,7 @@
                     </div>
                     <div class="linkTableCodeBox">
                         <div id="MVCLinksOverview">
-                            <h2>Creating an MVC app to view, edit and delete Salesforce Contacts</h2>
+                            <h3 class="codeHeading">Creating an MVC app to view, edit and delete Salesforce Contacts</h3>
                             <p>ASP.net MVC apps follow the Model-View-Controller pattern.</p>
                             <p>In the following steps, you'll create:</p>
                             <ul>
@@ -67,7 +67,7 @@
                             </ul>
                         </div>
                         <div id="MVCLinksController" style="display: none">
-                            <h3 class="hh3">Add MVC Controller</h3>
+                            <h3 class="codeHeading">Add MVC Controller</h3>
                             <ul>
                                 <li>Right click on the Controllers folder and select <b>Add-->Controller...</b></li>
                                 <li>Select <b>MVC 5 Controller - Empty</b></li>
@@ -121,6 +121,7 @@
             }
             <span class="kwrd">return</span> View(selectedContacts);
         }
+
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Details(<span class="kwrd">string</span> id)
         {
             IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
@@ -147,6 +148,7 @@
             }
             <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
         }
+
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit(<span class="kwrd">string</span> id)
         {
             IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
@@ -173,7 +175,7 @@
             }
             <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
         }
-        <span class="rem">// POST: /Contacts/Edit/003i000000tm2KSAAY</span>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit([Bind(Include = _ContactsPostBinding)] Contact contact)
@@ -208,7 +210,7 @@
                 <span class="kwrd">return</span> View(contact);
             }
         }
-        <span class="rem">// GET: /Contacts/Delete/003i000000tm2KSAAY</span>
+
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Delete(<span class="kwrd">string</span> id)
         {
             <span class="kwrd">if</span> (id == <span class="kwrd">null</span>)
@@ -247,7 +249,7 @@
                 <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
             }
         }
-        <span class="rem">// POST: /Contacts/Delete/003i000000tm2KSAAY</span>
+
         [HttpPost, ActionName(<span class="str">"Delete"</span>)]
         [ValidateAntiForgeryToken]
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; DeleteConfirmed(<span class="kwrd">string</span> id)
@@ -282,11 +284,12 @@
                 <span class="kwrd">return</span> View();
             }
         }
+
         <span class="kwrd">public</span> ActionResult Create()
         {
             <span class="kwrd">return</span> View();
         }
-        <span class="rem">// POST: /Contacts/Create</span>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Create([Bind(Include = _ContactsPostBinding)] Contact contact)
@@ -323,10 +326,10 @@
 }</pre>
                         </div>
                         <div id="MVCLinksAuthError" style="display: none">
-                            <h3 class="hh3">Add a partial view to provide login link if not yet authorized</h3>
+                            <h3 class="codeHeading">Add a partial view to provide login link if not yet authorized</h3>
                             <p>When the list of contacts page loads, it tries to get a list of contact from Salesforce. If this fails due to lack of authentication, we want to provide a link for the user to login.</p>
                             <p>This is just one way to handle authentication, you may want to authenticate up front, or when the user accesses an authorized resource without making them click a link.</p>
-                            <h3>Add Auth Error Page</h3>
+                            <h3 class="codeHeading">Add Auth Error Page</h3>
                             <ul>
                                 <li>Right click on the Views/Shared folder and select <b>Add-->View...</b></li>
                                 <li>Name it: <b> _AuthError</b></li>
@@ -343,9 +346,9 @@
 </pre>
                             </div>
                             <div id="MVCLinksUnexError" style="display: none">
-                                <h3 class="hh3">Add a partial view to provide error messages returned from the Salesforce API</h3>
+                                <h3 class="codeHeading">Add a partial view to provide error messages returned from the Salesforce API</h3>
                                 <p>This partial page will only be visible when there is an unexpected error returned to the user.</p>
-                                <h3>Add Error Page</h3>
+                                <h3 class="codeHeading">Add Error Page</h3>
                                 <ul>
                                     <li>Right click on the Views/Shared folder and select <b>Add-->View...</b></li>
                                     <li>Name it: <b> _UnexpectedError</b></li>
@@ -366,7 +369,7 @@
 </pre>
                             </div>
                         <div id="MVCLinksMenu" style="display: none">
-                            <h3 class="hh3">Add a Menu item for Salesforce Contacts</h3>
+                            <h3 class="codeHeading">Add a Menu item for Salesforce Contacts</h3>
                             <ul>
                                 <li>Open <font class="inlineCode">Views\Shared\_Layout.cshtml</font>.</li>
                                 <li>Within the <span class="csharpcode inline"><span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span></span> div, add the highlighted code:</li>
@@ -383,7 +386,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewIndex" style="display: none">
-                            <h3 class="hh3">List View</h3>
+                            <h3 class="codeHeading">List View</h3>
                             <p>Using MVC Scaffolding, we can build out the view based on the Model classes scaffolded based on the Salesforce objects.</p>
                             <p><b>Note:</b> because we're using a new auth pattern for validating users inline, there are two extra Partial views added to the page.</p>
                             <p>Copying this code will add these views, however as you move past the sample and use the MVC View Scaffolding, be sure to add these partial views if you continue to use the auth pattern in the controllers.</p>
@@ -464,7 +467,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewDetails" style="display: none">
-                            <h3 class="hh3">Details View</h3>
+                            <h3 class="codeHeading">Details View</h3>
                             <ul>
                                 <li>Within the Controller.Details Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -559,7 +562,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewEdit" style="display: none">
-                            <h3 class="hh3">Edit View</h3>
+                            <h3 class="codeHeading">Edit View</h3>
                             <ul>
                                 <li>Within the Controller.Edit Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -674,7 +677,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewDelete" style="display: none">
-                            <h3 class="hh3">Delete View</h3>
+                            <h3 class="codeHeading">Delete View</h3>
                             <ul>
                                 <li>Within the Controller.Delete Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -743,7 +746,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewCreate" style="display: none">
-                            <h3 class="hh3">Create View</h3>
+                            <h3 class="codeHeading">Create View</h3>
                             <ul>
                                 <li>Within the Controller.Create Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -857,7 +860,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksRunIt" style="display: none">
-                            <h3 class="hh3">Run the app</h3>
+                            <h3 class="codeHeading">Run the app</h3>
                             <ul>
                                 <li>Hit F5 or CTRL+F5 to start your app</li>
                                 <li>Click the Salesforce Contacts link</li>
@@ -870,7 +873,7 @@
                             <p>Voila, you've just walked through creating a Salesforce contact in an ASP.net MVC application, using the Salesforce REST APIs and the <a href="https://github.com/developerforce/Force.com-Toolkit-for-NET/wiki/Getting-Started" target="_blank">Force.com-Toolkit-for-NET</a></p>
                         </div>
                         <div id="MVCLinksTroubleshooting" style="display: none">
-                            <h3>Having some problems? Here's some quick tips we've found along the way</h3>
+                            <h3 class="codeHeading">Having some problems? Here's some quick tips we've found along the way</h3>
                             <ul>
                                 <li><b>Failures when completing the wizard?</b> - Check the output window, as we log progress, and timings for the steps being completed.</li>
                             </ul>
@@ -889,13 +892,13 @@
                     </div>
                     <div class="linkTableCodeBox">
                         <div id="ConsoleLinksOverview">
-                            <h2>Creating a Console app to view, edit and delete Salesforce Contacts</h2>
+                            <h3 class="codeHeading">Creating a Console app to view, edit and delete Salesforce Contacts</h3>
                             <p>This walkthrough will help you create a basic Console App that utilizes a <i>System Account</i> based on the <strong>Username/Password</strong> authentication strategy, performing basic CRUD operations.</p>
                             <p>When creating a Console App, be sure to choose the Service Account-Username/Password runtime authentication strategy.</p>
                             <p><b>Note:</b> This sample assumes you selected the <b>Contact</b> Salesforce Object in the scaffolding step of the wizard.</p>
                         </div>
                         <div id="ConsoleLinksCodeUpdateService" style="display: none">
-                            <h3 class="hh3">Using a Service Account with Username/Password authentication</h3>
+                            <h3 class="codeHeading">Using a Service Account with Username/Password authentication</h3>
                             <p>Developers will often write a Console application for initial testing, prototyping, or as a headless application run as a scheduled job. The headless app can either be scheduled with Windows Scheduler, or you may choose to create a Windows Service project.</p>
                             <p>In console applications, there's no web page, httpContext, or UI to speak of. In this sample, we'll use the Username/Password authentication strategy to authenticate against Salesforce without user interaction.</p>
                             <ul>
@@ -916,7 +919,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCodeUsing" style="display: none">
-                            <h3 class="hh3">Add using statements</h3>
+                            <h3 class="codeHeading">Add using statements</h3>
                             <ul>
                                 <li>Open <font class="inlineCode"> Program.cs</font></li>
                                 <li>Include the following using statements:</li>
@@ -930,7 +933,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode1" style="display: none">
-                            <h3 class="hh3">Add a Query Contacts Method</h3>
+                            <h3 class="codeHeading">Add a Query Contacts Method</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the Main(string[] args) method, add the following code:</li>
                             </ul>
@@ -984,7 +987,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode2" style="display: none">
-                            <h3 class="hh3">Add Create, Update and Delete functionality</h3>
+                            <h3 class="codeHeading">Add Create, Update and Delete functionality</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the QueryContacts() method, add the following code:</li>
                             </ul>
@@ -1082,7 +1085,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode3" style="display: none">
-                            <h3 class="hh3">Add a Query with dynamic types</h3>
+                            <h3 class="codeHeading">Add a Query with dynamic types</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the CreateUpdateDeleteContact() method, add the following code:</li>
                             </ul>
@@ -1111,7 +1114,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCallSampleMethods" style="display: none">
-                            <h3 class="hh3">Call the Sample Methods in Sequence</h3>
+                            <h3 class="codeHeading">Call the Sample Methods in Sequence</h3>
                             <ul>
                                 <li>Replace <font class="inlineCode">Main()</font> method, with the following code:</li>
                                 <li>Hit F5 to test your console app.</li>

@@ -30,7 +30,7 @@
         <p>The steps are the following:</p>
         <ul>
             <li>Create a directory for your customized templates</li>
-            <li>Find the extension directory with the master templates you wish to customize</li>
+            <li>Find the extension directory with the master templates</li>
             <li>Copy the master templates to the customized directory</li>
             <li>Customize the T4 templates</li>
         </ul>
@@ -48,7 +48,7 @@
             </li>
         </ul>
         <h4>Finding the master templates</h4>
-        <p>Each version of the Salesforce Provider will place master templates in the extension directory. The provider never reads from this directory. They are placed here for reference only. If templates aren't found in the custom directory above, it will use templates from resources embeded in the provider.</p>
+        <p>Each version of the Salesforce Provider will place master templates in the extension directory. The provider never reads from this directory. They are placed here for reference only. Each new version of the Salesforce Connected Services Provider will continue to place the master templates here to avoid overwriting any modifications you've made. If templates aren't found in the custom directory above, it will use templates from resources embedded in the provider.</p>
         <p>With the directory in place, you can now copy the templates from the extension directory to the directory you just created.</p>
         <p>Extensions are placed in a unique directory, so we'll need to do a quick search to find it.</p>
         <ul>
@@ -106,7 +106,7 @@
         <p>To view the object model of the parameter, use the Visual Studio Object Browser.</p>
         <h4>Finding the Salesforce dll</h4>
         <ul>
-            <li>In explorer, open the path noted above for the extension directory</li>
+            <li>In explorer, open the path noted above for the <b>extension directory</b></li>
             <li>Search for <b>Salesforce.VisualStudio.Services.dll</b></li>
             <li>Right Click on the file and select Open File Location</li>
             <li>Copy the location</li>
@@ -120,7 +120,7 @@
         <p><i>Note: As of November 10th, 2014, DevArt has not yet provided a version for Visual Studio 2015 Preview.</i> In the meantime, you can use Visual Studio 2013 to edit the T4 templates. We hope they'll have a preview version soon.</p>
         <h2>Frequently Asked Questions</h2>
         <h3><b>Q:</b> Why aren't the templates in this custom directory location already?</h3>
-        <h4><b>A:</b> With each version of the Salesforce provider, we may update the template code. In order to provide you a copy to start with, without overwriting your custom edits, we needed a uniqe location to place the master templates</h4>
+        <h4><b>A:</b> With each version of the Salesforce provider, we may update the template code. In order to provide you a copy to start with, without overwriting your custom edits, we needed a unique location to place the master templates</h4>
         <h3><b>Q:</b> Why isn't the custom directory created with the provider?</h3>
         <p><b>A:</b> VSIX have limited access to the file system to assure they have limited impact to muck wiht the stability of your environment. In this case, the VSIX is unable to create directories outside the scope of the VSIX.</p>
         <h3><b>Q:</b> Why not just create the directory under the extension?</h3>
