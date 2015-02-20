@@ -30,6 +30,7 @@
         <h4>NuGet package references</h4>
         <ul>
             <li><a href="http://www.nuget.org/packages/DeveloperForce.Force/" target="_blank">developerforce.force</a></li>
+            <li><i>The developerforce.force SDK will add additional NuGets it depends upon as well.</i></li>
         </ul>
         <p><i>*This NuGet package provides a .NET library for interacting with Salesforce's Force.com core REST APIs.</i></p>
         <h4>.NET references</h4>
@@ -40,7 +41,7 @@
         </ul>
         <p><i>* added if you've chosen to Scaffold the Salesforce Objects</i></p>
         <h3>A configured connection class was added to the Service folder</h3>
-        <p>A configured service class, <font class="inlineCode">SalesforceService.cs</font> was added to the <font class="inlineCode">Service References</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST queries.</p>
+        <p>A configured service class, <font class="inlineCode">SalesforceService.cs</font> was added to the <font class="inlineCode">Service References\Salesforce</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST queries.</p>
         <p>With the values being read from <font class="inlineCode">app/web.config</font>, you can manage the configurations as they change through your deployment environments.</p>
         <h3>Your app/web.config has new configuration values</h3>
         <p>Depending on the project type and the authentication strategies you've chosen, some of the following entries have been added.</p>
@@ -57,7 +58,7 @@
 <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
-<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/ProjectName-SalesforceRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/SalesforceOAuthRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
 </pre>
@@ -66,13 +67,11 @@
 <pre class="csharpcode">
 <span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
 <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
-<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
-<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:RedirectUri"</span> <span class="attr">value</span><span class="kwrd">="/ProjectName-SalesforceRedirectHandler.axd"</span> <span class="kwrd">/&gt;</span>
-<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Username"</span> <span class="attr">value</span><span class="kwrd">="yourUsername"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Password"</span> <span class="attr">value</span><span class="kwrd">="yourPassword"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:SecurityToken"</span> <span class="attr">value</span><span class="kwrd">="yourSecurityToken"</span> <span class="kwrd">/&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Domain"</span> <span class="attr">value</span><span class="kwrd">="https://login.salesforce.com"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;/</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
 </pre>
                     <p><i>*For more information about Security Tokens, visit <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm" target="_blank">Resetting Your Security Token</a></i></p>
@@ -90,6 +89,7 @@
 </pre>
         <div class="tip">Deployment Tip</div>
         <p>When you're ready to deploy your application to another environment, you'll need to edit or create another <a href="https://developer.salesforce.com/page/Connected_Apps" target="_blank">Connected App</a> with the appropriate settings, particularly the <a href="https://help.salesforce.com/apex/HTFederatedSearchResults#q=Editing%20a%20Connected%20App&t=AllTab&sort=relevancy" target="_blank">callback url</a>, and update the <font class="inlineCode">app/web.config</font> file to the target environment.</p>
+        <p>If you're using the same Connected App across two different development instances, be sure to verify the :port number as well. Remember that it may take several minutes for Salesforce to propagate your changes, so give it a bit, or verify the redirects are proper before questioning your code.</p>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>

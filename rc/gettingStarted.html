@@ -56,24 +56,24 @@
                     </div>
                     <div class="linkTableCodeBox">
                         <div id="MVCLinksOverview">
-                            <h2>Creating an MVC app to view, edit and delete Salesforce Contacts</h2>
+                            <h3 class="codeHeading">Creating an MVC app to view, edit and delete Salesforce Contacts</h3>
                             <p>ASP.net MVC apps follow the Model-View-Controller pattern.</p>
                             <p>In the following steps, you'll create:</p>
                             <ul>
                                 <li>An MVC Controller to retrieve the Contact object and provide Query, Create, Update and Delete functionality. Within the Controller, we'll validate the connection is authenticated. If not, the user will be redirected to login.</li>
                                 <li>A Menu in the common Layouts folder for listing your Salesforce Contacts.</li>
                                 <li>4 Views using razor syntax for Index, Create, Update and Delete. The Delete View will include a confirmation view as best practices include confirming the user really wanted to perform a destructive action.</li>
-                                ==                          <li>This sample assumes you selected the <b>Contact</b> Salesforce Object in the scaffolding step of the wizard.</li>
+                                <li>This sample assumes you selected the <b>Contact</b> Salesforce Object in the scaffolding step of the wizard.</li>
                             </ul>
                         </div>
                         <div id="MVCLinksController" style="display: none">
-                            <h3 class="hh3">Add MVC Controller</h3>
+                            <h3 class="codeHeading">Add MVC Controller</h3>
                             <ul>
                                 <li>Right click on the Controllers folder and select <b>Add-->Controller...</b></li>
                                 <li>Select <b>MVC 5 Controller - Empty</b></li>
                                 <li>Name it: <b>Contacts</b>Controller</li>
                                 <li>Replace the contents of the Controller with the following code:</li>
-                                <li>Replace the namespace ContosoRepairManager with the namespace of your project</li>
+                                <li>Replace the namespace WebApplication1 with the namespace of your project</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeController')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
@@ -86,9 +86,9 @@
 <span class="kwrd">using</span> System.Threading.Tasks;
 <span class="kwrd">using</span> System.Web;
 <span class="kwrd">using</span> System.Web.Mvc;
-<span class="kwrd">using</span> WebApplication23.Models.Salesforce;
-<span class="kwrd">using</span> WebApplication23.Salesforce;
-<span class="kwrd">namespace</span> WebApplication2.Controllers
+<span class="kwrd">using</span> WebApplication1.Models.Salesforce;
+<span class="kwrd">using</span> WebApplication1.Salesforce;
+<span class="kwrd">namespace</span> WebApplication1.Controllers
 {
     <span class="kwrd">public</span> <span class="kwrd">class</span> ContactsController : Controller
     {
@@ -115,12 +115,13 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
             <span class="kwrd">return</span> View(selectedContacts);
         }
+
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Details(<span class="kwrd">string</span> id)
         {
             IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
@@ -141,12 +142,13 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
             <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
         }
+
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit(<span class="kwrd">string</span> id)
         {
             IEnumerable&lt;Contact&gt; selectedContacts = Enumerable.Empty&lt;Contact&gt;();
@@ -167,13 +169,13 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
             <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
         }
-        <span class="rem">// POST: /Contacts/Edit/003i000000tm2KSAAY</span>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Edit([Bind(Include = _ContactsPostBinding)] Contact contact)
@@ -195,7 +197,7 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
@@ -208,7 +210,7 @@
                 <span class="kwrd">return</span> View(contact);
             }
         }
-        <span class="rem">// GET: /Contacts/Delete/003i000000tm2KSAAY</span>
+
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Delete(<span class="kwrd">string</span> id)
         {
             <span class="kwrd">if</span> (id == <span class="kwrd">null</span>)
@@ -234,7 +236,7 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
@@ -247,7 +249,7 @@
                 <span class="kwrd">return</span> View(selectedContacts.FirstOrDefault());
             }
         }
-        <span class="rem">// POST: /Contacts/Delete/003i000000tm2KSAAY</span>
+
         [HttpPost, ActionName(<span class="str">"Delete"</span>)]
         [ValidateAntiForgeryToken]
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; DeleteConfirmed(<span class="kwrd">string</span> id)
@@ -269,7 +271,7 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
@@ -282,11 +284,12 @@
                 <span class="kwrd">return</span> View();
             }
         }
+
         <span class="kwrd">public</span> ActionResult Create()
         {
             <span class="kwrd">return</span> View();
         }
-        <span class="rem">// POST: /Contacts/Create</span>
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         <span class="kwrd">public</span> async Task&lt;ActionResult&gt; Create([Bind(Include = _ContactsPostBinding)] Contact contact)
@@ -307,7 +310,7 @@
                 <span class="kwrd">this</span>.ViewBag.AuthorizationUrl = SalesforceOAuthRedirectHandler.GetAuthorizationUrl(<span class="kwrd">this</span>.Request.Url.ToString());
                 <span class="kwrd">this</span>.ViewBag.ErrorMessage = e.Message;
             }
-            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMssage == <span class="str">"AuthorizationRequired"</span>)
+            <span class="kwrd">if</span> (<span class="kwrd">this</span>.ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
             {
                 <span class="kwrd">return</span> Redirect(<span class="kwrd">this</span>.ViewBag.AuthorizationUrl);
             }
@@ -323,21 +326,18 @@
 }</pre>
                         </div>
                         <div id="MVCLinksAuthError" style="display: none">
-                            <h3 class="hh3">Add a partial view to provide login link if not yet authorized</h3>
-                            <p>When the list of contacts page loads, it tries to get a list of contact from Salesforce. If this fails due to lack of authentication, we want to provide a link to the user to login.</p>
+                            <h3 class="codeHeading">Add a partial view to provide login link if not yet authorized</h3>
+                            <p>When the list of contacts page loads, it tries to get a list of contact from Salesforce. If this fails due to lack of authentication, we want to provide a link for the user to login.</p>
                             <p>This is just one way to handle authentication, you may want to authenticate up front, or when the user accesses an authorized resource without making them click a link.</p>
-                            <h3>Add Auth Error Page</h3>
+                            <h3 class="codeHeading">Add Auth Error Page</h3>
                             <ul>
                                 <li>Right click on the Views/Shared folder and select <b>Add-->View...</b></li>
-                                <li>Name it: <b> _AuthError.cshtml</b></li>
-                                <li>Select <b>Empty (without model) for the template</b></li>
+                                <li>Name it: <b> _AuthError</b></li>
                                 <li>Click the <b>Add</b> button</li>
                                 <li>Replace the contents of the View with the following code:</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeAuthError')">Copy</button>
-
-<pre class="csharpcode" id="codeAuthError">
-    <!-- code formatted by http://manoli.net/csharpformat/ -->
+<pre class="csharpcode" id="codeAuthError"><!-- code formatted by http://manoli.net/csharpformat/ -->
 @<span class="kwrd">if</span> (ViewBag.ErrorMessage == <span class="str">"AuthorizationRequired"</span>)
 {
     &lt;p&gt;You have to sign-<span class="kwrd">in</span> to @ViewBag.OperationName. Click &lt;a href=<span class="str">"@ViewBag.AuthorizationUrl"</span> title=<span class="str">"here"</span>&gt;here&lt;/a&gt; to sign-<span class="kwrd">in</span>.&lt;/p&gt;
@@ -346,13 +346,12 @@
 </pre>
                             </div>
                             <div id="MVCLinksUnexError" style="display: none">
-                                <h3 class="hh3">Add a partial view to provide error messages returned from the Salesforce API</h3>
+                                <h3 class="codeHeading">Add a partial view to provide error messages returned from the Salesforce API</h3>
                                 <p>This partial page will only be visible when there is an unexpected error returned to the user.</p>
-                                <h3>Add Error Page</h3>
+                                <h3 class="codeHeading">Add Error Page</h3>
                                 <ul>
                                     <li>Right click on the Views/Shared folder and select <b>Add-->View...</b></li>
-                                    <li>Name it: <b> _UnexpectedError.cshtml</b></li>
-                                    <li>Select <b>Empty (without model) for the template</b></li>
+                                    <li>Name it: <b> _UnexpectedError</b></li>
                                     <li>Click the <b>Add</b> button</li>
                                     <li>Replace the contents of the View with the following code:</li>
                                 </ul>
@@ -370,14 +369,14 @@
 </pre>
                             </div>
                         <div id="MVCLinksMenu" style="display: none">
-                            <h3 class="hh3">Add a Menu item for Salesforce Contacts</h3>
+                            <h3 class="codeHeading">Add a Menu item for Salesforce Contacts</h3>
                             <ul>
                                 <li>Open <font class="inlineCode">Views\Shared\_Layout.cshtml</font>.</li>
                                 <li>Within the <span class="csharpcode inline"><span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span></span> div, add the highlighted code:</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeMenu')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
-<pre class="csharpcode" id="codeMenu">
+<pre class="csharpcode">
 <span class="kwrd">&lt;</span><span class="html">ul</span> <span class="attr">class</span><span class="kwrd">="nav navbar-nav"</span><span class="kwrd">&gt;</span>
     <span class="disabled">&lt;li&gt;@Html.ActionLink("Home", "Index", "Home")&lt;/li&gt;</span>
     <span class="disabled">&lt;li&gt;@Html.ActionLink("About", "About", "Home")&lt;/li&gt;</span>
@@ -387,7 +386,10 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewIndex" style="display: none">
-                            <h3 class="hh3">List View</h3>
+                            <h3 class="codeHeading">List View</h3>
+                            <p>Using MVC Scaffolding, we can build out the view based on the Model classes scaffolded based on the Salesforce objects.</p>
+                            <p><b>Note:</b> because we're using a new auth pattern for validating users inline, there are two extra Partial views added to the page.</p>
+                            <p>Copying this code will add these views, however as you move past the sample and use the MVC View Scaffolding, be sure to add these partial views if you continue to use the auth pattern in the controllers.</p>
                             <ul>
                                 <li>Within the Controller.Index Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -397,12 +399,12 @@
                                 </ul>
                                 <li>Click Add</li>
                                 <li>Replace the contents of the razor file with the following code:</li>
-                                <li><i>Note: Replace the @model namespace ContosoRepairManager with the namespace of your project</i></li>
+                                <li><i>Note: Replace the @model namespace WebApplication1 with the namespace of your project</i></li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeListView')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeListView">
-@model IEnumerable<span class="kwrd">&lt;</span><span class="html">ContosoRepairManager.Models.Salesforce.Contact</span><span class="kwrd">&gt;</span>
+@model IEnumerable<span class="kwrd">&lt;</span><span class="html">WebApplication1.Models.Salesforce.Contact</span><span class="kwrd">&gt;</span>
 @{
     ViewBag.Title = "Contacts";
 }
@@ -465,7 +467,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewDetails" style="display: none">
-                            <h3 class="hh3">Details View</h3>
+                            <h3 class="codeHeading">Details View</h3>
                             <ul>
                                 <li>Within the Controller.Details Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -475,12 +477,12 @@
                                 </ul>
                                 <li>Click Add</li>
                                 <li>Replace the contents of the razor file with the following code:</li>
-                                <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                <li>Replace the @model namespace WebApplication1 with the namespace of your project</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeDetailsView')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeDetailsView">
-@model ContosoRepairManager.Models.Salesforce.Contact
+@model WebApplication1.Models.Salesforce.Contact
 @{
     ViewBag.Title = "View";
 }
@@ -560,7 +562,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewEdit" style="display: none">
-                            <h3 class="hh3">Edit View</h3>
+                            <h3 class="codeHeading">Edit View</h3>
                             <ul>
                                 <li>Within the Controller.Edit Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -570,12 +572,12 @@
                                 </ul>
                                 <li>Click Add</li>
                                 <li>Replace the contents of the razor file with the following code:</li>
-                                <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                <li>Replace the @model namespace WebApplication1 with the namespace of your project</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeEditView')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeEditView">
-@model ContosoRepairManager.Models.Salesforce.Contact
+@model WebApplication1.Models.Salesforce.Contact
 @{
     ViewBag.Title = "Edit";
 }
@@ -675,7 +677,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewDelete" style="display: none">
-                            <h3 class="hh3">Delete View</h3>
+                            <h3 class="codeHeading">Delete View</h3>
                             <ul>
                                 <li>Within the Controller.Delete Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -685,12 +687,12 @@
                                 </ul>
                                 <li>Click Add</li>
                                 <li>Replace the contents of the razor file with the following code:</li>
-                                <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                <li>Replace the @model namespace WebApplication1 with the namespace of your project</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeDeleteView')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeDeleteView">
-@model ContosoRepairManager.Models.Salesforce.Contact
+@model WebApplication1.Models.Salesforce.Contact
 @{
     ViewBag.Title = "Delete";
 }
@@ -744,7 +746,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksViewCreate" style="display: none">
-                            <h3 class="hh3">Create View</h3>
+                            <h3 class="codeHeading">Create View</h3>
                             <ul>
                                 <li>Within the Controller.Create Method, right-click and select <b>Add View</b></li>
                                 <ul>
@@ -754,12 +756,12 @@
                                 </ul>
                                 <li>Click Add</li>
                                 <li>Replace the contents of the razor file with the following code:</li>
-                                <li>Replace the @model namespace ContosoRepairManager with the namespace of your project</li>
+                                <li>Replace the @model namespace WebApplication1 with the namespace of your project</li>
                             </ul>
                             <button class="copyBtn copyBtn-success" onclick="copyCode('codeCreateView')">Copy</button>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeCreateView">
-@model ContosoRepairManager.Models.Salesforce.Contact
+@model WebApplication1.Models.Salesforce.Contact
 @{
     ViewBag.Title = "Create";
 }
@@ -858,7 +860,7 @@
 </pre>
                         </div>
                         <div id="MVCLinksRunIt" style="display: none">
-                            <h3 class="hh3">Run the app</h3>
+                            <h3 class="codeHeading">Run the app</h3>
                             <ul>
                                 <li>Hit F5 or CTRL+F5 to start your app</li>
                                 <li>Click the Salesforce Contacts link</li>
@@ -871,10 +873,9 @@
                             <p>Voila, you've just walked through creating a Salesforce contact in an ASP.net MVC application, using the Salesforce REST APIs and the <a href="https://github.com/developerforce/Force.com-Toolkit-for-NET/wiki/Getting-Started" target="_blank">Force.com-Toolkit-for-NET</a></p>
                         </div>
                         <div id="MVCLinksTroubleshooting" style="display: none">
-                            <h3>Having some problems? Here's some quick tips we've found along the way</h3>
+                            <h3 class="codeHeading">Having some problems? Here's some quick tips we've found along the way</h3>
                             <ul>
                                 <li><b>Failures when completing the wizard?</b> - Check the output window, as we log progress, and timings for the steps being completed.</li>
-                                <li><b>Got an <font style="color:maroon">invalid client credentials</font> exception when you clicked on the Salesforce Contacts link?</b> - Did you copy the Secret from the Salesforce Portal? It's a secret, so we can't get the secret automatically and put the value in your project directly.</li>
                             </ul>
                         </div>
                     </div>
@@ -891,34 +892,34 @@
                     </div>
                     <div class="linkTableCodeBox">
                         <div id="ConsoleLinksOverview">
-                            <h2>Creating a Console app to view, edit and delete Salesforce Contacts</h2>
-                            <p>This walkthrough will help you create a basic Console App that utilizes a <i>System Account</i> based on the <strong>Username/Password</strong> authentication strategy and performs some basic CRUD operations.</p>
+                            <h3 class="codeHeading">Creating a Console app to view, edit and delete Salesforce Contacts</h3>
+                            <p>This walkthrough will help you create a basic Console App that utilizes a <i>System Account</i> based on the <strong>Username/Password</strong> authentication strategy, performing basic CRUD operations.</p>
                             <p>When creating a Console App, be sure to choose the Service Account-Username/Password runtime authentication strategy.</p>
                             <p><b>Note:</b> This sample assumes you selected the <b>Contact</b> Salesforce Object in the scaffolding step of the wizard.</p>
                         </div>
                         <div id="ConsoleLinksCodeUpdateService" style="display: none">
-                            <h3 class="hh3">Using a Service Account with Username/Password authentication</h3>
-                            <p>Developers will often write a Console application for initial testing, prototyping, or as a headless application run as a scheduled job.</p>
+                            <h3 class="codeHeading">Using a Service Account with Username/Password authentication</h3>
+                            <p>Developers will often write a Console application for initial testing, prototyping, or as a headless application run as a scheduled job. The headless app can either be scheduled with Windows Scheduler, or you may choose to create a Windows Service project.</p>
                             <p>In console applications, there's no web page, httpContext, or UI to speak of. In this sample, we'll use the Username/Password authentication strategy to authenticate against Salesforce without user interaction.</p>
                             <ul>
                                 <li>Open <font class="inlineCode">app.config</font> and set the following values.</li>
                                 <ul>
                                     <li><b>ConsumerSecret</b> is found using the information in Next Steps above.</li>
                                     <li><b>Username</b> is the user the console will use at runtime. Typically a service account with limited permissions, but for demos, your account can be used.</li>
-                                    <li><b>SecurityToken</b> is retrieved from Salesforce Setup. See more info <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm&language=en" target="_blank"> for retrieving the securitytoken</a></li>
+                                    <li><b>SecurityToken</b> is retrieved from Salesforce Setup. See more info <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm&language=en" target="_blank"> for retrieving the securitytoken</a>, or <a href="https://help.salesforce.com/HTViewHelpDoc?id=security_networkaccess.htm" target="_blank">Set Trusted IP Ranges for Your Organization</a> to avoid having to use the user security token. If you've setup a trusted network, you can either remove the config entry or leave it as <font class="inlineCode">OptionalValue</font></li>
                                 </ul>
                             </ul>
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode">
 &lt;add key=<span class="str">"Salesforce:ConsumerKey"</span> value=<span class="str">"populated by the Connected Service Configuration"</span> /&gt;
-&lt;add key=<span class="str">"Salesforce:ConsumerSecret"</span> value=<span class="str">"requiredValue"</span> /&gt;
-&lt;add key=<span class="str">"Salesforce:Username"</span> value=<span class="str">"requiredValue"</span> /&gt;
-&lt;add key=<span class="str">"Salesforce:Password"</span> value=<span class="str">"requiredValue"</span> /&gt;
-&lt;add key=<span class="str">"Salesforce:SecurityToken"</span> value=<span class="str">"requiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:ConsumerSecret"</span> value=<span class="str">"RequiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:Username"</span> value=<span class="str">"RequiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:Password"</span> value=<span class="str">"RequiredValue"</span> /&gt;
+&lt;add key=<span class="str">"Salesforce:SecurityToken"</span> value=<span class="str">"OptionalValue"</span> /&gt;
 </pre>
                         </div>
                         <div id="ConsoleLinksCodeUsing" style="display: none">
-                            <h3 class="hh3">Add using statements</h3>
+                            <h3 class="codeHeading">Add using statements</h3>
                             <ul>
                                 <li>Open <font class="inlineCode"> Program.cs</font></li>
                                 <li>Include the following using statements:</li>
@@ -932,7 +933,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode1" style="display: none">
-                            <h3 class="hh3">Add a Query Contacts Method</h3>
+                            <h3 class="codeHeading">Add a Query Contacts Method</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the Main(string[] args) method, add the following code:</li>
                             </ul>
@@ -940,8 +941,8 @@
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeQueryContacts">
 <span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryContacts() {
-    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
-    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetUsernamePasswordForceClient();
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce, using the Username/Password authentication strategy"</span>);
+    ForceClient client = await Salesforce.SalesforceService.GetUserNamePasswordForceClientAsync();
     Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
     Console.WriteLine(<span class="str">"Get a list of Contacts"</span>);
     <span class="rem">// a collection to hold the results as we get multile resultsets</span>
@@ -986,7 +987,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode2" style="display: none">
-                            <h3 class="hh3">Add Create, Update and Delete functionality</h3>
+                            <h3 class="codeHeading">Add Create, Update and Delete functionality</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the QueryContacts() method, add the following code:</li>
                             </ul>
@@ -994,8 +995,8 @@
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeCreateUpdateDeleteContact">
 <span class="kwrd">private</span> <span class="kwrd">static</span> async Task CreateUpdateDeleteContact() {
-    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
-    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetUsernamePasswordForceClient();
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce, using the Username/Password authentication strategy"</span>);
+    ForceClient client = await Salesforce.SalesforceService.GetUserNamePasswordForceClientAsync();
     Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
     <span class="rem">// Create a sample record</span>
     Console.WriteLine(<span class="str">"Creating test Contact."</span>);
@@ -1084,7 +1085,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCode3" style="display: none">
-                            <h3 class="hh3">Add a Query with dynamic types</h3>
+                            <h3 class="codeHeading">Add a Query with dynamic types</h3>
                             <ul>
                                 <li>In <font class="inlineCode">Program.cs</font>, below the CreateUpdateDeleteContact() method, add the following code:</li>
                             </ul>
@@ -1092,8 +1093,8 @@
                             <!-- code formatted by http://manoli.net/csharpformat/ -->
 <pre class="csharpcode" id="codeQueryWithDynamic">
 <span class="kwrd">private</span> <span class="kwrd">static</span> async Task QueryWithDynamic() {
-    Console.WriteLine(<span class="str">"Authenticating with Salesforce"</span>);
-    ForceClient client = await <span class="kwrd">new</span> Salesforce.SalesforceService().GetUsernamePasswordForceClient();
+    Console.WriteLine(<span class="str">"Authenticating with Salesforce, using the Username/Password authentication strategy"</span>);
+    ForceClient client = await Salesforce.SalesforceService.GetUserNamePasswordForceClientAsync();
     Console.WriteLine(<span class="str">"Connected to Salesforce"</span>);
     <span class="rem">// Selecting multiple accounts into a dynamic</span>
     Console.WriteLine(<span class="str">"Querying multiple records."</span>);
@@ -1113,7 +1114,7 @@
 </pre>
                         </div>
                         <div id="ConsoleLinksCallSampleMethods" style="display: none">
-                            <h3 class="hh3">Call the Sample Methods in Sequence</h3>
+                            <h3 class="codeHeading">Call the Sample Methods in Sequence</h3>
                             <ul>
                                 <li>Replace <font class="inlineCode">Main()</font> method, with the following code:</li>
                                 <li>Hit F5 to test your console app.</li>
