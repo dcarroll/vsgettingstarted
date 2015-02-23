@@ -41,7 +41,7 @@
         </ul>
         <p><i>* added if you've chosen to Scaffold the Salesforce Objects</i></p>
         <h3>A configured connection class was added to the Service folder</h3>
-        <p>A configured service class, <font class="inlineCode">SalesforceService.cs</font> was added to the <font class="inlineCode">Service References\Salesforce</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST queries.</p>
+        <p>A configured service class, <font class="inlineCode">SalesforceService.cs</font> and <font class="inlineCode">SalesforceOAuthRedirectHandler.cs</font> (for web server flow only) were added to the <font class="inlineCode">Service References\Salesforce</font> folder. This class will provide a configured connection, reading values from <font class="inlineCode">app/web.config</font>, providing a ForceClient to execute Salesforce REST requests.</p>
         <p>With the values being read from <font class="inlineCode">app/web.config</font>, you can manage the configurations as they change through your deployment environments.</p>
         <h3>Your app/web.config has new configuration values</h3>
         <p>Depending on the project type and the authentication strategies you've chosen, some of the following entries have been added.</p>
@@ -67,6 +67,7 @@
 <pre class="csharpcode">
 <span class="kwrd">&lt;</span><span class="html">appSettings</span><span class="kwrd">&gt;</span>
 <span class="rem">&lt;!-- The Salesforce connected app is named: <b><span class="replace">YourProjectName-Dev</span></b> --&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerKey"</span> <span class="attr">value</span><span class="kwrd">="yourKey"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:ConsumerSecret"</span> <span class="attr">value</span><span class="kwrd">="yourSecret"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Username"</span> <span class="attr">value</span><span class="kwrd">="yourUsername"</span> <span class="kwrd">/&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">add</span> <span class="attr">key</span><span class="kwrd">="Salesforce:Password"</span> <span class="attr">value</span><span class="kwrd">="yourPassword"</span> <span class="kwrd">/&gt;</span>
