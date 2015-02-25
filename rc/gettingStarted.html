@@ -131,7 +131,7 @@
                     async (client) =&gt;
                     {
                         QueryResult&lt;Contact&gt; contacts =
-                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id = '"</span> + id + <span class="str">"'"</span>);
+                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id = '"</span> + id + <span class="str">"'"</span>);
                         <span class="kwrd">return</span> contacts.records;
                     }
                     );
@@ -158,7 +158,7 @@
                     async (client) =&gt;
                     {
                         QueryResult&lt;Contact&gt; contacts =
-                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingCity, MailingState, MailingCountry From Contact Where Id = '"</span> + id + <span class="str">"'"</span>);
+                            await client.QueryAsync&lt;Contact&gt;(<span class="str">"SELECT Id, Salutation, FirstName, LastName, MailingStreet, MailingCity, MailingState, MailingPostalCode, MailingCountry, Phone, Email From Contact Where Id= '"</span> + id + <span class="str">"'"</span>);
                         <span class="kwrd">return</span> contacts.records;
                     }
                     );
@@ -862,6 +862,7 @@
                         <div id="MVCLinksRunIt" style="display: none">
                             <h3 class="codeHeading">Run the app</h3>
                             <ul>
+                                <li>Close all files before debugging to launch the home page of your website</li>
                                 <li>Hit F5 or CTRL+F5 to start your app</li>
                                 <li>Click the Salesforce Contacts link</li>
                                 <li>Login with your Salesforce account</li>
