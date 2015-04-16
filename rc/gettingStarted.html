@@ -43,8 +43,8 @@
                     <div class="linkTableSubNav">
                         <a id="MVCLinksSubNavOverview" class="selected" href="#">MVC Overview</a>
                         <a id="MVCLinksSubNavController" href="#">MVC Controller</a>
-                        <a id="MVCLinksSubNavAuthError" href="#">Auth Error View</a>
-                        <a id="MVCLinksSubNavUnexError" href="#">API Errors View</a>
+                        <!--<a id="MVCLinksSubNavAuthError" href="#">Auth Error View</a>
+                        <a id="MVCLinksSubNavUnexError" href="#">API Errors View</a>-->
                         <a id="MVCLinksSubNavMenu" href="#">Navigation Menu</a>
                         <a id="MVCLinksSubNavViewIndex" href="#">Index/List View</a>
                         <a id="MVCLinksSubNavViewDetails" href="#">Details View</a>
@@ -412,7 +412,6 @@
 <span class="kwrd">&lt;</span><span class="html">p</span><span class="kwrd">&gt;</span>
     @Html.ActionLink("Create New", "Create")
 <span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span>
-@Html.Partial("_UnexpectedError")
 <span class="kwrd">&lt;</span><span class="html">table</span> <span class="attr">class</span><span class="kwrd">="table"</span><span class="kwrd">&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">tr</span><span class="kwrd">&gt;</span>
         <span class="kwrd">&lt;</span><span class="html">th</span><span class="kwrd">&gt;</span>
@@ -463,7 +462,6 @@
         <span class="kwrd">&lt;/</span><span class="html">tr</span><span class="kwrd">&gt;</span>
     }
 <span class="kwrd">&lt;/</span><span class="html">table</span><span class="kwrd">&gt;</span>
-@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewDetails" style="display: none">
@@ -489,7 +487,6 @@
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>View<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
-@Html.Partial("_UnexpectedError")
     <span class="kwrd">&lt;</span><span class="html">hr</span> <span class="kwrd">/&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">dl</span> <span class="attr">class</span><span class="kwrd">="dl-horizontal"</span><span class="kwrd">&gt;</span>
         <span class="kwrd">&lt;</span><span class="html">dt</span><span class="kwrd">&gt;</span>
@@ -558,7 +555,6 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 <span class="kwrd">&lt;/</span><span class="html">p</span><span class="kwrd">&gt;</span>
-@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewEdit" style="display: none">
@@ -582,7 +578,6 @@
     ViewBag.Title = "Edit";
 }
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Edit<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
-@Html.Partial("_UnexpectedError")
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-horizontal"</span><span class="kwrd">&gt;</span>
@@ -673,7 +668,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewDelete" style="display: none">
@@ -697,7 +691,6 @@
     ViewBag.Title = "Delete";
 }
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Delete<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
-@Html.Partial("_UnexpectedError")
 <span class="kwrd">&lt;</span><span class="html">h3</span><span class="kwrd">&gt;</span>Are you sure you want to delete this?<span class="kwrd">&lt;/</span><span class="html">h3</span><span class="kwrd">&gt;</span>
 <span class="kwrd">&lt;</span><span class="html">div</span><span class="kwrd">&gt;</span>
     <span class="kwrd">&lt;</span><span class="html">h4</span><span class="kwrd">&gt;</span>Contact<span class="kwrd">&lt;/</span><span class="html">h4</span><span class="kwrd">&gt;</span>
@@ -742,7 +735,6 @@
         <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
     }
 <span class="kwrd">&lt;/</span><span class="html">div</span><span class="kwrd">&gt;</span>
-@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksViewCreate" style="display: none">
@@ -766,7 +758,6 @@
     ViewBag.Title = "Create";
 }
 <span class="kwrd">&lt;</span><span class="html">h2</span><span class="kwrd">&gt;</span>Create<span class="kwrd">&lt;/</span><span class="html">h2</span><span class="kwrd">&gt;</span>
-@Html.Partial("_UnexpectedError")
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <span class="kwrd">&lt;</span><span class="html">div</span> <span class="attr">class</span><span class="kwrd">="form-horizontal"</span><span class="kwrd">&gt;</span>
@@ -856,7 +847,6 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-@Html.Partial("_AuthError")
 </pre>
                         </div>
                         <div id="MVCLinksRunIt" style="display: none">
